@@ -27,7 +27,7 @@ var Product = db.define('product', {
     date_of_posting: {
         type: Sequelize.DATE,
         allowNull:false,
-        defaultValue:Date.now()
+        defaultValue:Sequelize.NOW
     }
 });
 

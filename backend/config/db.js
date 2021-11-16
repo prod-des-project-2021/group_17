@@ -9,5 +9,8 @@ module.exports = new Sequelize(config.db.database, config.db.user, config.db.pas
 		min: 0,
 		idle: 10000
 	},
+	define: {
+		timestamps: false
+	},
 	port: config.db.port
 });

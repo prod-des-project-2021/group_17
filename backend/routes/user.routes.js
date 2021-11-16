@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const userController = require('../controllers/user.controller')
 
-//TODO
+router.post('/addUser', userController.addUser)
 
 module.exports = router

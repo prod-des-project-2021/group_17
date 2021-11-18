@@ -10,6 +10,10 @@ import Theme from './Theme';
 import Header from './components/homepage/Header';
 import Footer from './components/homepage/Footer';
 
+import ShowCart from './components/homepage/ShowCart';
+import Settings from './components/homepage/Settings';
+import Searchbar from './components/homepage/Searchbar';
+
 
 class App extends React.Component {
 	constructor(props) {
@@ -61,13 +65,13 @@ class App extends React.Component {
 										
 									</Route>
 									<Route path='/profil'>
-									{apiUser?<Profil currentUser={apiUser}/>:null}
+									{apiUser?<Settings currentUser={apiUser}/>:null}
 									</Route>
 									<Route path='/search' >
-										{apiUser?<Search currentUser={apiUser}/>:null}
+										{apiUser?<Searchbar currentUser={apiUser}/>:null}
 									</Route>
 									<Route path='/cart'>
-										{apiUser?<Cart currentUser={apiUser}/>:null}
+										{apiUser?<ShowCart currentUser={apiUser}/>:null}
 									</Route>
 								<Footer />	
 								</>

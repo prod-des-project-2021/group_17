@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/navbar/Navbar';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Searchbar from './pages/Searchbar';
 import Login from './pages/Login';
@@ -12,13 +12,13 @@ function App() {
   return (
     <Router>
       <Navbar/>
-      <Switch> 
+      <Routes> 
         <Route path='/' exact component={Homepage}/>
         <Route path='/searchbar' component={Searchbar}/>
         <Route path='/login' component={Login}/>
         <Route path='/cart' component={Cart}/>
         <Route path='/userprofil' component={Userprofil}/>
-      </Switch>
+      </Routes>
     </Router>
   );
 }

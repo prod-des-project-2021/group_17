@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/navbar/Navbar';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Searchbar from './pages/Searchbar';
 import Login from './pages/Login';
@@ -10,16 +10,16 @@ import Userprofil from './pages/Userprofil';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar/>
       <Routes> 
-        <Route path='/' exact component={Homepage}/>
-        <Route path='/searchbar' component={Searchbar}/>
-        <Route path='/login' component={Login}/>
-        <Route path='/cart' component={Cart}/>
-        <Route path='/userprofil' component={Userprofil}/>
+        <Route path='/home' exact element={<Homepage/>}/>
+        <Route path='/searchbar' element={<Searchbar/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/userprofil' element={<Userprofil/>}/>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

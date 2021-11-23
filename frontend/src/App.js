@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Cart from './pages/Cart';
 import Userprofil from './pages/Userprofil';
 import Footer from './components/navbar/Footer';
-import Contactus from './pages/ContactUs';
+import ContactUs from './pages/ContactUs';
 import LegalNotice from './pages/LegalNotice';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Navbar/>
       <Routes> 
-        <Route path='/home' exact element={<Homepage/>}/>
+        <Route path='/' exact element={<Homepage/>}/>
         <Route path='/searchbar' element={<Searchbar/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/cart' element={<Cart/>}/>
@@ -25,9 +25,8 @@ function App() {
       <Footer/>
       <Routes>
         <Route path='/legalnotice' element={<LegalNotice/>}/>
-        <Route path='/contactus' element={<Contactus/>}/>
+        <Route path='/contactus' element={<ContactUs/>}/>
       </Routes>
-      <Footer/>
     </BrowserRouter>
   );
 }

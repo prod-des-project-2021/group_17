@@ -11,6 +11,7 @@ const LegalNotice = () => {
                 }}
         >
            <h1>LegalNotice</h1>
+           
         </div>
     )
 }

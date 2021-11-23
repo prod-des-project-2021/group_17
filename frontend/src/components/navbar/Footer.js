@@ -1,26 +1,3 @@
-/* import React from 'react';
-import { Foot, FooterLink, FooterMenu, Bars } from './FooterElement';
-
-const Footer = () => {
-    return (
-        <>
-          <Foot>
-              <Bars />
-              <FooterMenu>
-                  <FooterLink to='/legalnotice' activeStyle>
-                      Legal notice
-                  </FooterLink>
-                  <FooterLink to='/contactus' activeStyle>
-                      Contact us
-                  </FooterLink>
-              </FooterMenu>
-          </Foot>
-        </>
-    )
-}
-
-export default Footer */
-
 import React from "react";
 import { Box, Container, Row, Column, FooterLink }  from "./FooterElement";
 

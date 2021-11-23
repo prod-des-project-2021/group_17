@@ -7,6 +7,9 @@ import Searchbar from './pages/Searchbar';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
 import Userprofil from './pages/Userprofil';
+import Footer from './components/navbar/Footer';
+import Contactus from './pages/ContactUs';
+import LegalNotice from './pages/LegalNotice';
 
 function App() {
   return (
@@ -19,6 +22,12 @@ function App() {
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/userprofil' element={<Userprofil/>}/>
       </Routes>
+      <Footer/>
+      <Routes>
+        <Route path='/legalnotice' element={<LegalNotice/>}/>
+        <Route path='/contactus' element={<Contactus/>}/>
+      </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 }

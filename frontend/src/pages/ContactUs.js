@@ -1,7 +1,6 @@
 import React from 'react'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
-const Cart = () => {
+const Contactus = () => {
     return (
         <div 
             style={{
@@ -11,10 +10,9 @@ const Cart = () => {
                 height: '90vh'
                 }}
         >
-           <h1>Cart</h1>
-           <ShoppingCartOutlinedIcon/>
+           <h1>Contact Us</h1>
         </div>
     )
 }
 
-export default Cart
+export default Contactus

@@ -1,9 +1,10 @@
+import { Container } from '@mui/material'
 import React from 'react'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 
 const Cart = () => {
     return (
+        <Container>
         <div 
             style={{
                 display: 'flex', 
@@ -13,8 +14,8 @@ const Cart = () => {
                 }}
         >
            <h1>Cart</h1>
-           <ShoppingCartOutlinedIcon/>
         </div>
+        </Container>
     )
 }
 

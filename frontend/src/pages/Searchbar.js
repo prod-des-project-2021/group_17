@@ -1,7 +1,9 @@
+import { Container } from '@mui/material'
 import React from 'react'
 
 const Searchbar = () => {
     return (
+        <Container>
         <div 
             style={{
                 display: 'flex', 
@@ -13,6 +15,7 @@ const Searchbar = () => {
            <h1>Searchbar</h1>
 
         </div>
+        </Container>
     )
 }
 

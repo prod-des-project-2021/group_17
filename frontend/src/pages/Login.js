@@ -1,7 +1,9 @@
+import { Container } from '@mui/material'
 import React from 'react'
 
 const Login = () => {
     return (
+        <Container>
         <div 
             style={{
                 display: 'flex', 
@@ -12,6 +14,7 @@ const Login = () => {
         >
            <h1>Login</h1>
         </div>
+        </Container>
     )
 }
 

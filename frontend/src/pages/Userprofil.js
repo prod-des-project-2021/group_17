@@ -1,7 +1,9 @@
+import { Container } from '@mui/material'
 import React from 'react'
 
 const Userprofil = () => {
     return (
+        <Container>
         <div 
             style={{
                 display: 'flex', 
@@ -11,7 +13,10 @@ const Userprofil = () => {
                 }}
         >
            <h1>Userprofil</h1>
+           
         </div>
+        </Container>
+        
     )
 }
 

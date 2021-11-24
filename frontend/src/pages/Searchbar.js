@@ -11,6 +11,7 @@ const Searchbar = () => {
                 }}
         >
            <h1>Searchbar</h1>
+
         </div>
     )
 }

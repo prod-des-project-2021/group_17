@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Box = styled.div`
+export const BoxFooter = styled.div`
     padding: 4px 60px;
     background: #CCCCCC;
     position: fixed;
@@ -17,7 +17,7 @@ export const Box = styled.div`
     }
 `;
 
-export const Container = styled.div`    
+export const ContainerFooter = styled.div`    
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -26,7 +26,7 @@ export const Container = styled.div`
     
 `
 
-export const Column = styled.div`
+export const ColumnFooter = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -34,7 +34,7 @@ export const Column = styled.div`
    
 `;
 
-export const Row = styled.div`
+export const RowFooter = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill,
                             minmax(400px, 1fr));

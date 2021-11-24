@@ -10,10 +10,12 @@ import Userprofil from './pages/Userprofil';
 import Footer from './components/navbar/Footer';
 import ContactUs from './pages/ContactUs';
 import LegalNotice from './pages/LegalNotice';
+import { Container } from '@mui/material';
 
 function App() {
   return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Container>
         <Navbar />
         <Routes>
           <Route path='/' exact element={<Homepage />} />
@@ -27,6 +29,7 @@ function App() {
           <Route path='/legalnotice' element={<LegalNotice />} />
           <Route path='/contactus' element={<ContactUs />} />
         </Routes>
+        </Container>
       </BrowserRouter>
   );
 }

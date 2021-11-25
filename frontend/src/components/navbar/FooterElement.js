@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink as Link } from 'react-router-dom';
 
 export const BoxFooter = styled.div`
     padding: 4px 60px;
@@ -47,8 +48,8 @@ export const RowFooter = styled.div`
     }
 `;
 
-export const FooterLink = styled.a`
-    color: #fffff;
+export const FooterLink = styled(Link)`
+    color: #000;
     font-family: 'Sora', sans-serif;
     margin-bottom: 20px;
     font-size: 15px;

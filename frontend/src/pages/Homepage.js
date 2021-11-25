@@ -1,10 +1,27 @@
-import { Container } from '@mui/material'
-import React from 'react'
-import { RowHomepage } from './PagesElement'
+
+import React from 'react';
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
+import { Container } from '@mui/material';
+import { RowHomepage } from './PagesElement';
+import Categories from '../components/navbar/Categories';
+import CategoryClothes from './CategoryClothes';
+import CategoryGames from './CategoryGames';
+import CategoryHome from './CategoryHome';
+import CategoryKitchen from './CategoryKitchen';
+import CategorySport from './CategorySport';
 
 const Homepage = () => {
     return (
         <Container>
+                {/* <Categories/>
+                <Routes>
+                    <Route path='/clothes' element={<CategoryClothes />} />
+                    <Route path='/games' element={<CategoryGames />} />
+                    <Route path='/home' element={<CategoryHome />} />
+                    <Route path='/kitchen' element={<CategoryKitchen />} />
+                    <Route path='/sport' element={<CategorySport />} />
+                </Routes> */}
+
             <RowHomepage>
                 <div
                     style={{
@@ -30,7 +47,7 @@ const Homepage = () => {
                     }}
                 > */}
 
-                    <h1>blabla</h1>
+                <h1>blabla</h1>
 
 
                 {/* </div> */}

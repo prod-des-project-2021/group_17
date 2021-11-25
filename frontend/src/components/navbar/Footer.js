@@ -1,22 +1,24 @@
 
 import React from "react";
-import { BoxFooter, ContainerFooter, RowFooter, ColumnFooter, FooterLink }  from "./FooterElement";
+import { BoxFooter, ContainerFooter, RowFooter, ColumnFooter, FooterLink } from "./FooterElement";
 
 const Footer = () => {
-return (
-	<BoxFooter>
-	<ContainerFooter>
-		<RowFooter>
-		<ColumnFooter>
-			<FooterLink to='/contactus'> Contact Us </FooterLink>
-		</ColumnFooter>
-		<ColumnFooter>
-			<FooterLink to='/legalnotice'> Legal Notice </FooterLink>
-		</ColumnFooter>
-		</RowFooter>
-	</ContainerFooter>
-	</BoxFooter>
-);
+	return (
+		<>
+			<BoxFooter>
+				<ContainerFooter>
+					<RowFooter>
+						<ColumnFooter>
+							<FooterLink to='/contactus' activeSytle> Contact Us </FooterLink>
+						</ColumnFooter>
+						<ColumnFooter>
+							<FooterLink to='/legalnotice'activeSytle> Legal Notice </FooterLink>
+						</ColumnFooter>
+					</RowFooter>
+				</ContainerFooter>
+			</BoxFooter>
+		</>
+	);
 };
 export default Footer;
 

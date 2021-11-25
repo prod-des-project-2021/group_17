@@ -4,23 +4,23 @@ import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
 import { Container } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement';
-// import {ElementLink, } from '../ElementsElement';
+
 
 const labels = {
-  0.5: 'Useless',
-  1: 'Useless+',
-  1.5: 'Poor',
-  2: 'Poor+',
-  2.5: 'Ok',
-  3: 'Ok+',
-  3.5: 'Good',
-  4: 'Good+',
-  4.5: 'Excellent',
-  5: 'Excellent+',
+  0.5: 'I didnt like anything!',
+  1: 'I dont like it!',
+  1.5: 'Nothing for me!',
+  2: 'Mh...',
+  2.5: 'It was ok!',
+  3: 'It was fine!',
+  3.5: 'It was quite good actually!',
+  4: 'I like what I experienced!',
+  4.5: 'I really like PSOAStore!',
+  5: 'I love PSOAStore. Will defenitively come again!',
 };
 
 function HoverRating() {
-  const [value, setValue] = React.useState(4);
+  const [value, setValue] = React.useState(4.5);
   const [hover, setHover] = React.useState(-1);
 
   return (
@@ -42,7 +42,7 @@ function HoverRating() {
         </p>
         <Box
           sx={{
-            width: 200,
+            width: 2000,
             display: 'flex',
             alignItems: 'center',
           }}
@@ -57,7 +57,7 @@ function HoverRating() {
             onChangeActive={(event, newHover) => {
               setHover(newHover);
             }}
-            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit"/>}
           />
           {value !== null && (
             <Box sx={{ ml: 4 }}>{labels[hover !== -1 ? hover : value]}</Box>

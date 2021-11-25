@@ -28,8 +28,8 @@ export const CatLink = styled(Link)`
     } 
 `;
 
-
-/* export const CatMenu = styled.div`
+/* 
+export const CatMenu = styled.div`
     display: flex;
     align-items: center;
     margin-right: -24px;

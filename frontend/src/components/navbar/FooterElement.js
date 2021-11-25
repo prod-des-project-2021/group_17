@@ -50,11 +50,14 @@ export const RowFooter = styled.div`
 
 export const FooterLink = styled(Link)`
     color: #000;
+    display: block;
     font-family: 'Sora', sans-serif;
     margin-bottom: 20px;
     font-size: 15px;
     text-decoration: none;
     cursor: pointer;
+    align-items: center;
+    padding: 0 1rem;
     
 
     &.active {

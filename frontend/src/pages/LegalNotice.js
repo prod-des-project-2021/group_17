@@ -14,8 +14,8 @@ const LegalNotice = () => {
                 height: '90vh'
                 }}
         > */}
-
-                <p> INFORMATION ACCORDING TO § 5 TMG
+                <h1> INFORMATION ACCORDING TO § 5 TMG </h1> <br />
+                <p> 
                     PSOAStore <br></br>
                     Tutkijantie 2 <br></br>
                     90590 OULU  <br></br>
@@ -36,7 +36,7 @@ const LegalNotice = () => {
                     <br></br>
                     Sales tax ID<br></br>
                     Sales tax identification number according to § 27 a Sales Tax Act: <br></br>
-                    DE9999999 <br></br>
+                    FIN9999999 <br></br>
                     <br></br>
                     EU DISPUTE RESOLUTION<br></br>
                     The European Commission provides a platform for online dispute resolution (OS): https://ec.europa.eu/consumers/odr/.
@@ -57,9 +57,10 @@ const LegalNotice = () => {
                     The contents and works created by the site operators on these pages are subject to German copyright law.Duplication, processing, distribution, or any form of commercialization of such material beyond the scope of the copyright law shall require the prior written consent of its respective author or creator.Downloads and copies of this site are only permitted for private , non-commercial use.
                     Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected.In particular, third-party content is identified as such.Should you nevertheless become aware of a copyright infringement, please inform us accordingly.If we become aware of any infringements, we will remove such content immediately.<br></br>
                     <br></br>
-                    SOURCE: E-RECHT24.DE
-
                 </p>
+                <h6> SOURCE: E-RECHT24.DE </h6>
+
+                
                 {/* </div> */}
             </ContentElement>
         </Container >

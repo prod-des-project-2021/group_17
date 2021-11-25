@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Cart from './pages/Cart';
 import Userprofil from './pages/Userprofil';
 import Footer from './components/navbar/Footer';
-import ContactUs from './pages/ContactUs';
+import Contactus from './pages/ContactUs';
 import LegalNotice from './pages/LegalNotice';
 import Categories from './components/navbar/Categories';
 import CategoryClothes from './pages/CategoryClothes';
@@ -32,7 +32,7 @@ function App() {
         <Footer />
         <Routes>
           <Route path='/legalnotice' element={<LegalNotice />} />
-          <Route path='/contactus' element={<ContactUs />} />
+          <Route path='/contactus' element={<Contactus />} />
         </Routes>
         <Categories />
         <Routes>

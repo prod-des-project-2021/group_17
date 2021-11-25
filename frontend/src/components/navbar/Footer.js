@@ -9,7 +9,7 @@ const Footer = () => {
 				<ContainerFooter>
 					<RowFooter>
 						<ColumnFooter>
-							<FooterLink to='/contactus' activeSytle> Contact Us </FooterLink>
+							<FooterLink to='/contactus' activeSytle> Contact us </FooterLink>
 						</ColumnFooter>
 						<ColumnFooter>
 							<FooterLink to='/legalnotice'activeSytle> Legal Notice </FooterLink>

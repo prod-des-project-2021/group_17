@@ -16,6 +16,7 @@ import CategoryGames from './pages/CategoryGames';
 import CategoryHome from './pages/CategoryHome';
 import CategoryKitchen from './pages/CategoryKitchen';
 import CategorySport from './pages/CategorySport';
+import Feedback from './elements/Feedback';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path='/legalnotice' element={<LegalNotice />} />
           <Route path='/contactus' element={<Contactus />} />
+          <Route path='/feedback' element={<Feedback />} />
         </Routes>
         <Categories />
         <Routes>

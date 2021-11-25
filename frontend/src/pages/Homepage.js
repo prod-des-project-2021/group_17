@@ -10,6 +10,7 @@ import CategoryHome from './CategoryHome';
 import CategoryKitchen from './CategoryKitchen';
 import CategorySport from './CategorySport';
 import { ContentElement } from '../components/navbar/ContentElement';
+// import HoverRating from '../elements/Rateing';
 
 const Homepage = () => {
     return (

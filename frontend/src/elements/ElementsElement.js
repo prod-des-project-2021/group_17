@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink as Link } from 'react-router-dom';
 
-export const BoxFooter = styled.div`
+export const BoxElement = styled.div`
     padding: 4px 60px;
     background: #CCCCCC;
     position: fixed;
@@ -18,7 +18,7 @@ export const BoxFooter = styled.div`
     }
 `;
 
-export const ContainerFooter = styled.div`    
+export const ContainerElement = styled.div`    
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -27,17 +27,15 @@ export const ContainerFooter = styled.div`
     
 `
 
-export const ColumnFooter = styled.div`
+export const ColumnElement = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
-    align-items: center;
     margin-left: 60px;
-    
    
 `;
 
-/* export const RowFooter = styled.div`
+export const RowElement = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill,
                             minmax(400px, 1fr));
@@ -48,9 +46,9 @@ export const ColumnFooter = styled.div`
         grid-template-columns: repeat(auto-fill,
                             minmax(200px, 1fr));
     }
-`; */
+`;
 
-export const FooterLink = styled(Link)`
+export const ElementLink = styled(Link)`
     color: #000;
     display: block;
     font-family: 'Sora', sans-serif;

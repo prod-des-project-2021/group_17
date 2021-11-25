@@ -7,14 +7,17 @@ const Footer = () => {
 		<>
 			<BoxFooter>
 				<ContainerFooter>
-					<RowFooter>
+					{/* <RowFooter> */}
 						<ColumnFooter>
 							<FooterLink to='/contactus' activeSytle> Contact us </FooterLink>
 						</ColumnFooter>
 						<ColumnFooter>
 							<FooterLink to='/legalnotice'activeSytle> Legal Notice </FooterLink>
 						</ColumnFooter>
-					</RowFooter>
+						<ColumnFooter>
+							<FooterLink to='/feedback'activeSytle> Feedback </FooterLink>
+						</ColumnFooter>
+					{/* </RowFooter> */}
 				</ContainerFooter>
 			</BoxFooter>
 		</>

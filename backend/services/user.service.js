@@ -29,8 +29,24 @@ const removeUser = async(uid) => {
     await User.destroy({where: {id: uid}});
 }
 
-const editUser = async(content, uid) => {
-    await User.update({first_name: content.first_name}, {where: {id: uid}});
+const editUser = async(content, user, uid) => {
+    //console.log(content)
+    console.log(user);
+    usr = User.findOne({where: {id: uid}});
+    if(usr != user){
+        console.log("not allowed");
+        return ;
+    }
+         
+
+    var to_update = {};
+    for(var key of Object.keys(content)){
+        to_update[key] = content[key];
+    }
+
+    //console.log(to_update);
+    
+    await User.update(to_update, {where: {id: uid}});
 }
 
 module.exports = {

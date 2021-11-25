@@ -9,10 +9,12 @@ import CategoryGames from './CategoryGames';
 import CategoryHome from './CategoryHome';
 import CategoryKitchen from './CategoryKitchen';
 import CategorySport from './CategorySport';
+import { ContentElement } from '../components/navbar/ContentElement';
 
 const Homepage = () => {
     return (
         <Container>
+            <ContentElement>
                 {/* <Categories/>
                 <Routes>
                     <Route path='/clothes' element={<CategoryClothes />} />
@@ -22,23 +24,23 @@ const Homepage = () => {
                     <Route path='/sport' element={<CategorySport />} />
                 </Routes> */}
 
-            <RowHomepage>
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '90vh'
-                    }}
-                >
+                <RowHomepage>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '90vh'
+                        }}
+                    >
 
-                    <h1>Homepage</h1>
+                        <h1>Homepage</h1>
 
 
-                </div>
-            </RowHomepage>
-            <RowHomepage>
-                {/* <div
+                    </div>
+                </RowHomepage>
+                <RowHomepage>
+                    {/* <div
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -47,11 +49,12 @@ const Homepage = () => {
                     }}
                 > */}
 
-                <h1>blabla</h1>
+                    <h1>blabla</h1>
 
 
-                {/* </div> */}
-            </RowHomepage>
+                    {/* </div> */}
+                </RowHomepage>
+            </ContentElement>
         </Container>
     )
 }

@@ -1,20 +1,23 @@
 import { Container } from '@mui/material'
 import React from 'react'
+import { ContentElement } from '../components/navbar/ContentElement'
 
 const Searchbar = () => {
     return (
         <Container>
-        <div 
-            style={{
-                display: 'flex', 
-                justifyContent:'center', 
-                alignItems: 'center',
-                height: '90vh'
-                }}
-        >
-           <h1>Searchbar</h1>
+            <ContentElement>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '90vh'
+                    }}
+                >
+                    <h1>Searchbar</h1>
 
-        </div>
+                </div>
+            </ContentElement>
         </Container>
     )
 }

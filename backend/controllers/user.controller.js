@@ -2,11 +2,7 @@ const { connectionManager } = require("../config/db");
 const User = require("../models/User");
 const { use } = require("../routes");
 const userService = require("../services/user.service")
-const {createUser} = userService
-const {fetchUsers} = userService
-const {fetchUserByID} = userService
-const {removeUser} = userService
-const {editUser} = userService
+const {createUser, fetchUsers, fetchUserByID, removeUser, editUser} = userService
 
 const addUser = async (req, res, next) => {
   const content = req.body;
@@ -17,8 +13,9 @@ const addUser = async (req, res, next) => {
     res.sendStatus(201)
     next()
   } catch(e) {
+    res.status(500)
+    res.send(e.message)
     console.log(e.message)
-    res.sendStatus(500)
   }
 }
 
@@ -68,7 +65,7 @@ const deleteUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   try{
-    await editUser(req.body, req.params.uid)
+    await editUser(req.body, req.user, req.params.uid)
     res.sendStatus(200)
     next()
   }catch(e){

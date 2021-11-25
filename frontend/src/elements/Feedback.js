@@ -63,6 +63,9 @@ function HoverRating() {
             <Box sx={{ ml: 4 }}>{labels[hover !== -1 ? hover : value]}</Box>
           )}
         </Box>
+        <br />
+        <br />
+        <h3>Thank you!</h3>
       </ContentElement>
     </Container>
   );

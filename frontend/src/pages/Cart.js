@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Container } from '@mui/material';
 import { ContentElement } from '../components/navbar/ContentElement';
+import { Link } from 'react-router-dom';
 
 const steps = [
     'Add personal data',
@@ -61,17 +62,20 @@ function HorizontalLinearStepper() {
         setActiveStep(0);
     };
 
+    
+
     return (
         <Container>
             <ContentElement>
-                <Box sx={{ width: '100%' }}>
-                    <Stepper activeStep={activeStep}>
+{/* color:'green' */}
+                <Box sx={{ width: '100%'}}>
+                    <Stepper activeStep={activeStep} >
                         {steps.map((label, index) => {
                             const stepProps = {};
                             const labelProps = {};
                             if (isStepOptional(index)) {
                                 labelProps.optional = (
-                                    <Typography variant="caption">Optional</Typography>
+                                    <Typography color="green" variant="caption">Optional</Typography>
                                 );
                             }
                             if (isStepSkipped(index)) {
@@ -84,6 +88,7 @@ function HorizontalLinearStepper() {
                             );
                         })}
                     </Stepper>
+ {/* the content of the pages from every step has to be done here */}
                     {activeStep === steps.length ? (
                         <React.Fragment>
                             <Typography sx={{ mt: 2, mb: 1 }}> <br />
@@ -91,9 +96,9 @@ function HorizontalLinearStepper() {
                             <h1 >Congratulations! We have just received your order. </h1> <br />
                             We will send you a confirmation email as soon as possible and contact you when your order is on its way.
                             </Typography>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, color:'green' }}>
                                 <Box sx={{ flex: '1 1 auto' }} />
-                                <Button onClick={handleReset}>Reset</Button>
+                                <Button sx={{color:'green'}} onClick={handleReset} component={Link} to='/' > Continue with shopping  </Button>
                             </Box>
                         </React.Fragment>
                     ) : (
@@ -115,7 +120,7 @@ function HorizontalLinearStepper() {
                                     </Button>
                                 )}
 
-                                <Button onClick={handleNext}>
+                                <Button onClick={handleNext} sx={{color:'green'}}>
                                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                                 </Button>
                             </Box>

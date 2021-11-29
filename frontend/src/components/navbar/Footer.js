@@ -8,15 +8,15 @@ const Footer = () => {
 			<BoxFooter>
 				<ContainerFooter>
 					{/* <RowFooter> */}
-						<ColumnFooter>
-							<FooterLink to='/contactus' activeSytle> Contact us </FooterLink>
-						</ColumnFooter>
-						<ColumnFooter>
-							<FooterLink to='/legalnotice'activeSytle> Legal Notice </FooterLink>
-						</ColumnFooter>
-						<ColumnFooter>
-							<FooterLink to='/feedback'activeSytle> Feedback </FooterLink>
-						</ColumnFooter>
+					<ColumnFooter>
+						<FooterLink to='/feedback' activeSytle> Feedback </FooterLink>
+					</ColumnFooter>
+					<ColumnFooter>
+						<FooterLink to='/contactus' activeSytle> Contact </FooterLink>
+					</ColumnFooter>
+					<ColumnFooter>
+						<FooterLink to='/legalnotice' activeSytle> Legal Notice </FooterLink>
+					</ColumnFooter>
 					{/* </RowFooter> */}
 				</ContainerFooter>
 			</BoxFooter>

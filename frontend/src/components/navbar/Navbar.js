@@ -11,7 +11,7 @@ const Navbar = () => {
                 <Bars />
                 <NavMenu>
                     <NavLink to='/searchbar' activeStyle>
-                        Searchbar
+                        Search 
                     </NavLink>
                     <NavLink to='/cart' activeStyle>
                         Cart

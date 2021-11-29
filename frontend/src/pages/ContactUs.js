@@ -17,7 +17,7 @@ const Contactus = () => {
                         height: '90vh'
                     }}
                 > */}
-                    <h3> Hi! We are happy to have personal contact with you right away. <br /> </h3>
+                    <h2> Hi! We are happy to have personal contact with you right away. <br /> </h2>
                     <br/>
                     <p> We hope there were no problems and your purchased product arrived in good condition. <br/>
                         But also in case of any problems we will be glad to help you.<br/>

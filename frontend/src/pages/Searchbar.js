@@ -100,7 +100,7 @@ function SearchBar() {
                     <br />
                     <h3>Search for it here!</h3> <br />
                     <AppBar position="static">
-                        <Toolbar sx={{ backgroundColor: 'lightgrey', }}>
+                        <Toolbar sx={{ backgroundColor: 'lightgrey' }}>
                             <Search>
                                 <SearchIconWrapper>
                                     <SearchIcon />

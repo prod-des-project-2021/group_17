@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import { Container } from '@mui/material';
@@ -17,13 +16,6 @@ const Homepage = () => {
         <Container>
             <ContentElement>
                     <Categories />
-                    <Routes>
-                        <Route path='/clothes' element={<CategoryClothes />} />
-                        <Route path='/games' element={<CategoryGames />} />
-                        <Route path='/home' element={<CategoryHome />} />
-                        <Route path='/kitchen' element={<CategoryKitchen />} />
-                        <Route path='/sport' element={<CategorySport />} />
-                    </Routes>
 
                 <RowHomepage>
                     <div
@@ -35,7 +27,7 @@ const Homepage = () => {
                         }}
                     >
 
-                        <h1>Homepage</h1>
+                        <h1>Products</h1>
 
 
                     </div>

@@ -6,19 +6,19 @@ const Categories = () => {
         <>
             <CatNav>
                 {/* <CatMenu>  */}
-                    <CatLink to='/clothes' activeStyle>
+                    <CatLink to='/home/clothes' activeStyle>
                         Clothes
                     </CatLink>
-                    <CatLink to='/games' activeStyle>
+                    <CatLink to='/home/games' activeStyle>
                         Games
                     </CatLink>
-                    <CatLink to='/home' activeStyle>
+                    <CatLink to='/home/home' activeStyle>
                         Home
                     </CatLink>
-                    <CatLink to='/kitchen' activeStyle>
+                    <CatLink to='/home/kitchen' activeStyle>
                         Kitchen
                     </CatLink>
-                    <CatLink to='/sport' activeStyle>
+                    <CatLink to='/home/sport' activeStyle>
                         Sport
                     </CatLink>
                 {/* </CatMenu>  */}

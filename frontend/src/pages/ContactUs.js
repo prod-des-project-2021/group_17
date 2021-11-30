@@ -43,7 +43,13 @@ const Contactus = () => {
                     <p>E-Mail: example@example.com</p>
                     <br />
                     <p>(Please note: When contacting us by email, remember to include your full name and, if applicable, your order number in case you have any problems with a purchased product.)</p>
-
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     {/* </div> */}
                 </ContentElement>
             </Container>

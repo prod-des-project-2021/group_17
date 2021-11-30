@@ -10,8 +10,11 @@ const Navbar = () => {
                 </NavLink>
                 <Bars />
                 <NavMenu>
+                    <NavLink to='/home' activeStyle>
+                        Products
+                    </NavLink>
                     <NavLink to='/searchbar' activeStyle>
-                        Search 
+                        Search
                     </NavLink>
                     <NavLink to='/cart' activeStyle>
                         Cart
@@ -19,6 +22,7 @@ const Navbar = () => {
                     <NavLink to='/userprofil' activeStyle>
                         Userprofil
                     </NavLink>
+
                 </NavMenu>
                 <NavButton>
                     <NavButtonLink to='/login'>Login</NavButtonLink>

@@ -7,12 +7,12 @@ const Games = () => {
         <Container>
             <ContentElement>
                 <div
-                    style={{
+                    /* style={{
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
                         height: '90vh'
-                    }}
+                    }} */
                 >
                     <h1>Games</h1>
                 </div>

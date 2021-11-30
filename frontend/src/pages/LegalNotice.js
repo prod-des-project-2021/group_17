@@ -60,6 +60,12 @@ const LegalNotice = () => {
                 </p>
                 <h6> SOURCE: E-RECHT24.DE </h6>
                 <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
 
                 
                 {/* </div> */}

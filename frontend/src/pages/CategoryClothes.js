@@ -13,18 +13,6 @@ const Clothes = () => {
     return (
         <> <Container>
             <ContentElement>
-               
-                    <Categories />
-                    <Routes>
-                        {/* <Route path='/' exact element={<CategoryClothes />} /> */}
-                        <Route path='/games' element={<CategoryGames />} />
-                        <Route path='/home' element={<CategoryHome />} />
-                        <Route path='/kitchen' element={<CategoryKitchen />} />
-                        <Route path='/sport' element={<CategorySport />} />
-                    </Routes>
-                
-
-
                 <div
                     style={{
                         display: 'flex',

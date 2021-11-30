@@ -10,10 +10,10 @@ import { ContentElement } from '../components/navbar/ContentElement';
 import { Link } from 'react-router-dom';
 
 const steps = [
-    'Add personal data',
-    'Promotion codes',
-    'Add payment method',
     'View your order',
+    'Promotion codes',
+    'Add personal data',
+    'Add payment method', 
     'Place your order'];
 
 function HorizontalLinearStepper() {

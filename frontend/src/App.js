@@ -10,13 +10,14 @@ import Userprofil from './pages/Userprofil';
 import Footer from './components/navbar/Footer';
 import Contactus from './pages/ContactUs';
 import LegalNotice from './pages/LegalNotice';
+import Feedback from './elements/Feedback';
 import Categories from './components/navbar/Categories';
 import CategoryClothes from './pages/CategoryClothes';
 import CategoryGames from './pages/CategoryGames';
 import CategoryHome from './pages/CategoryHome';
 import CategoryKitchen from './pages/CategoryKitchen';
 import CategorySport from './pages/CategorySport';
-import Feedback from './elements/Feedback';
+
 
 
 function App() {
@@ -36,14 +37,14 @@ function App() {
           <Route path='/contactus' element={<Contactus />} />
           <Route path='/feedback' element={<Feedback />} />
         </Routes>
-        <Categories />
+        {/* <Categories />
         <Routes>
           <Route path='/clothes' element={<CategoryClothes />} />
           <Route path='/games' element={<CategoryGames />} />
           <Route path='/home' element={<CategoryHome />} />
           <Route path='/kitchen' element={<CategoryKitchen />} />
           <Route path='/sport' element={<CategorySport />} />
-        </Routes>
+        </Routes> */}
       </BrowserRouter>
   );
 }

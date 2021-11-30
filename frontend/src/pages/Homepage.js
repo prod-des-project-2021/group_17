@@ -16,14 +16,14 @@ const Homepage = () => {
     return (
         <Container>
             <ContentElement>
-                {/* <Categories/>
-                <Routes>
-                    <Route path='/clothes' element={<CategoryClothes />} />
-                    <Route path='/games' element={<CategoryGames />} />
-                    <Route path='/home' element={<CategoryHome />} />
-                    <Route path='/kitchen' element={<CategoryKitchen />} />
-                    <Route path='/sport' element={<CategorySport />} />
-                </Routes> */}
+                    <Categories />
+                    <Routes>
+                        <Route path='/clothes' element={<CategoryClothes />} />
+                        <Route path='/games' element={<CategoryGames />} />
+                        <Route path='/home' element={<CategoryHome />} />
+                        <Route path='/kitchen' element={<CategoryKitchen />} />
+                        <Route path='/sport' element={<CategorySport />} />
+                    </Routes>
 
                 <RowHomepage>
                     <div

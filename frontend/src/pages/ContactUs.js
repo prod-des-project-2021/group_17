@@ -1,5 +1,5 @@
-import { Container } from '@mui/material'
 import React from 'react'
+import { Container } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement'
 import PhoneIcon from '@mui/icons-material/Phone';
 import MailIcon from '@mui/icons-material/Mail';

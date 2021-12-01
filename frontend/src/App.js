@@ -1,3 +1,4 @@
+//import Categories from './components/navbar/Categories';
 import React from 'react';
 import './App.css';
 import Navbar from './components/navbar/Navbar';
@@ -11,7 +12,6 @@ import Footer from './components/navbar/Footer';
 import Contactus from './pages/ContactUs';
 import LegalNotice from './pages/LegalNotice';
 import Feedback from './elements/Feedback';
-import Categories from './components/navbar/Categories';
 import CategoryClothes from './pages/CategoryClothes';
 import CategoryGames from './pages/CategoryGames';
 import CategoryHome from './pages/CategoryHome';

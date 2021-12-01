@@ -1,13 +1,17 @@
+// import MoreVertIcon from '@mui/icons-material/MoreVert';
+// import panpicture from '../images/panpicture.jpg'
+// import HoverRating from '../elements/Rateing';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
+// import ShareIcon from '@mui/icons-material/Share';
+// import CategoryClothes from './CategoryClothes';
+// import CategoryGames from './CategoryGames';
+// import CategoryHome from './CategoryHome';
+// import CategoryKitchen from './CategoryKitchen';
+// import CategorySport from './CategorySport';
+// import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import React from 'react';
-import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import { Container } from '@mui/material';
-import { RowHomepage } from './PagesElement';
 import Categories from '../components/navbar/Categories';
-import CategoryClothes from './CategoryClothes';
-import CategoryGames from './CategoryGames';
-import CategoryHome from './CategoryHome';
-import CategoryKitchen from './CategoryKitchen';
-import CategorySport from './CategorySport';
 import { ContentElement } from '../components/navbar/ContentElement';
 import { Outlet } from 'react-router-dom'
 import { styled } from '@mui/material/styles';
@@ -21,12 +25,8 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import panpicture from '../images/panpicture.jpg'
-// import HoverRating from '../elements/Rateing';
+
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;

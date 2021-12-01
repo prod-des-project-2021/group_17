@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BoxFooter, ContainerFooter, RowFooter, ColumnFooter, FooterLink } from "./FooterElement";
 

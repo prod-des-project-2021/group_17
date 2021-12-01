@@ -25,7 +25,7 @@ const Navbar = () => {
 
                 </NavMenu>
                 <NavButton>
-                    <NavButtonLink to='/login'>Login</NavButtonLink>
+                    <NavButtonLink to='/logout'>Logout</NavButtonLink>
                 </NavButton>
             </Nav>
         </>

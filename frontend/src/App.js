@@ -18,6 +18,7 @@ import CategoryHome from './pages/CategoryHome';
 import CategoryKitchen from './pages/CategoryKitchen';
 import CategorySport from './pages/CategorySport';
 import Startpage from './pages/Startpage';
+import Logout from './pages/Logout';
 
 
 
@@ -29,15 +30,15 @@ function App() {
       <Routes>
         <Route path='/' element={<Startpage />} />
         <Route path='/home' element={<Homepage />} >
-          <Route path=':id' element={<CategoryClothes />} />
-          {/* <Route path='clothes/*' element={<CategoryClothes />} /> */}
+          {/* <Route path=':id' element={<CategoryClothes />} /> */}
+          <Route path='clothes' element={<CategoryClothes />} /> 
           <Route path='games' element={<CategoryGames />} />
           <Route path='home' element={<CategoryHome />} />
           <Route path='kitchen' element={<CategoryKitchen />} />
           <Route path='sport' element={<CategorySport />} />
         </Route>
         <Route path='/searchbar' element={<Searchbar />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/userprofil' element={<Userprofil />} />
       </Routes>
@@ -47,14 +48,6 @@ function App() {
         <Route path='/contactus' element={<Contactus />} />
         <Route path='/feedback' element={<Feedback />} />
       </Routes>
-      {/* <Categories />
-        <Routes>
-          <Route path='/clothes' element={<CategoryClothes />} />
-          <Route path='/games' element={<CategoryGames />} />
-          <Route path='/home' element={<CategoryHome />} />
-          <Route path='/kitchen' element={<CategoryKitchen />} />
-          <Route path='/sport' element={<CategorySport />} />
-        </Routes> */}
     </BrowserRouter>
   );
 }

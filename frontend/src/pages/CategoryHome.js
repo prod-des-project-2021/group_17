@@ -7,12 +7,12 @@ const Home = () => {
         <Container>
             <ContentElement>
                 <div
-                    style={{
+                    /* style={{
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
                         height: '90vh'
-                    }}
+                    }} */
                 >
                     <h1>Home</h1>
                 </div>

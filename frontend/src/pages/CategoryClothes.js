@@ -15,12 +15,12 @@ const Clothes = () => {
             <ContentElement>
                 {/* <Outlet/>  */}
                 <div
-                    style={{
+                    /* style={{
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
                         height: '90vh'
-                    }}
+                    }} */
                 >
                     <h1>Clothes</h1>
                 </div>

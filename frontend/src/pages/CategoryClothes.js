@@ -7,12 +7,14 @@ import CategoryKitchen from './CategoryKitchen'
 import CategorySport from './CategorySport'
 import CategoryHome from './CategoryHome'
 import Categories from '../components/navbar/Categories'
+import { Outlet } from 'react-router'
 
 
 const Clothes = () => {
     return (
         <> <Container>
             <ContentElement>
+                {/* <Outlet/>  */}
                 <div
                     style={{
                         display: 'flex',

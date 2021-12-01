@@ -17,7 +17,6 @@ import CategoryGames from './pages/CategoryGames';
 import CategoryHome from './pages/CategoryHome';
 import CategoryKitchen from './pages/CategoryKitchen';
 import CategorySport from './pages/CategorySport';
-import Clothes from './pages/CategoryClothes';
 import Startpage from './pages/Startpage';
 
 
@@ -30,7 +29,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Startpage />} />
         <Route path='/home' element={<Homepage />} >
-          <Route path='clothes' element={<Clothes />} />
+          <Route path=':id' element={<CategoryClothes />} />
+          {/* <Route path='clothes/*' element={<CategoryClothes />} /> */}
           <Route path='games' element={<CategoryGames />} />
           <Route path='home' element={<CategoryHome />} />
           <Route path='kitchen' element={<CategoryKitchen />} />

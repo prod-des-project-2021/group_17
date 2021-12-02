@@ -14,7 +14,7 @@ const authenticateJWT = (req, res, next) => {
             }
             const currentUser =  await User.findOne({where: {id: user.id}});
             if(!currentUser) return res.sendStatus(401);
-            req.user = currentUser;
+            req.user = currentUser.dataValues;
             next();
         });
     } else {

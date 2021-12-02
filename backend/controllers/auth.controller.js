@@ -19,11 +19,13 @@ const register = async (req, res, next) => {
 			gender: gender,
 			dob: dob
 		});
-		const user = await User.findOne({ where: { email: email, password: password } });
-        const accessToken = jwt.sign({ username: user.id, role: user.email }, accessTokenSecret, {
+		const dbuser = await User.findOne({ where: { email: email, password: password } });
+
+		const user = { id: dbuser.id, username: dbuser.email };
+        const accessToken = jwt.sign(user, accessTokenSecret, {
             expiresIn: '20m'
         });
-        const refreshToken = jwt.sign({ username: user.id, role: user.email }, refreshTokenSecret);
+        const refreshToken = jwt.sign(user, refreshTokenSecret);
         refreshTokens.push(refreshToken);
         res.json({
             accessToken,
@@ -40,13 +42,17 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
 	const { email, password } = req.body;
 	try {
-		const user = await User.findOne({ where: { email: email, password: password } });
+		const dbuser = await User.findOne({ where: { email: email, password: password } });
 
-		if (user) {
-			const accessToken = jwt.sign({ username: user.id, role: user.email }, accessTokenSecret, {
+		const user = { id: dbuser.id, username: dbuser.email };
+
+		if (dbuser) {
+			const accessToken = jwt.sign(
+				user, 
+				accessTokenSecret, {
 				expiresIn: '20m'
 			});
-			const refreshToken = jwt.sign({ username: user.id, role: user.email }, refreshTokenSecret);
+			const refreshToken = jwt.sign(user, refreshTokenSecret);
 
 			refreshTokens.push(refreshToken);
 

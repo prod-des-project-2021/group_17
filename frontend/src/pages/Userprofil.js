@@ -468,162 +468,216 @@ function Userprofil() {
     return (
         <Container>
             <ContentElement>
+                <h3>Here you can change your personal data.</h3>
+                <br />
+                <p> (Please keep them always up to date) </p>
+                <br />
+                <br />
                 <List
                     sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                     component="nav"
                     aria-labelledby="nested-list-subheader"
                     subheader={
                         <ListSubheader component="div" id="nested-list-subheader">
-                            Nested List Items
                         </ListSubheader>
                     }
                 >
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <SendIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Sent mail" />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <DraftsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Drafts" />
-                    </ListItemButton>
+                    {/* Personal data */}
                     <ListItemButton onClick={handleClick}>
-                        <ListItemIcon>
-                            <InboxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Inbox" />
+                        <ListItemText primary="Personal data" />
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItemButton>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItemButton sx={{ pl: 4 }}>
-                                <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon>
-                                <ListItemText primary="Starred" />
-                            </ListItemButton>
+                            <br />
+                            <br />
+                            <Box
+                                component="form"
+                                sx={{
+                                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                }}
+                                noValidate
+                                autoComplete="off"
+                            >
+                                <p> Fill in your first & lastname: </p>
+                                <br />
+                                <div>
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="Firstname"
+                                        defaultValue=''
+                                    />
+                                </div>
+                                <div>
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="Lastname"
+                                        defaultValue=''
+                                    />
+                                </div>
+                            </Box>
+                            <br />
+                            <br />
+                            {/* Select age */}
+                            <Box sx={{ minWidth: 120 }}>
+                                <p> Select your age: </p>
+                                <br />
+                                <FormControl sx={{ Width: 60 }}>
+                                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                                    <Select
+                                        color="primary"
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={age}
+                                        label="Age"
+                                        onChange={handleChange}
+                                    >
+                                        <MenuItem value={18}>18</MenuItem>
+                                        <MenuItem value={19}>19</MenuItem>
+                                        <MenuItem value={20}>20</MenuItem>
+                                        <MenuItem value={21}>21</MenuItem>
+                                        <MenuItem value={22}>22</MenuItem>
+                                        <MenuItem value={23}>23</MenuItem>
+                                        <MenuItem value={24}>24</MenuItem>
+                                        <MenuItem value={25}>25</MenuItem>
+                                        <MenuItem value={26}>26</MenuItem>
+                                        <MenuItem value={27}>27</MenuItem>
+                                        <MenuItem value={28}>28</MenuItem>
+                                        <MenuItem value={29}>29</MenuItem>
+                                        <MenuItem value={30}>30</MenuItem>
+                                        <MenuItem value={31}>31</MenuItem>
+                                        <MenuItem value={32}>32</MenuItem>
+                                        <MenuItem value={33}>33</MenuItem>
+                                        <MenuItem value={34}>34</MenuItem>
+                                        <MenuItem value={35}>35</MenuItem>
+                                        <MenuItem value={36}>36</MenuItem>
+                                        <MenuItem value={37}>37</MenuItem>
+                                        <MenuItem value={38}>38</MenuItem>
+                                        <MenuItem value={39}>39</MenuItem>
+                                        <MenuItem value={40}>40</MenuItem>
+                                        <MenuItem value={41}>41</MenuItem>
+                                        <MenuItem value={42}>42</MenuItem>
+                                        <MenuItem value={43}>43</MenuItem>
+                                        <MenuItem value={44}>44</MenuItem>
+                                        <MenuItem value={45}>45</MenuItem>
+                                        <MenuItem value={46}>46</MenuItem>
+                                        <MenuItem value={47}>47</MenuItem>
+                                        <MenuItem value={48}>48</MenuItem>
+                                        <MenuItem value={49}>49</MenuItem>
+                                        <MenuItem value={50}>50</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Box>
+                            <br />
+                            <br />
+                            {/* Select gender */}
+                            <FormControl component="fieldset">
+                                <p> Select your gender: </p>
+                                <FormLabel component="legend"></FormLabel>
+                                <RadioGroup
+                                    aria-label="gender"
+                                    defaultValue="female"
+                                    name="radio-buttons-group"
+                                >
+                                    <FormControlLabel value="female" control={<Radio />} label="Female" />
+                                    <FormControlLabel value="male" control={<Radio />} label="Male" />
+                                    <FormControlLabel value="other" control={<Radio />} label="Other" />
+                                </RadioGroup>
+                            </FormControl>
+                            <br />
+                            <br />
+                            <br />
+                            {/* Select nation and country */}
+                            <p> Select your nation: </p>
+                            <br />
+                            <Autocomplete
+                                id="country-select-demo"
+                                sx={{ width: 300 }}
+                                options={countries}
+                                autoHighlight
+                                getOptionLabel={(option) => option.label}
+                                renderOption={(props, option) => (
+                                    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                                        <img
+                                            loading="lazy"
+                                            width="20"
+                                            src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                            srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                            alt=""
+                                        />
+                                        {option.label} ({option.code}) +{option.phone}
+                                    </Box>
+                                )}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        label="Select your country"
+                                        inputProps={{
+                                            ...params.inputProps,
+                                            autoComplete: 'new-password', // disable autocomplete and autofill
+                                        }}
+                                    />
+                                )}
+                            />
+                        </List>
+                    </Collapse>
+                    {/* Profilpicture */}
+                    <ListItemButton onClick={handleClick}>
+                        <ListItemText primary="Profilpicture" />
+                        {open ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            {/* TODO */}
+                        </List>
+                    </Collapse>
+                    {/* Login data */}
+                    <ListItemButton onClick={handleClick}>
+                        <ListItemText primary="Login data" />
+                        {open ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <Box
+                                component="form"
+                                sx={{
+                                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                }}
+                                noValidate
+                                autoComplete="off"
+                            >
+                                <div>
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="Username"
+                                        defaultValue=''
+                                    />
+                                </div>
+                                <div>
+                                    <TextField
+                                        id="outlined-password-input"
+                                        label="Password"
+                                        type="password"
+                                        autoComplete="current-password"
+                                    />
+                                </div>
+                            </Box>
+                        </List>
+                    </Collapse>
+                    {/* Payment */}
+                    <ListItemButton onClick={handleClick}>
+                        <ListItemText primary="Payment" />
+                        {open ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            {/* TODO*/}
                         </List>
                     </Collapse>
                 </List>
-                <Box
-                    component="form"
-                    sx={{
-                        '& .MuiTextField-root': { m: 1, width: '25ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <div>
-                        <TextField
-                            required
-                            id="outlined-required"
-                            label="Username"
-                            defaultValue=''
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            id="outlined-password-input"
-                            label="Password"
-                            type="password"
-                            autoComplete="current-password"
-                        />
-                    </div>
-                </Box>
-
-                <Box sx={{ minWidth: 120 }}>
-                    <p> Select your age: </p>
-                    <br />
-                    <FormControl sx={{ Width: 60 }}>
-                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                        <Select
-                            color="primary"
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={age}
-                            label="Age"
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={18}>18</MenuItem>
-                            <MenuItem value={19}>19</MenuItem>
-                            <MenuItem value={20}>20</MenuItem>
-                            <MenuItem value={21}>21</MenuItem>
-                            <MenuItem value={22}>22</MenuItem>
-                            <MenuItem value={23}>23</MenuItem>
-                            <MenuItem value={24}>24</MenuItem>
-                            <MenuItem value={25}>25</MenuItem>
-                            <MenuItem value={26}>26</MenuItem>
-                            <MenuItem value={27}>27</MenuItem>
-                            <MenuItem value={28}>28</MenuItem>
-                            <MenuItem value={29}>29</MenuItem>
-                            <MenuItem value={30}>30</MenuItem>
-                            <MenuItem value={31}>31</MenuItem>
-                            <MenuItem value={32}>32</MenuItem>
-                            <MenuItem value={33}>33</MenuItem>
-                            <MenuItem value={34}>34</MenuItem>
-                            <MenuItem value={35}>35</MenuItem>
-                            <MenuItem value={36}>36</MenuItem>
-                            <MenuItem value={37}>37</MenuItem>
-                            <MenuItem value={38}>38</MenuItem>
-                            <MenuItem value={39}>39</MenuItem>
-                            <MenuItem value={40}>40</MenuItem>
-                            <MenuItem value={41}>41</MenuItem>
-                            <MenuItem value={42}>42</MenuItem>
-                            <MenuItem value={43}>43</MenuItem>
-                            <MenuItem value={44}>44</MenuItem>
-                            <MenuItem value={45}>45</MenuItem>
-                            <MenuItem value={46}>46</MenuItem>
-                            <MenuItem value={47}>47</MenuItem>
-                            <MenuItem value={48}>48</MenuItem>
-                            <MenuItem value={49}>49</MenuItem>
-                            <MenuItem value={50}>50</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
-                <FormControl component="fieldset">
-                    <FormLabel component="legend">Gender</FormLabel>
-                    <RadioGroup
-                        aria-label="gender"
-                        defaultValue="female"
-                        name="radio-buttons-group"
-                    >
-                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                        <FormControlLabel value="other" control={<Radio />} label="Other" />
-                    </RadioGroup>
-                </FormControl>
-                <Autocomplete
-                    id="country-select-demo"
-                    sx={{ width: 300 }}
-                    options={countries}
-                    autoHighlight
-                    getOptionLabel={(option) => option.label}
-                    renderOption={(props, option) => (
-                        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                            <img
-                                loading="lazy"
-                                width="20"
-                                src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                                alt=""
-                            />
-                            {option.label} ({option.code}) +{option.phone}
-                        </Box>
-                    )}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            label="Choose a country"
-                            inputProps={{
-                                ...params.inputProps,
-                                autoComplete: 'new-password', // disable autocomplete and autofill
-                            }}
-                        />
-                    )}
-                />
             </ContentElement>
         </Container>
     );

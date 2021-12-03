@@ -52,13 +52,15 @@ function Login() {
                                 autoComplete="current-password"
                             />
                         </div>
-                        {/* <NavButton> */}
-                        <LoginButton>
-                            <LoginButtonLink to='/home'>Login</LoginButtonLink>
-                        </LoginButton>
-                    {/* </NavButton> */}
+                        <div>
+                            {/* <NavButton> */}
+                            <LoginButton>
+                                <LoginButtonLink to='/home'>Login</LoginButtonLink>
+                            </LoginButton>
+                            {/* </NavButton> */}
+                        </div>
                     </Box>
-                    
+
                 </div>
             </ContentElement>
         </Container>

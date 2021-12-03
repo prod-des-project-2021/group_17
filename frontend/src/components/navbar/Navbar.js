@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <>
             <Nav>
-                <NavLink to='/'>
+                <NavLink to='/welcome'>
                     <h1>PSOAStore</h1>
                 </NavLink>
                 <Bars />
@@ -25,7 +25,7 @@ const Navbar = () => {
 
                 </NavMenu>
                 <NavButton>
-                    <NavButtonLink to='/logout'>Logout</NavButtonLink>
+                    <NavButtonLink to='/login'>Logout</NavButtonLink>
                 </NavButton>
             </Nav>
         </>

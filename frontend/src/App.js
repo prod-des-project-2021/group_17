@@ -28,7 +28,8 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Startpage />} />
+        <Route path='/login' exact element={<Login />} />
+        <Route path='/welcome' element={<Startpage />} />
         <Route path='/home' element={<Homepage />} >
           {/* <Route path=':id' element={<CategoryClothes />} /> */}
           <Route path='clothes' element={<CategoryClothes />} /> 
@@ -38,7 +39,7 @@ function App() {
           <Route path='sport' element={<CategorySport />} />
         </Route>
         <Route path='/searchbar' element={<Searchbar />} />
-        <Route path='/logout' element={<Logout />} />
+        {/* <Route path='/logout' element={<Logout />} /> */}
         <Route path='/cart' element={<Cart />} />
         <Route path='/userprofil' element={<Userprofil />} />
       </Routes>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Container } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement'
 
+
 const Startpage = () => {
     
     return (

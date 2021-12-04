@@ -7,6 +7,7 @@ const refreshTokens = [];
 const accessTokenSecret = 'youraccesstokensecret';
 
 const register = async (req, res, next) => {
+	console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	const { first_name, last_name, email, password, address, phone_number, gender, dob } = req.body;
 	if (!first_name) {
 		res.status(400);
@@ -37,6 +38,7 @@ const register = async (req, res, next) => {
 		return res.send("dob is required");
 	}
 	try {
+		console.log(req.body);
 		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password, salt);
 		await User.create({
@@ -64,7 +66,7 @@ const register = async (req, res, next) => {
 		next();
 	} catch (e) {
 		console.log(e.message);
-		res.sendStatus(500) && next(error);
+		res.sendStatus(500) && next(e);
 	}
 };
 

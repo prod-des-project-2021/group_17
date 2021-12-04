@@ -520,8 +520,90 @@ function Userprofil() {
                             </Box>
                             <br />
                             <br />
+                            <Box
+                                component="form"
+                                sx={{
+                                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                }}
+                                noValidate
+                                autoComplete="off"
+                            >
+                                <p> Fill in your adress: </p>
+                                <br />
+                                <div>
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="Streetname and housenumber"
+                                        defaultValue=''
+                                    />
+                                </div>
+                                <div>
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="Zip code"
+                                        defaultValue=''
+                                    />
+                                </div>
+                            </Box>
+                            <br />
+                            <br />
+                            {/* Select nation and country */}
+                            <p> Select your nation: </p>
+                            <br />
+                            <Autocomplete
+                                id="country-select-demo"
+                                sx={{ width: 300 }}
+                                options={countries}
+                                autoHighlight
+                                getOptionLabel={(option) => option.label}
+                                renderOption={(props, option) => (
+                                    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                                        <img
+                                            loading="lazy"
+                                            width="20"
+                                            src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                            srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                            alt=""
+                                        />
+                                        {option.label} ({option.code}) +{option.phone}
+                                    </Box>
+                                )}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        label="Country"
+                                        inputProps={{
+                                            ...params.inputProps,
+                                            autoComplete: 'new-password', // disable autocomplete and autofill
+                                        }}
+                                    />
+                                )}
+                            />
+                            <br />
+                            <br />
                             {/* Select age */}
-                            <Box sx={{ minWidth: 120 }}>
+                            <Box
+                                component="form"
+                                sx={{
+                                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                }}
+                                noValidate
+                                autoComplete="off"
+                            >
+                                <p> Fill in your date of birth: </p>
+                                <br />
+                                <div>
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="DD/MM/YYYY"
+                                        defaultValue=''
+                                    />
+                                </div>
+                            </Box>
+                            {/* <Box sx={{ minWidth: 120 }}>
                                 <p> Select your age: </p>
                                 <br />
                                 <FormControl sx={{ Width: 60 }}>
@@ -569,6 +651,28 @@ function Userprofil() {
                                         <MenuItem value={50}>50</MenuItem>
                                     </Select>
                                 </FormControl>
+                            </Box> */}
+                            <br />
+                            <br />
+                            {/* Select age */}
+                            <Box
+                                component="form"
+                                sx={{
+                                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                }}
+                                noValidate
+                                autoComplete="off"
+                            >
+                                <p> Fill in your phone number: </p>
+                                <br />
+                                <div>
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="please use international area code"
+                                        defaultValue=''
+                                    />
+                                </div>
                             </Box>
                             <br />
                             <br />
@@ -589,38 +693,6 @@ function Userprofil() {
                             <br />
                             <br />
                             <br />
-                            {/* Select nation and country */}
-                            <p> Select your nation: </p>
-                            <br />
-                            <Autocomplete
-                                id="country-select-demo"
-                                sx={{ width: 300 }}
-                                options={countries}
-                                autoHighlight
-                                getOptionLabel={(option) => option.label}
-                                renderOption={(props, option) => (
-                                    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                                        <img
-                                            loading="lazy"
-                                            width="20"
-                                            src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                            srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                                            alt=""
-                                        />
-                                        {option.label} ({option.code}) +{option.phone}
-                                    </Box>
-                                )}
-                                renderInput={(params) => (
-                                    <TextField
-                                        {...params}
-                                        label="Select your country"
-                                        inputProps={{
-                                            ...params.inputProps,
-                                            autoComplete: 'new-password', // disable autocomplete and autofill
-                                        }}
-                                    />
-                                )}
-                            />
                         </List>
                     </Collapse>
                     {/* Profilpicture */}
@@ -652,7 +724,7 @@ function Userprofil() {
                                     <TextField
                                         required
                                         id="outlined-required"
-                                        label="Username"
+                                        label="Email"
                                         defaultValue=''
                                     />
                                 </div>

@@ -40,7 +40,7 @@ function Login() {
                             <TextField
                                 required
                                 id="outlined-required"
-                                label="Username"
+                                label="Email"
                                 defaultValue=''
                             />
                         </div>

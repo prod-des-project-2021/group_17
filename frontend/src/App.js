@@ -7,7 +7,7 @@ import Homepage from './pages/Homepage';
 import Searchbar from './pages/Searchbar';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
-import Userprofil from './pages/Userprofil';
+import Userprofile from './pages/Userprofile';
 import Footer from './components/navbar/Footer';
 import Contactus from './pages/ContactUs';
 import LegalNotice from './pages/LegalNotice';
@@ -52,7 +52,7 @@ function App() {
         <Route path='/searchbar' element={<Searchbar />} />
         {/* <Route path='/logout' element={<Logout />} /> */}
         <Route path='/cart' element={<Cart />} />
-        <Route path='/userprofil' element={<Userprofil />} />
+        <Route path='/userprofile' element={<Userprofile />} />
       </Routes>
       <Footer />
       <Routes>

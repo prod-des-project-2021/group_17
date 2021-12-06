@@ -454,7 +454,7 @@ const countries = [
 ];
 
 
-function Userprofil() {
+function Userprofile() {
     const [age, setAge] = React.useState('');
 
     const handleChange = (event) => {
@@ -746,7 +746,7 @@ function Userprofil() {
         </Container>
     );
 }
-export default Userprofil;
+export default Userprofile;
 
 
 

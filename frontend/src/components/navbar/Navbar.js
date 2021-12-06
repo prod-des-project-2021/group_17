@@ -19,8 +19,8 @@ const Navbar = () => {
                     <NavLink to='/cart' activeStyle>
                         Cart
                     </NavLink>
-                    <NavLink to='/userprofil' activeStyle>
-                        Userprofil
+                    <NavLink to='/userprofile' activeStyle>
+                        Userprofile
                     </NavLink>
 
                 </NavMenu>

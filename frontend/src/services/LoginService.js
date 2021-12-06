@@ -9,18 +9,22 @@ function LoginService() {
         }
         
         
-            let body = { 
-                email = Email,
-                password = password,
-                
-            };
+        let body = { 
+            email = Email,
+            password = password,
+            
+        };
 
-            let result = fetch("localhost", {
-                method: "POST",
-                body: body,
-                headers: { "Content-Type": "application/json" }
-            });
-            return result;
+        let result = fetch("https://localhost:3000/api/auth/login", {
+            method: "POST",
+            body: body,
+            headers: { "Content-Type": "application/json" }
+        });
+
+        if((await result).status != 200)
+            console.log("DDD");
+        console.log("AAAAAA");
+        return result;
     };
     return {loginData};
 }

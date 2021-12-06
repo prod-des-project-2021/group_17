@@ -5,9 +5,11 @@ import { ContentElement } from '../components/navbar/ContentElement'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { LoginButton, LoginButtonLink } from '../components/navbar/Buttons'
+import { connect } from 'react-redux';
 
-function Login() {
-    
+
+function Login(props) {
+    const { userReducer } = props;
     return (
         <Container>
             <ContentElement>
@@ -67,4 +69,8 @@ function Login() {
     )
 }
 
-export default Login
+const mapStateToProps = ({ auth }) => ({
+    userReducer: auth
+});
+
+export default connect(mapStateToProps, null)(Login);

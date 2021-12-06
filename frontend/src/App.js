@@ -18,13 +18,24 @@ import CategoryHome from './pages/CategoryHome';
 import CategoryKitchen from './pages/CategoryKitchen';
 import CategorySport from './pages/CategorySport';
 import Startpage from './pages/Startpage';
-import Logout from './pages/Logout';
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import allReducers from "./stores/index";
 
-
+const store = createStore(
+  allReducers,
+  compose(
+      applyMiddleware(thunk),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__({ trace: true, traceLimit: 25 })
+  )
+);
 
 
 function App() {
+  
   return (
+    <Provider store={store}>
     <BrowserRouter>
       <Navbar />
       <Routes>
@@ -50,6 +61,7 @@ function App() {
         <Route path='/feedback' element={<Feedback />} />
       </Routes>
     </BrowserRouter>
+    </Provider>
   );
 }
 

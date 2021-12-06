@@ -1,18 +1,16 @@
 
 import * as C from './creators';
+import LoginService from '../../services/LoginService'
 
 export const signIn = (email, password) => async (dispatch) => {
-    // try {
-    //     dispatch(C.signInRequested());
-    //     let auth = await AuthService.logIn(email, password);
-    //     if (auth.status !== 200) {
-    //         return dispatch(C.signInFailed(auth.message));
-    //     }
-    //     await localStorage.setItem('uhelp_token', auth.data.token)
-    //     dispatch(C.signInSucceeded(auth.data));
-    // } catch (error) {
-    //     dispatch(C.signInFailed(error));
-    // }
+    try {
+        dispatch(C.signInRequested());
+        let auth = await LoginService().loginData(email, password);
+        //TODO 
+        console.log(auth);
+    } catch (error) {
+        dispatch(C.signInFailed(error));
+    }
 };
 
 export const getCurrent = () => async (dispatch) => {

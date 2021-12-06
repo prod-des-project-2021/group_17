@@ -1,7 +1,7 @@
 function LoginService() {
-    const loginData = async (Email, password) => {
+    const loginData = async (email, password) => {
         
-        if (Email == null) {
+        if (email == null) {
             return "please fiull in your email";
         }
         if (password == null) {
@@ -10,20 +10,16 @@ function LoginService() {
         
         
         let body = { 
-            email = Email,
-            password = password,
+            email: email,
+            password: password
             
         };
 
-        let result = fetch("https://localhost:3000/api/auth/login", {
+        let result = await fetch("http://localhost:3000/api/auth/login", {
             method: "POST",
-            body: body,
+            body: JSON.stringify(body),
             headers: { "Content-Type": "application/json" }
-        });
-
-        if((await result).status != 200)
-            console.log("DDD");
-        console.log("AAAAAA");
+        }).then((res) => res.json());
         return result;
     };
     return {loginData};

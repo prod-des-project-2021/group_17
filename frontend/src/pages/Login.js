@@ -6,10 +6,26 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { LoginButton, LoginButtonLink } from '../components/navbar/Buttons'
 import { connect } from 'react-redux';
+import { useState } from 'react'
+import { AuthActions } from '../stores/actions';
 
 
 function Login(props) {
-    const { userReducer } = props;
+    const { signIn } = props;
+    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('')
+
+    const handleClick = async () => {
+        signIn(username, password)
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value)
+    }
+
+    const handleEmailChange = (e) => {
+        setUsername(e.target.value)
+    }
     
     return (
         <Container>
@@ -42,6 +58,7 @@ function Login(props) {
                         <div>
                             <TextField
                                 required
+                                onChange={handleEmailChange}
                                 id="outlined-required"
                                 label="Email"
                                 defaultValue=''
@@ -49,6 +66,7 @@ function Login(props) {
                         </div>
                         <div>
                             <TextField
+                                onChange={handlePasswordChange}
                                 id="outlined-password-input"
                                 label="Password"
                                 type="password"
@@ -57,7 +75,7 @@ function Login(props) {
                         </div>
                         <div>
                             {/* <NavButton> */}
-                            <LoginButton>
+                            <LoginButton onClick={handleClick}>
                                 <LoginButtonLink to='/home'>Login</LoginButtonLink>
                             </LoginButton>
                             {/* </NavButton> */}
@@ -70,8 +88,9 @@ function Login(props) {
     )
 }
 
-const mapStateToProps = ({ auth }) => ({
-    userReducer: auth
-});
+const mapDispatchToProps = {
+    signIn: AuthActions.signIn,
 
-export default connect(mapStateToProps, null)(Login);
+}
+
+export default connect(null, mapDispatchToProps)(Login);

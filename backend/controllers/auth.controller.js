@@ -81,7 +81,11 @@ const login = async (req, res, next) => {
 	}
 	try {
 		const dbuser = await User.findOne({ where: { email: email } });
-		if(!dbuser) return res.status(404);
+		if(!dbuser) {
+			res.sendStatus(404);
+			next();
+		}
+		console.log(dbuser);
 		const validPassword = await bcrypt.compare(password, dbuser.password);
 		if(!validPassword){
 			res.status(403);

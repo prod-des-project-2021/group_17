@@ -38,7 +38,6 @@ const register = async (req, res, next) => {
 		return res.send("dob is required");
 	}
 	try {
-		console.log(req.body);
 		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password, salt);
 		await User.create({
@@ -58,11 +57,11 @@ const register = async (req, res, next) => {
         });
         const refreshToken = jwt.sign(user, refreshTokenSecret);
         refreshTokens.push(refreshToken);
-        res.json({
+		res.status(201);
+		res.json({
             accessToken,
             refreshToken
         });
-		res.sendStatus(201);
 		next();
 	} catch (e) {
 		console.log(e.message);
@@ -97,6 +96,7 @@ const login = async (req, res, next) => {
 			});
 			const refreshToken = jwt.sign(user, refreshTokenSecret);
 			refreshTokens.push(refreshToken);
+			res.status(200);
 			res.json({
 				accessToken,
 				refreshToken

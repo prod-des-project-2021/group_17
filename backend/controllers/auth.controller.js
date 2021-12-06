@@ -1,13 +1,13 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
+const {fetchUserByID} = require('../services/user.service');
 
 const refreshTokenSecret = 'yourrefreshtokensecrethere';
 const refreshTokens = [];
 const accessTokenSecret = 'youraccesstokensecret';
 
 const register = async (req, res, next) => {
-	console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	const { first_name, last_name, email, password, address, phone_number, gender, dob } = req.body;
 	if (!first_name) {
 		res.status(400);
@@ -110,7 +110,18 @@ const login = async (req, res, next) => {
 	}
 };
 
+const token = async (req, res, next) => {
+	try {
+		res.status(200);
+		return res.send(await fetchUserByID(req.user.id));
+	} catch (e) {
+		console.log(e.message);
+		res.sendStatus(400);
+	}
+}
+
 module.exports = {
 	login,
-    register
+    register,
+	token
 };

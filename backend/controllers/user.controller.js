@@ -1,8 +1,7 @@
 const { connectionManager } = require('../config/db');
 const User = require('../models/User');
 const { use } = require('../routes');
-const userService = require('../services/user.service');
-const { createUser, fetchUsers, fetchUserByID, removeUser, editUser } = userService;
+const { createUser, fetchUsers, fetchUserByID, removeUser, editUser } = require('../services/user.service');
 
 const addUser = async (req, res, next) => {
 	const content = req.body;

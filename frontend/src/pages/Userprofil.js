@@ -1,9 +1,14 @@
+//import StarBorder from '@mui/icons-material/StarBorder';
+//import InputLabel from '@mui/material/InputLabel';
+//import MenuItem from '@mui/material/MenuItem';
+//import Select from '@mui/material/Select';
+//import ListItemIcon from '@mui/material/ListItemIcon';
+//import InboxIcon from '@mui/icons-material/MoveToInbox';
+//import DraftsIcon from '@mui/icons-material/Drafts';
+//import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { Container } from '@mui/material';
 import { ContentElement } from '../components/navbar/ContentElement';
 import TextField from '@mui/material/TextField';
@@ -15,15 +20,11 @@ import FormLabel from '@mui/material/FormLabel';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
+
 
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
@@ -469,12 +470,12 @@ function Userprofil() {
         <Container>
             <ContentElement>
                 <div
-                    style={{
+                    /* style={{
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
                         height: '5vh'
-                    }}
+                    }} */
                 >
                     <h3>Here you can change your personal data.</h3>
                     <br />
@@ -543,14 +544,6 @@ function Userprofil() {
                                             required
                                             id="outlined-required"
                                             label="Streetname and housenumber"
-                                            defaultValue=''
-                                        />
-                                    </div>
-                                    <div>
-                                        <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Zip code"
                                             defaultValue=''
                                         />
                                     </div>
@@ -745,16 +738,6 @@ function Userprofil() {
                                         />
                                     </div>
                                 </Box>
-                            </List>
-                        </Collapse>
-                        {/* Payment */}
-                        <ListItemButton onClick={handleClick}>
-                            <ListItemText primary="Payment" />
-                            {open ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                {/* TODO*/}
                             </List>
                         </Collapse>
                     </List>

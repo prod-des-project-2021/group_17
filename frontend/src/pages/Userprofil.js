@@ -469,12 +469,12 @@ function Userprofil() {
         <Container>
             <ContentElement>
                 <div
-                    style={{
+                    /* style={{
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
                         height: '5vh'
-                    }}
+                    }} */
                 >
                     <h3>Here you can change your personal data.</h3>
                     <br />

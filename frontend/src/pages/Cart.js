@@ -11,9 +11,9 @@ import { Link } from 'react-router-dom';
 
 const steps = [
     'View your order',
-    'Promotion codes',
+/*     'Promotion codes',
     'Add personal data',
-    'Add payment method', 
+    'Add payment method',  */
     'Place your order'];
 
 function HorizontalLinearStepper() {
@@ -73,11 +73,11 @@ function HorizontalLinearStepper() {
                         {steps.map((label, index) => {
                             const stepProps = {};
                             const labelProps = {};
-                            if (isStepOptional(index)) {
+                            /* if (isStepOptional(index)) {
                                 labelProps.optional = (
                                     <Typography color="green" variant="caption">Optional</Typography>
                                 );
-                            }
+                            } */
                             if (isStepSkipped(index)) {
                                 stepProps.completed = false;
                             }
@@ -98,7 +98,7 @@ function HorizontalLinearStepper() {
                             </Typography>
                             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, color:'green' }}>
                                 <Box sx={{ flex: '1 1 auto' }} />
-                                <Button sx={{color:'green'}} onClick={handleReset} component={Link} to='/' > Continue with shopping  </Button>
+                                <Button sx={{color:'green'}} onClick={handleReset} component={Link} to='/home' > Continue with shopping  </Button>
                             </Box>
                         </React.Fragment>
                     ) : (
@@ -114,11 +114,11 @@ function HorizontalLinearStepper() {
                                     Back
                                 </Button>
                                 <Box sx={{ flex: '1 1 auto' }} />
-                                {isStepOptional(activeStep) && (
+                                {/* {isStepOptional(activeStep) && (
                                     <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
                                         Skip
                                     </Button>
-                                )}
+                                )} */}
 
                                 <Button onClick={handleNext} sx={{color:'green'}}>
                                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}

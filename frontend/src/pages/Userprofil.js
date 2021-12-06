@@ -547,14 +547,6 @@ function Userprofil() {
                                             defaultValue=''
                                         />
                                     </div>
-                                    <div>
-                                        <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Zip code"
-                                            defaultValue=''
-                                        />
-                                    </div>
                                 </Box>
                                 <br />
                                 <br />

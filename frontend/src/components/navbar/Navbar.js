@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import React from 'react';
 import { connect } from 'react-redux';
 import { AuthActions } from '../../stores/actions';
-import { Nav, NavLink, NavButton, NavButtonLink, NavMenu, Bars } from './NavbarElement';
+import { Nav, NavLink, NavButton, NavMenu, Bars } from './NavbarElement';
 
 const Navbar = (props) => {
     const {signOut} = props;

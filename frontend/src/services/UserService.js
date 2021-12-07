@@ -26,7 +26,7 @@ function UserService() {
         if (password == null) {
             return "password is empty";
         }
-        if (confirmPassword != password){
+        if (confirmPassword !== password){
             return "password is not the same";
         }
         

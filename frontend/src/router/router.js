@@ -52,6 +52,7 @@ function MainRouter(props) {
 						<Route path="/legalnotice" element={<LegalNotice />} />
 						<Route path="/contactus" element={<Contactus />} />
 						<Route path="/feedback" element={<Feedback />} />
+                        <Route path="*" element={<Navigate to='/welcome'/>} />
 					</Routes>
 					<Footer />
 				</React.Fragment>

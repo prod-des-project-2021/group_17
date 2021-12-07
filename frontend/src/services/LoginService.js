@@ -15,7 +15,7 @@ function LoginService() {
             
         };
 
-        let result = await fetch("http://localhost:3000/api/auth/login", {
+        let result = await fetch("http://172.20.241.192:3000/api/auth/login", {
             method: "POST",
             body: JSON.stringify(body),
             headers: { "Content-Type": "application/json" }

@@ -5,6 +5,9 @@ const routes = require('./routes');
 const db = require('./config/db');
 const mysql = require('mysql2/promise');
 const config = require('./config/config');
+var cors = require('cors');
+
+app.use(cors());
 
 configureDB()
 	.then(() => db.authenticate())

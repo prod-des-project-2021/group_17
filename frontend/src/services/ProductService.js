@@ -85,7 +85,7 @@ export default DeleteProductService;
 function GetProductService() {
     const getProductData = async (product_id) => {
         if (product_id == null) {
-            return "";
+            return "there is no such product";
         }
             let body = {
                 product_id: product_id,

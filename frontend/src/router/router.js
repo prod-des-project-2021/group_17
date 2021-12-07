@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../App.css';
 import Navbar from '../components/navbar/Navbar';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import Homepage from '../pages/Homepage';
 import Searchbar from '../pages/Searchbar';
 import Login from '../pages/Login';
@@ -23,35 +23,42 @@ import { connect } from 'react-redux';
 function MainRouter(props) {
 	const { auth, getCurrent } = props;
 
-	useEffect(() => {
-		if (!auth.token) {
-			getCurrent();
-		}
-	}, [auth.token]);
+	useEffect(
+		() => {
+			if (!auth.token) {
+				getCurrent();
+			}
+		},
+		[ auth.token ]
+	);
 
 	return (
 		<BrowserRouter>
-			<Navbar />
 			{auth.token ? (
-				<Routes>
-					<Route path="/welcome" element={<Startpage />} />
-					<Route path="/home" element={<Homepage />}>
-						<Route path="clothes" element={<CategoryClothes />} />
-						<Route path="games" element={<CategoryGames />} />
-						<Route path="home" element={<CategoryHome />} />
-						<Route path="kitchen" element={<CategoryKitchen />} />
-						<Route path="sport" element={<CategorySport />} />
-					</Route>
-					<Route path="/searchbar" element={<Searchbar />} />
-					<Route path="/cart" element={<Cart />} />
-					<Route path="/userprofile" element={<Userprofile />} />
-					<Route path="/legalnotice" element={<LegalNotice />} />
-					<Route path="/contactus" element={<Contactus />} />
-					<Route path="/feedback" element={<Feedback />} />
-				</Routes>
+				<React.Fragment>
+					<Navbar />
+					<Routes>
+						<Route path="/welcome" element={<Startpage />} />
+						<Route path="/home" element={<Homepage />}>
+							<Route path="clothes" element={<CategoryClothes />} />
+							<Route path="games" element={<CategoryGames />} />
+							<Route path="home" element={<CategoryHome />} />
+							<Route path="kitchen" element={<CategoryKitchen />} />
+							<Route path="sport" element={<CategorySport />} />
+						</Route>
+						<Route path="/searchbar" element={<Searchbar />} />
+						<Route path="/cart" element={<Cart />} />
+						<Route path="/userprofile" element={<Userprofile />} />
+						<Route path="/legalnotice" element={<LegalNotice />} />
+						<Route path="/contactus" element={<Contactus />} />
+						<Route path="/feedback" element={<Feedback />} />
+					</Routes>
+					<Footer />
+				</React.Fragment>
 			) : (
 				<Routes>
 					<Route path="/login" exact element={<Login />} />
+                    <Route path="*" element={<Navigate to='/login'/>} />
 				</Routes>
 			)}
 		</BrowserRouter>

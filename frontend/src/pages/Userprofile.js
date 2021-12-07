@@ -1,11 +1,3 @@
-//import StarBorder from '@mui/icons-material/StarBorder';
-//import InputLabel from '@mui/material/InputLabel';
-//import MenuItem from '@mui/material/MenuItem';
-//import Select from '@mui/material/Select';
-//import ListItemIcon from '@mui/material/ListItemIcon';
-//import InboxIcon from '@mui/icons-material/MoveToInbox';
-//import DraftsIcon from '@mui/icons-material/Drafts';
-//import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
@@ -455,11 +447,6 @@ const countries = [
 
 
 function Userprofile() {
-    /* const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    }; */
     const [open, setOpen] = React.useState(true);
 
     const handleClick = () => {
@@ -469,14 +456,7 @@ function Userprofile() {
     return (
         <Container>
             <ContentElement>
-                <div
-                    /* style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '5vh'
-                    }} */
-                >
+                <div>
                     <h3>Here you can change your personal data.</h3>
                     <br />
                     <p> (Please keep them always up to date) </p>

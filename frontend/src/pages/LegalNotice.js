@@ -6,14 +6,6 @@ const LegalNotice = () => {
     return (
         <Container>
             <ContentElement>
-                {/*  <div 
-            style={{
-                display: 'flex', 
-                justifyContent:'center', 
-                alignItems: 'center',
-                height: '90vh'
-                }}
-        > */}
                 <h1> INFORMATION ACCORDING TO § 5 TMG </h1> <br />
                 <p> 
                     PSOAStore <br></br>
@@ -66,9 +58,6 @@ const LegalNotice = () => {
                 <br/>
                 <br/>
                 <br/>
-
-                
-                {/* </div> */}
             </ContentElement>
         </Container >
     )

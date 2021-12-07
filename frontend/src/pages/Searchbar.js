@@ -1,37 +1,3 @@
-/* import { Container } from '@mui/material'
-import React from 'react'
-import { ContentElement } from '../components/navbar/ContentElement'
-
-const Searchbar = () => {
-    return (
-        <Container>
-            <ContentElement> 
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '90vh'
-                    }}
-                > 
-                    <h1>You are looking for a certain item? We got you!</h1> <br />
-                    <br />
-                    <p>Simply enter a keyword or specific product name in the search bar, and we will show you the best results. <br />
-                        Or sort your requests by price and release date.</p> <br /> 
-                    <br />
-                    <br />
-                    <h3>Search for it here!</h3> <br />
-                </div> 
-            </ContentElement>
-        </Container>
-    )
-}
-
-export default Searchbar  */
-
-// import MenuIcon from '@mui/icons-material/Menu';
-// import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography'; 
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';

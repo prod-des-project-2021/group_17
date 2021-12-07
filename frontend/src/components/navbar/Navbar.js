@@ -14,16 +14,16 @@ const Navbar = (props) => {
                 </NavLink>
                 <Bars />
                 <NavMenu>
-                    <NavLink to='/home' activeStyle>
+                    <NavLink to='/home'>
                         Products
                     </NavLink>
-                    <NavLink to='/searchbar' activeStyle>
+                    <NavLink to='/searchbar'>
                         Search
                     </NavLink>
-                    <NavLink to='/cart' activeStyle>
+                    <NavLink to='/cart'>
                         Cart
                     </NavLink>
-                    <NavLink to='/userprofile' activeStyle>
+                    <NavLink to='/userprofile'>
                         Userprofile
                     </NavLink>
 

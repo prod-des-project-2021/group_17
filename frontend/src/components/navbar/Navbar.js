@@ -1,7 +1,11 @@
+import { Button } from '@mui/material';
 import React from 'react';
+import { connect } from 'react-redux';
+import { AuthActions } from '../../stores/actions';
 import { Nav, NavLink, NavButton, NavButtonLink, NavMenu, Bars } from './NavbarElement';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const {signOut} = props;
     return (
         <>
             <Nav>
@@ -25,11 +29,15 @@ const Navbar = () => {
 
                 </NavMenu>
                 <NavButton>
-                    <NavButtonLink to='/login'>Logout</NavButtonLink>
+                    <Button onClick={signOut}>Logout</Button>
                 </NavButton>
             </Nav>
         </>
     )
 }
 
-export default Navbar
+const mapDispatchToProps = {
+	signOut: AuthActions.signOut
+};
+
+export default connect(null, mapDispatchToProps)(Navbar);

@@ -5,67 +5,107 @@ const { createUser, fetchUsers, fetchUserByID, removeUser, editUser } = require(
 
 const addUser = async (req, res, next) => {
 	const content = req.body;
+	var error = {status:"", error:[]};
 	try {
 		await createUser(content);
-		// other service call (or same service, different function can go here)
-		// i.e. - await generateBlogpostPreview()
 		res.sendStatus(201);
 		next();
 	} catch (e) {
 		res.status(500);
-		res.send(e.message);
-		console.log(e.message);
+		error.status = 500;
+		error.error.push(e.message);
+		return res.send(error);
 	}
 };
 
 const getUser = async (req, res, next) => {
+	var error = {status:"", error:[]};
 	try {
-		usr = await fetchUsers();
+		var usr = await fetchUsers();
 		res.status(200);
 		res.send(usr);
 		next();
 	} catch (e) {
-		console.log(e.message);
-		res.sendStatus(400);
+		res.status(400);
+		error.status = 400;
+		error.error.push(e.message);
+		return res.send(error);
 	}
 };
 
 const getUserbyId = async (req, res, next) => {
+	var error = {status:"", error:[]};
 	try {
-		usr = await fetchUserByID(req.params.uid);
+		var usr = await fetchUserByID(req.params.uid);
 
 		if (!usr) {
-			res.sendStatus(404);
+			res.status(500);
+			error.status = 500;
+			error.error.push("User does not exist");
+			return res.send(error);
 		} else {
 			res.status(200);
 			res.send(usr);
 		}
 		next();
 	} catch (e) {
-		console.log(e.message);
-		res.sendStatus(400);
+		res.status(400);
+		error.status = 400;
+		error.error.push(e.message);
+		return res.send(error);
 	}
 };
 
 const deleteUser = async (req, res, next) => {
+	var error = {status:"", error:[]};
 	try {
+
+		var usr = await fetchUserByID(req.params.uid);
+
+		if (!usr) {
+			res.status(500);
+			error.status = 500;
+			error.error.push("User does not exist");
+			return res.send(error);
+		}
+		
+		if(!req.user.isAdmin && req.params.uid != req.user.id){
+			res.status(403);
+			error.status = 403;
+			error.error.push("Not allowed");
+			return res.send(error);
+		}
+
 		await removeUser(req.params.uid);
 		res.sendStatus(200);
 		next();
 	} catch (e) {
-		console.log(e.message);
-		res.sendStatus(400);
+		res.status(400);
+		error.status = 400;
+		error.error.push(e.message);
+		return res.send(error);
 	}
 };
 
 const updateUser = async (req, res, next) => {
+	var error = {status:"", error:[]};
 	try {
-		await editUser(req.body, req.user, req.params.uid);
+
+		if(!req.user.isAdmin && req.params.uid != req.user.id){
+			res.status(403);
+			error.status = 403;
+			error.error.push("Not allowed");
+			return res.send(error);
+		}
+
+		await editUser(req.body, req.params.uid);
 		res.sendStatus(200);
 		next();
 	} catch (e) {
-		console.log(e.message);
-		res.sendStatus(400);
+		res.status(400);
+		error.status = 400;
+		error.error.push(e.message);
+		return res.send(error);
 	}
 };
 

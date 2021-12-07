@@ -8,6 +8,8 @@ import { LoginButton, LoginButtonLink } from '../components/navbar/Buttons'
 import { connect } from 'react-redux';
 import { useState } from 'react'
 import { AuthActions } from '../stores/actions';
+import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
+
 
 
 function Login(props) {
@@ -76,10 +78,15 @@ function Login(props) {
                         <div>
                             {/* <NavButton> */}
                             <LoginButton onClick={handleClick}>
-                                <LoginButtonLink to='/home'>Login</LoginButtonLink>
+                                <LoginButtonLink to='/welcome'>Login</LoginButtonLink>
                             </LoginButton>
+                         </div>
+                         <div>
+                            <RegisterButton >
+                                <RegisterButtonLink to='/home'>Register</RegisterButtonLink>
+                            </RegisterButton> 
                             {/* </NavButton> */}
-                        </div>
+                       </div>
                     </Box>
 
                 </div>

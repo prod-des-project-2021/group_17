@@ -29,7 +29,7 @@ const Navbar = (props) => {
 
                 </NavMenu>
                 <NavButton>
-                    <Button onClick={signOut}>Logout</Button>
+                    <Button sx={{ color: "green" }} onClick={signOut}>Logout</Button>
                 </NavButton>
             </Nav>
         </>

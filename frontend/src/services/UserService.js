@@ -1,7 +1,7 @@
 //register
 //POST
 function UserService() {
-    const signUp = async (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, confirmPassword) => {
+    const signUp = async (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password) => {
         if (firstName == null) {
             return "firstname is empty";
         }
@@ -26,25 +26,21 @@ function UserService() {
         if (password == null) {
             return "password is empty";
         }
-        if (confirmPassword !== password){
-            return "password is not the same";
-        }
         
             let body = {
                 first_name : firstName,
                 last_name : lastName,
-                date_of_birth : dateOfBirth,
+                dob : dateOfBirth,
                 gender : gender,
-                adress : adress,
+                address : adress,
                 phone_number : phoneNumber,
                 email : Email,
                 password : password,
-                confirm_password : confirmPassword
             };
 
-            let result = fetch("http://localhost:3000/api/auth/profil", {
+            let result = fetch("http://172.20.241.192:3000/api/auth/register", {
                 method: "POST",
-                body: body,
+                body: JSON.stringify(body),
                 headers: { "Content-Type": "application/json" }
             }).then((res) => res.json());
             return result;

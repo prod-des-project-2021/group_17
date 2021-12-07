@@ -1,7 +1,8 @@
 import * as React from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
-import { Container } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import { ContentElement } from '../components/navbar/ContentElement';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -17,6 +18,8 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
+import { connect } from 'react-redux';
+import { AuthActions } from '../stores/actions';
 
 
 
@@ -447,13 +450,46 @@ const countries = [
 ];
 
 
-function Register() {
-    /* const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    }; */
+function Register(props) {
+    const {signUp} = props;
     const [open, setOpen] = React.useState(true);
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [gender, setGender] = useState('')
+    const [dob, setDob] = useState('')
+    const [address, setAddress] = useState('')
+    const [number, setNumber] = useState('')
+
+    const signUpButton = async () => {
+        signUp(firstName, lastName, dob, gender, address, number, email, password)
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value)
+    }
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value)
+    }
+    const handleFirstNameChange = (e) => {
+        setFirstName(e.target.value)
+    }
+    const handleLastNameChange = (e) => {
+        setLastName(e.target.value)
+    }
+    const handleGenderChange = (e) => {
+        setGender(e.target.value)
+    }
+    const handleDobChange = (e) => {
+        setDob(e.target.value)
+    }
+    const handleAddressChange = (e) => {
+        setAddress(e.target.value)
+    }
+    const handleNumberChange = (e) => {
+        setNumber(e.target.value)
+    }
 
     const handleClick = () => {
         setOpen(!open);
@@ -462,14 +498,7 @@ function Register() {
     return (
         <Container>
             <ContentElement>
-                <div
-                /* style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '5vh'
-                }} */
-                >
+                <div>
                     <h3>We are very happy to welcome you as a new part of the PSOAStore family.</h3>
                     <br />
                     <p> Please enter your data in the fields below. </p>
@@ -508,6 +537,7 @@ function Register() {
                                             id="outlined-required"
                                             label="Email"
                                             defaultValue=''
+                                            onChange={handleEmailChange}
                                         />
                                     </div>
                                     <div>
@@ -517,6 +547,7 @@ function Register() {
                                             label="Password"
                                             type="password"
                                             autoComplete="current-password"
+                                            onChange={handlePasswordChange}
                                         />
                                     </div>
                                 </Box>
@@ -538,6 +569,7 @@ function Register() {
                                             id="outlined-required"
                                             label="Firstname"
                                             defaultValue=''
+                                            onChange={handleFirstNameChange}
                                         />
                                     </div>
                                     <div>
@@ -546,6 +578,7 @@ function Register() {
                                             id="outlined-required"
                                             label="Lastname"
                                             defaultValue=''
+                                            onChange={handleLastNameChange}
                                         />
                                     </div>
                                 </Box>
@@ -561,8 +594,8 @@ function Register() {
                                         defaultValue="none"
                                         name="radio-buttons-group"
                                     >
-                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
+                                        <FormControlLabel value="F" onChange={handleGenderChange} control={<Radio />} label="Female" />
+                                        <FormControlLabel value="M" onChange={handleGenderChange} control={<Radio />} label="Male" />
                                     </RadioGroup>
                                 </FormControl>
                                 <br />
@@ -584,6 +617,7 @@ function Register() {
                                             id="outlined-required"
                                             label="DD/MM/YYYY"
                                             defaultValue=''
+                                            onChange={handleDobChange}
                                         />
                                     </div>
                                 </Box>
@@ -605,6 +639,7 @@ function Register() {
                                             id="outlined-required"
                                             label="Streetname and housenumber"
                                             defaultValue=''
+                                            onChange={handleAddressChange}
                                         />
                                     </div>
                                 </Box>
@@ -661,6 +696,7 @@ function Register() {
                                             id="outlined-required"
                                             label="please use international area code"
                                             defaultValue=''
+                                            onChange={handleNumberChange}
                                         />
                                     </div>
                                 </Box>
@@ -672,7 +708,7 @@ function Register() {
                 </div>
                 <div>
                     <RegisterButton >
-                        <RegisterButtonLink to='/welcome'>Done!</RegisterButtonLink>
+                        <Button onClick={signUpButton}>Done!</Button>
                     </RegisterButton>
                     {/* </NavButton> */}
                 </div>
@@ -680,6 +716,13 @@ function Register() {
         </Container>
     );
 }
-export default Register;
+
+const mapDispatchToProps = {
+    signUp: AuthActions.signUp,
+
+}
+
+export default connect(null, mapDispatchToProps)(Register);
+
 
 

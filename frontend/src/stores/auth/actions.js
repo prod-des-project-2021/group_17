@@ -8,6 +8,7 @@ export const signIn = (email, password) => async (dispatch) => {
 			localStorage.setItem('token', auth.accessToken);
             dispatch(C.setToken(auth.accessToken));
 		}
+		console.log(auth);
 	} catch (error) {
 		dispatch(C.signInFailed(error));
 	}
@@ -27,13 +28,14 @@ export const signOut = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, confirmPassword) => async (dispatch) => {
+export const signUp = (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password) => async (dispatch) => {
 	try {
-	    let auth = await UserService().signUp(firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, confirmPassword);
+	    let auth = await UserService().signUp(firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password);
         if (auth.hasOwnProperty('accessToken')) {
 			localStorage.setItem('token', auth.accessToken);
             dispatch(C.setToken(auth.accessToken));
 		}
+		console.log(auth);
 	} catch (error) {
 	    dispatch(C.signUpFailed(error));
 	}

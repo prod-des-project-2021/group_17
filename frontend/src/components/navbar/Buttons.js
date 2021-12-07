@@ -63,3 +63,14 @@ export const RegisterButtonLink = styled(Link)`
         color: #010606;
     }
 `;
+export const SaveButton = styled.nav`
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-right: 24px;
+    justify-content: space-between;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+`;

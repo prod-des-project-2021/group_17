@@ -15,6 +15,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import { SaveButton } from '../components/navbar/Buttons';
+import { Button } from '@mui/material';
 
 
 function Userprofile() {
@@ -98,6 +100,7 @@ function Userprofile() {
                                         aria-label="gender"
                                         defaultValue="none"
                                         name="radio-buttons-group"
+                                        color="green"
                                     >
                                         <FormControlLabel value="female" control={<Radio />} label="Female" />
                                         <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -220,6 +223,11 @@ function Userprofile() {
                             </List>
                         </Collapse>
                     </List>
+                </div>
+                <div>
+                    <SaveButton >
+                        <Button sx={{ color: "green" }}>Save!</Button>
+                    </SaveButton>
                 </div>
 
             </ContentElement>

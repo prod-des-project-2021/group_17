@@ -109,10 +109,36 @@ const updateUser = async (req, res, next) => {
 	}
 };
 
+const getMe = async (req, res, next) => {
+	var error = {status:"", error:[]};
+	try {
+		console.log((req.user));
+		var usr = await fetchUserByID(req.user.id);
+
+		if (!usr) {
+			res.status(500);
+			error.status = 500;
+			error.error.push("User does not exist");
+			return res.send(error);
+		} else {
+			usr.id = undefined;
+			res.status(200);
+			res.send(usr);
+		}
+		next();
+	} catch (e) {
+		res.status(400);
+		error.status = 400;
+		error.error.push(e.message);
+		return res.send(error);
+	}
+};
+
 module.exports = {
 	addUser,
 	getUser,
 	getUserbyId,
 	deleteUser,
-	updateUser
+	updateUser,
+	getMe
 };

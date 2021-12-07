@@ -28,7 +28,7 @@ function Login(props) {
     const handleEmailChange = (e) => {
         setUsername(e.target.value)
     }
-    
+
     return (
         <Container>
             <ContentElement>
@@ -40,7 +40,9 @@ function Login(props) {
                         height: '5vh'
                     }}
                 >
-                    <h1>Welcome!</h1> </div>
+                    <h1>Welcome!</h1> 
+                </div>
+                <br />
                 <div
                     style={{
                         display: 'flex',
@@ -76,16 +78,30 @@ function Login(props) {
                                 autoComplete="current-password"
                             />
                         </div>
-                        <div>
+                        <br />
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '5vh'
+                        }}
+                        >
                             <LoginButton onClick={handleClick}>
                                 <LoginButtonLink to='/welcome'>Login</LoginButtonLink>
                             </LoginButton>
-                         </div>
-                         <div>
+                        </div>
+                        <br />
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '5vh'
+                        }}
+                        >
                             <RegisterButton >
                                 <RegisterButtonLink to='/register'>Register</RegisterButtonLink>
-                            </RegisterButton> 
-                       </div>
+                            </RegisterButton>
+                        </div>
                     </Box>
 
                 </div>

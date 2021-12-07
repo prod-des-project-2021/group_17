@@ -17,7 +17,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
+import { RegisterButton } from '../components/navbar/Buttons';
 import { connect } from 'react-redux';
 import { AuthActions } from '../stores/actions';
 
@@ -710,7 +710,6 @@ function Register(props) {
                     <RegisterButton >
                         <Button onClick={signUpButton}>Done!</Button>
                     </RegisterButton>
-                    {/* </NavButton> */}
                 </div>
             </ContentElement>
         </Container>

@@ -27,14 +27,3 @@ export const CatLink = styled(Link)`
         color: #006600;
     } 
 `;
-
-/* 
-export const CatMenu = styled.div`
-    display: flex;
-    align-items: center;
-    margin-right: -24px;
-
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
-`; */

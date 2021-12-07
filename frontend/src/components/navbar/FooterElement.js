@@ -37,19 +37,6 @@ export const ColumnFooter = styled.div`
    
 `;
 
-/* export const RowFooter = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fill,
-                            minmax(400px, 1fr));
-    grid-gap: 30px;
-    
-
-    @media (max-width: 1000px) {
-        grid-template-columns: repeat(auto-fill,
-                            minmax(200px, 1fr));
-    }
-`; */
-
 export const FooterLink = styled(Link)`
     color: #000;
     display: block;

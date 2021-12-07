@@ -1,17 +1,6 @@
 import styled from 'styled-components';
 import { NavLink as Link } from 'react-router-dom';
 
-
-/* export const NavButton = styled.nav`
-    position: fixed;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 60px;
-    z-index: 10;
-`; */
-
 export const LoginButton = styled.nav`
     display: flex;
     align-items: center;

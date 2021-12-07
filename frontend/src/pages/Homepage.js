@@ -69,11 +69,6 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            /* action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            } */
                             title="Pan"
                             subheader="November 30, 2021"
                         />
@@ -81,7 +76,6 @@ function Homepage() {
                             component="img"
                             height="194"
                             image="/images/panpicture.jpg"
-                        // alt="Paella dish"
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -89,12 +83,6 @@ function Homepage() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            {/* <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton> */}
                             <ExpandMore
                                 expand={expanded}
                                 onClick={handleExpandClick}
@@ -121,11 +109,7 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            /* action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            } */
+
                             title="Pan"
                             subheader="November 30, 2021"
                         />
@@ -133,7 +117,6 @@ function Homepage() {
                             component="img"
                             height="194"
                             image="/images/panpicture.jpg"
-                        // alt="Paella dish"
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -141,12 +124,6 @@ function Homepage() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            {/* <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton> */}
                             <ExpandMore
                                 expand={expanded}
                                 onClick={handleExpandClick}
@@ -173,11 +150,6 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            /* action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            } */
                             title="Pan"
                             subheader="November 30, 2021"
                         />
@@ -185,7 +157,6 @@ function Homepage() {
                             component="img"
                             height="194"
                             image="/images/panpicture.jpg"
-                        // alt="Paella dish"
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -193,12 +164,6 @@ function Homepage() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            {/* <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton> */}
                             <ExpandMore
                                 expand={expanded}
                                 onClick={handleExpandClick}
@@ -225,11 +190,6 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            /* action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            } */
                             title="Pan"
                             subheader="November 30, 2021"
                         />
@@ -237,7 +197,6 @@ function Homepage() {
                             component="img"
                             height="194"
                             image="/images/panpicture.jpg"
-                        // alt="Paella dish"
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -245,12 +204,6 @@ function Homepage() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            {/* <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton> */}
                             <ExpandMore
                                 expand={expanded}
                                 onClick={handleExpandClick}
@@ -286,11 +239,6 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            /* action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            } */
                             title="Pan"
                             subheader="November 30, 2021"
                         />
@@ -298,7 +246,6 @@ function Homepage() {
                             component="img"
                             height="194"
                             image="/images/panpicture.jpg"
-                        // alt="Paella dish"
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -306,12 +253,6 @@ function Homepage() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            {/* <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton> */}
                             <ExpandMore
                                 expand={expanded}
                                 onClick={handleExpandClick}
@@ -338,11 +279,6 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            /* action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            } */
                             title="Pan"
                             subheader="November 30, 2021"
                         />
@@ -350,7 +286,6 @@ function Homepage() {
                             component="img"
                             height="194"
                             image="/images/panpicture.jpg"
-                        // alt="Paella dish"
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -358,12 +293,6 @@ function Homepage() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            {/* <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton> */}
                             <ExpandMore
                                 expand={expanded}
                                 onClick={handleExpandClick}
@@ -390,11 +319,6 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            /* action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            } */
                             title="Pan"
                             subheader="November 30, 2021"
                         />
@@ -402,7 +326,6 @@ function Homepage() {
                             component="img"
                             height="194"
                             image="/images/panpicture.jpg"
-                        // alt="Paella dish"
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -410,12 +333,6 @@ function Homepage() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            {/* <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton> */}
                             <ExpandMore
                                 expand={expanded}
                                 onClick={handleExpandClick}
@@ -442,11 +359,6 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            /* action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
-                            } */
                             title="Pan"
                             subheader="November 30, 2021"
                         />
@@ -454,7 +366,6 @@ function Homepage() {
                             component="img"
                             height="194"
                             image="/images/panpicture.jpg"
-                        // alt="Paella dish"
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -462,12 +373,6 @@ function Homepage() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            {/* <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton> */}
                             <ExpandMore
                                 expand={expanded}
                                 onClick={handleExpandClick}
@@ -488,39 +393,9 @@ function Homepage() {
                         </Collapse>
                     </Card>
                 </div>
-                {/* <RowHomepage>
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: '90vh'
-                        }}
-                    >
-
-                        <h1>Products</h1>
-
-
-                    </div>
-                </RowHomepage> */}
             </ContentElement>
         </Container>
     )
 }
 
-export default Homepage
-
-
-/* import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-
-export default function ImageAvatars() {
-  return (
-    <Stack direction="row" spacing={2}>
-      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-      <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-      <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-    </Stack>
-  );
-} */
+export default Homepage;

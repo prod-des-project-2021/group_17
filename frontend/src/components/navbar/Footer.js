@@ -6,17 +6,15 @@ const Footer = () => {
 		<>
 			<BoxFooter>
 				<ContainerFooter>
-					{/* <RowFooter> */}
 					<ColumnFooter>
-						<FooterLink to='/feedback' activeSytle> Feedback </FooterLink>
+						<FooterLink to='/feedback'> Feedback </FooterLink>
 					</ColumnFooter>
 					<ColumnFooter>
-						<FooterLink to='/contactus' activeSytle> Contact </FooterLink>
+						<FooterLink to='/contactus'> Contact </FooterLink>
 					</ColumnFooter>
 					<ColumnFooter>
-						<FooterLink to='/legalnotice' activeSytle> Legal Notice </FooterLink>
+						<FooterLink to='/legalnotice'> Legal Notice </FooterLink>
 					</ColumnFooter>
-					{/* </RowFooter> */}
 				</ContainerFooter>
 			</BoxFooter>
 		</>

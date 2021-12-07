@@ -8,14 +8,7 @@ const Startpage = () => {
     return (
         <Container>
             <ContentElement>
-                <div
-                    /* style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '90vh'
-                    }} */
-                >
+                <div>
                     <h1>Hello!</h1>
                     <br />
                     <p>Welcome to the official website of PSOAStore. <br />

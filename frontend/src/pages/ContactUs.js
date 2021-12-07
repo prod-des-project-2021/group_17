@@ -9,14 +9,6 @@ const Contactus = () => {
         <>
             <Container>
                 <ContentElement>
-                    {/* <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '90vh'
-                    }}
-                > */}
                     <h2> Hi! We are happy to have personal contact with you right away. <br /> </h2>
                     <br/>
                     <p> We hope there were no problems and your purchased product arrived in good condition. <br/>
@@ -50,7 +42,6 @@ const Contactus = () => {
                     <br/>
                     <br/>
                     <br/>
-                    {/* </div> */}
                 </ContentElement>
             </Container>
         </>

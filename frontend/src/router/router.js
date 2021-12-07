@@ -30,6 +30,7 @@ function MainRouter(props) {
 				getCurrent();
 			}
 		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[ auth.token ]
 	);
 

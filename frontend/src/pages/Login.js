@@ -77,7 +77,6 @@ function Login(props) {
                             />
                         </div>
                         <div>
-                            {/* <NavButton> */}
                             <LoginButton onClick={handleClick}>
                                 <LoginButtonLink to='/welcome'>Login</LoginButtonLink>
                             </LoginButton>
@@ -86,7 +85,6 @@ function Login(props) {
                             <RegisterButton >
                                 <RegisterButtonLink to='/register'>Register</RegisterButtonLink>
                             </RegisterButton> 
-                            {/* </NavButton> */}
                        </div>
                     </Box>
 

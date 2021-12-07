@@ -5,23 +5,21 @@ const Categories = () => {
     return (
         <>
             <CatNav>
-                {/* <CatMenu>  */}
-                    <CatLink to='/home/clothes' activeStyle>
+                    <CatLink to='/home/clothes'>
                         Clothes
                     </CatLink>
-                    <CatLink to='/home/games' activeStyle>
+                    <CatLink to='/home/games'>
                         Games
                     </CatLink>
-                    <CatLink to='/home/home' activeStyle>
+                    <CatLink to='/home/home'>
                         Home
                     </CatLink>
-                    <CatLink to='/home/kitchen' activeStyle>
+                    <CatLink to='/home/kitchen'>
                         Kitchen
                     </CatLink>
-                    <CatLink to='/home/sport' activeStyle>
+                    <CatLink to='/home/sport'>
                         Sport
                     </CatLink>
-                {/* </CatMenu>  */}
             </CatNav>
         </>
     )

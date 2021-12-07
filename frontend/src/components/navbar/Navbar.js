@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import React from 'react';
 import { connect } from 'react-redux';
 import { AuthActions } from '../../stores/actions';
-import { Nav, NavLink, NavButton, NavButtonLink, NavMenu, Bars } from './NavbarElement';
+import { Nav, NavLink, NavButton, NavMenu, Bars } from './NavbarElement';
 
 const Navbar = (props) => {
     const {signOut} = props;
@@ -14,16 +14,16 @@ const Navbar = (props) => {
                 </NavLink>
                 <Bars />
                 <NavMenu>
-                    <NavLink to='/home' activeStyle>
+                    <NavLink to='/home'>
                         Products
                     </NavLink>
-                    <NavLink to='/searchbar' activeStyle>
+                    <NavLink to='/searchbar'>
                         Search
                     </NavLink>
-                    <NavLink to='/cart' activeStyle>
+                    <NavLink to='/cart'>
                         Cart
                     </NavLink>
-                    <NavLink to='/userprofile' activeStyle>
+                    <NavLink to='/userprofile'>
                         Userprofile
                     </NavLink>
 

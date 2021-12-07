@@ -23,7 +23,7 @@ import { AuthActions } from '../stores/actions';
 
 function Register(props) {
     const {signUp} = props;
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [firstName, setFirstName] = useState('')

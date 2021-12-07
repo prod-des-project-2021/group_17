@@ -18,11 +18,20 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 
 
 function Userprofile() {
-    const [open, setOpen] = React.useState(true);
+    const [openPD, setOpenPersonalData] = React.useState(false);
+    const [openPP, setOpenProfilePic] = React.useState(false);
+    const [openLG, setOpenLoginData] = React.useState(false);
 
-    const handleClick = () => {
-        setOpen(!open);
+    const handleClickPD = () => {
+        setOpenPersonalData(!openPD);
     };
+    const handleClickPP = () => {
+        setOpenProfilePic(!openPP);
+    };
+    const handleClickLG = () => {
+        setOpenLoginData(!openLG);
+    };
+
 
     return (
         <Container>
@@ -43,11 +52,11 @@ function Userprofile() {
                         }
                     >
                         {/* Personal data */}
-                        <ListItemButton onClick={handleClick}>
+                        <ListItemButton onClick={handleClickPD}>
                             <ListItemText primary="Personal data" />
-                            {open ? <ExpandLess /> : <ExpandMore />}
+                            {openPD ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Collapse in={openPD} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <br />
                                 <br />
@@ -166,21 +175,21 @@ function Userprofile() {
                             </List>
                         </Collapse>
                         {/* Profilpicture */}
-                        <ListItemButton onClick={handleClick}>
+                        <ListItemButton onClick={handleClickPP}>
                             <ListItemText primary="Profilpicture" />
-                            {open ? <ExpandLess /> : <ExpandMore />}
+                            {openPP ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Collapse in={openPP} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 {/* TODO */}
                             </List>
                         </Collapse>
                         {/* Login data */}
-                        <ListItemButton onClick={handleClick}>
+                        <ListItemButton onClick={handleClickLG}>
                             <ListItemText primary="Login data" />
-                            {open ? <ExpandLess /> : <ExpandMore />}
+                            {openLG ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
+                        <Collapse in={openLG} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <Box
                                     component="form"

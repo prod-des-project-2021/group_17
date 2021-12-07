@@ -2,7 +2,7 @@ function LoginService() {
     const loginData = async (email, password) => {
         
         if (email == null) {
-            return "please fiull in your email";
+            return "please fill in your email";
         }
         if (password == null) {
             return "please fill in your password";

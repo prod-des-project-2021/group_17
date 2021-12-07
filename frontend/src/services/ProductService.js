@@ -1,12 +1,7 @@
 //for the user how puts the product online
-function ProductService() {
-    const productData = async (productId, userId, name, price, description, status, dateOfPosting) => {
-        if (productId == null) {
-            return " "; //TODO
-        }
-        if (userId == null) {
-            return " "; //TODO
-        }
+//POST
+function PostProductService() {
+    const postProductData = async (name, price, description) => {
         if (name == null) {
             return "product name is empty";
         }
@@ -16,31 +11,107 @@ function ProductService() {
         if (description == null) {
             return "description is empty";
         }
-        if (status == null) {
-            return " "; //TODO
-        }
-        if (dateOfPosting == null) {
-            return "date is empty";
-        }
-    
             let body = {
-                product_ID: productId,
-                user_ID: userId,
                 name: name,
                 price: price,
                 description: description,
-                status: status,
-                date_of_posting: dateOfPosting
-
             };
 
-            let result = fetch("localhost", {
+            let result = fetch("http://localhost:3000/api/product", {
                 method: "POST",
                 body: body,
                 headers: { "Content-Type": "application/json" }
-            });
+            }).then((res) => res.json());
             return result;
     };
-    return {productData};
+    return {postProductData};
 }
-export default ProductService;
+export default PostProductService;
+
+//PUT 
+function PutProductService() {
+    const putProductData = async (name, price, description) => {
+        if (name == null) {
+            return "product name is empty";
+        }
+        if (price == null) {
+            return "price is empty";
+        }
+        if (description == null) {
+            return "description is empty";
+        }
+            let body = {
+                name: name,
+                price: price,
+                description: description,
+            };
+
+            let result = fetch("http://localhost:3000/api/product", {
+                method: "PUT",
+                body: body,
+                headers: { "Content-Type": "application/json" }
+            }).then((res) => res.json());
+            return result;
+    };
+    return {putProductData};
+}
+export default PutProductService;
+
+//DELETE
+function DeleteProductService() {
+    const deleteProductData = async (product_id) => {
+        if (product_id == null) {
+            return "delete";
+        }
+        
+            let body = {
+                product_id: product_id,
+            };
+
+            let result = fetch("http://localhost:3000/api/product/:id", {
+                method: "DELETE",
+                body: body,
+                headers: { "Content-Type": "application/json" }
+            }).then((res) => res.json());
+            return result;
+    };
+    return {deleteProductData};
+}
+export default DeleteProductService;
+
+
+//for the user how views the product 
+//GET ONE
+function GetProductService() {
+    const getProductData = async (product_id) => {
+        if (product_id == null) {
+            return "";
+        }
+            let body = {
+                product_id: product_id,
+            };
+
+            let result = fetch("http://localhost:3000/api/product/:id", {
+                method: "GET",
+                body: body,
+                headers: { "Content-Type": "application/json" }
+            }).then((res) => res.json());
+            return result;
+    };
+    return {getProductData};
+}
+export default GetProductService;
+
+//GET ALL
+function GetProductsService() {
+    const getProductsData = async () => {
+            let result = fetch("http://localhost:3000/api/product", {
+                method: "GET",
+                body: body,
+                headers: { "Content-Type": "application/json" }
+            }).then((res) => res.json());
+            return result;
+    };
+    return {getProductsData};
+}
+export default GetProductsService;

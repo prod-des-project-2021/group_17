@@ -1,3 +1,5 @@
+//register
+//POST
 function UserService() {
     const userData = async (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, confirmPassword) => {
         if (firstName == null) {
@@ -29,22 +31,22 @@ function UserService() {
         }
         
             let body = {
-                first_name = firstName,
-                last_name = lastName,
-                date_of_birth = dateOfBirth,
-                gender = gender,
-                adress = adress,
-                phone_number = phoneNumber,
-                email = Email,
-                password = password,
-                confirm_password = confirmPassword
+                first_name : firstName,
+                last_name : lastName,
+                date_of_birth : dateOfBirth,
+                gender : gender,
+                adress : adress,
+                phone_number : phoneNumber,
+                email : Email,
+                password : password,
+                confirm_password : confirmPassword
             };
 
-            let result = fetch("localhost", {
+            let result = fetch("http://localhost:3000/api/auth/profil", {
                 method: "POST",
                 body: body,
                 headers: { "Content-Type": "application/json" }
-            });
+            }).then((res) => res.json());
             return result;
     };
     return {userData};

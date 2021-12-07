@@ -19,6 +19,7 @@ import CategorySport from '../pages/CategorySport';
 import Startpage from '../pages/Startpage';
 import { AuthActions } from '../stores/actions';
 import { connect } from 'react-redux';
+import Register from '../pages/Register';
 
 function MainRouter(props) {
 	const { auth, getCurrent } = props;
@@ -59,7 +60,9 @@ function MainRouter(props) {
 			) : (
 				<Routes>
 					<Route path="/login" exact element={<Login />} />
+					<Route path="/register" element={<Register />} />
                     <Route path="*" element={<Navigate to='/login'/>} />
+
 				</Routes>
 			)}
 		</BrowserRouter>

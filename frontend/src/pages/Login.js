@@ -69,6 +69,7 @@ function Login(props) {
                         <div>
                             <TextField
                                 onChange={handlePasswordChange}
+                                required
                                 id="outlined-password-input"
                                 label="Password"
                                 type="password"
@@ -83,7 +84,7 @@ function Login(props) {
                          </div>
                          <div>
                             <RegisterButton >
-                                <RegisterButtonLink to='/home'>Register</RegisterButtonLink>
+                                <RegisterButtonLink to='/register'>Register</RegisterButtonLink>
                             </RegisterButton> 
                             {/* </NavButton> */}
                        </div>

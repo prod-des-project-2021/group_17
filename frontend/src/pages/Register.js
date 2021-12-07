@@ -1,11 +1,3 @@
-//import StarBorder from '@mui/icons-material/StarBorder';
-//import InputLabel from '@mui/material/InputLabel';
-//import MenuItem from '@mui/material/MenuItem';
-//import Select from '@mui/material/Select';
-//import ListItemIcon from '@mui/material/ListItemIcon';
-//import InboxIcon from '@mui/icons-material/MoveToInbox';
-//import DraftsIcon from '@mui/icons-material/Drafts';
-//import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
@@ -24,6 +16,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
 
 
 
@@ -454,7 +447,7 @@ const countries = [
 ];
 
 
-function Userprofile() {
+function Register() {
     /* const [age, setAge] = React.useState('');
 
     const handleChange = (event) => {
@@ -477,9 +470,10 @@ function Userprofile() {
                     height: '5vh'
                 }} */
                 >
-                    <h3>Here you can change your personal data.</h3>
+                    <h3>We are very happy to welcome you as a new part of the PSOAStore family.</h3>
                     <br />
-                    <p> (Please keep them always up to date) </p>
+                    <p> Please enter your data in the fields below. </p>
+                    <br />
                     <br />
                     <br />
                     <List
@@ -498,6 +492,34 @@ function Userprofile() {
                         </ListItemButton>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
+                                <br />
+                                <br />
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    <div>
+                                        <TextField
+                                            required
+                                            id="outlined-required"
+                                            label="Email"
+                                            defaultValue=''
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            required
+                                            id="outlined-password-input"
+                                            label="Password"
+                                            type="password"
+                                            autoComplete="current-password"
+                                        />
+                                    </div>
+                                </Box>
                                 <br />
                                 <br />
                                 <Box
@@ -567,7 +589,6 @@ function Userprofile() {
                                 </Box>
                                 <br />
                                 <br />
-                                {/* adress */}
                                 <Box
                                     component="form"
                                     sx={{
@@ -645,66 +666,20 @@ function Userprofile() {
                                 </Box>
                                 <br />
                                 <br />
-                                <br />
-                            </List>
-                        </Collapse>
-                        {/* Profilpicture */}
-                        <ListItemButton onClick={handleClick}>
-                            <ListItemText primary="Profilpicture" />
-                            {open ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                {/* TODO */}
-                            </List>
-                        </Collapse>
-                        {/* Login data */}
-                        <ListItemButton onClick={handleClick}>
-                            <ListItemText primary="Login data" />
-                            {open ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-                                    <div>
-                                        <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Email"
-                                            defaultValue=''
-                                        />
-                                    </div>
-                                    <div>
-                                        <TextField
-                                            required
-                                            id="outlined-password-input"
-                                            label="Password"
-                                            type="password"
-                                            autoComplete="current-password"
-                                        />
-                                    </div>
-                                </Box>
                             </List>
                         </Collapse>
                     </List>
                 </div>
-
+                <div>
+                    <RegisterButton >
+                        <RegisterButtonLink to='/welcome'>Done!</RegisterButtonLink>
+                    </RegisterButton>
+                    {/* </NavButton> */}
+                </div>
             </ContentElement>
         </Container>
     );
 }
-export default Userprofile;
-
-
-
-
-
+export default Register;
 
 

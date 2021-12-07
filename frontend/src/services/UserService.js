@@ -1,7 +1,7 @@
 //register
 //POST
 function UserService() {
-    const userData = async (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, confirmPassword) => {
+    const signUp = async (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, confirmPassword) => {
         if (firstName == null) {
             return "firstname is empty";
         }
@@ -49,6 +49,30 @@ function UserService() {
             }).then((res) => res.json());
             return result;
     };
-    return {userData};
+
+    const signIn = async (email, password) => {
+        
+        if (email == null) {
+            return "please fill in your email";
+        }
+        if (password == null) {
+            return "please fill in your password";
+        }
+        
+        
+        let body = { 
+            email: email,
+            password: password
+            
+        };
+
+        let result = await fetch("http://172.20.241.192:3000/api/auth/login", {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: { "Content-Type": "application/json" }
+        }).then((res) => res.json());
+        return result;
+    };
+    return {signIn,signUp};
 }
 export default UserService;

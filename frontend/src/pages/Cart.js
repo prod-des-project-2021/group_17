@@ -20,9 +20,9 @@ function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
 
-    const isStepOptional = (step) => {
+    /* const isStepOptional = (step) => {
         return step === 1;
-    };
+    }; */
 
     const isStepSkipped = (step) => {
         return skipped.has(step);
@@ -43,7 +43,7 @@ function HorizontalLinearStepper() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleSkip = () => {
+    /* const handleSkip = () => {
         if (!isStepOptional(activeStep)) {
             // You probably want to guard against something like this,
             // it should never occur unless someone's actively trying to break something.
@@ -56,7 +56,7 @@ function HorizontalLinearStepper() {
             newSkipped.add(activeStep);
             return newSkipped;
         });
-    };
+    }; */
 
     const handleReset = () => {
         setActiveStep(0);

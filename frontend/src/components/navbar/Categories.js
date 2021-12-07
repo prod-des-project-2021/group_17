@@ -1,5 +1,5 @@
 import React from 'react';
-import { CatNav, CatLink, CatMenu } from './CategoriesElement';
+import { CatNav, CatLink } from './CategoriesElement';
 
 const Categories = () => {
     return (

@@ -455,11 +455,11 @@ const countries = [
 
 
 function Userprofile() {
-    const [age, setAge] = React.useState('');
+    /* const [age, setAge] = React.useState('');
 
     const handleChange = (event) => {
         setAge(event.target.value);
-    };
+    }; */
     const [open, setOpen] = React.useState(true);
 
     const handleClick = () => {

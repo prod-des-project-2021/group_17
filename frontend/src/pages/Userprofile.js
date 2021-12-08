@@ -95,16 +95,18 @@ function Userprofile() {
                                 <FormControl component="fieldset">
                                     <p> Select your gender: </p>
                                     <FormLabel component="legend"></FormLabel>
-                                    <RadioGroup
-                                        required
-                                        aria-label="gender"
-                                        defaultValue="none"
-                                        name="radio-buttons-group"
-                                        color="green"
-                                    >
-                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                    </RadioGroup>
+                            
+                                        <RadioGroup
+                                            required
+                                            aria-label="gender"
+                                            defaultValue="none"
+                                            name="radio-buttons-group"
+                                            color="green"
+                                        >
+                                            <FormControlLabel value="female" control={<Radio />} label="Female" />
+                                            <FormControlLabel value="male" control={<Radio />} label="Male" />
+                                        </RadioGroup>
+                                
                                 </FormControl>
                                 <br />
                                 <br />

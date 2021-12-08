@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement'
 import { connect } from 'react-redux'
-
+import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
 
 const Startpage = (props) => {
     const [fName,setFName] = useState("");
@@ -36,6 +36,13 @@ const Startpage = (props) => {
                     <p>PSOAStore Team</p>
                     <br />
                     <br />
+                    <RegisterButton >
+                        <RegisterButtonLink to='/sellproduct'>Sell a product!</RegisterButtonLink>
+                    </RegisterButton>
+                    <br />
+                    <RegisterButton >
+                        <RegisterButtonLink to='/viewproduct'>View your products!</RegisterButtonLink>
+                    </RegisterButton>
                 </div>
                 <br />
                 <br />

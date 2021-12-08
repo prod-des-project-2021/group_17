@@ -20,6 +20,9 @@ import Startpage from '../pages/Startpage';
 import { AuthActions } from '../stores/actions';
 import { connect } from 'react-redux';
 import Register from '../pages/Register';
+import SellProduct from '../pages/SellProduct';
+import ViewProduct from '../pages/ViewProducts';
+
 
 function MainRouter(props) {
 	const { auth, getCurrent, setUser } = props;
@@ -57,6 +60,8 @@ function MainRouter(props) {
 						<Route path="/legalnotice" element={<LegalNotice />} />
 						<Route path="/contactus" element={<Contactus />} />
 						<Route path="/feedback" element={<Feedback />} />
+						<Route path="/sellproduct" element={<SellProduct />} />
+						<Route path="/viewproduct" element={<ViewProduct />} />
                         <Route path="*" element={<Navigate to='/welcome'/>} />
 					</Routes>
 					<Footer />

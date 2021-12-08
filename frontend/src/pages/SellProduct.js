@@ -28,28 +28,26 @@ const productCategories = [
 ];
 
 function SellProduct(props) {
-	const {addProduct} = props; 
+	const { addProduct } = props;
 	const [ pFiles, setPFiles ] = useState([]);
 	const [ pName, setPName ] = useState();
-	const [ pCategory, setPCategory ] = useState("");
+	const [ pCategory, setPCategory ] = useState('');
 	const [ pDescription, setPDescription ] = useState();
 	const [ pPrice, setPPrice ] = useState();
 
-	const handleAddProduct = () =>{
-		addProduct(pName,pDescription,pCategory,pPrice,pFiles);
-	}
+	const handleAddProduct = () => {
+		addProduct(pName, pDescription, pCategory, pPrice, pFiles);
+	};
 
-	const handleFileSelected = (e) => {
+	const handleFileSelected = async (e) => {
 		const files = Array.from(e.target.files);
-		const tempFileArray = [];
 		files.forEach(async function(file) {
 			let base64 = await convertBase64(file);
-			tempFileArray.push({
+			setPFiles(pFiles => [...pFiles,{
 				file: file,
 				base64: base64
-			});
+			}])
 		});
-		setPFiles(tempFileArray);
 	};
 
 	const convertBase64 = (file) => {
@@ -165,7 +163,11 @@ function SellProduct(props) {
 										multiple="multiple"
 									/>
 								</Button>
-								{pFiles.map((f) => <p style={{ paddingTop: '10px' }}> {f.file.name} </p>)}
+								{pFiles.map((f, index) => (
+									<p key={(f, index)} style={{ paddingTop: '10px' }}>
+										{f.file.name}
+									</p>
+								))}
 							</Box>
 						</List>
 					</List>
@@ -193,4 +195,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(SellProduct);
-

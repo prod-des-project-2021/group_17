@@ -69,6 +69,18 @@ function UserService() {
         }).then((res) => res.json());
         return result;
     };
-    return {signIn,signUp};
+
+    const getMe = async (token) => {
+        let result = await fetch("http://172.20.241.192:3000/api/user/me", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer '+ token,  }
+        }).then((res) => res.json());
+        return result;
+    };
+
+
+    return {signIn,signUp,getMe};
 }
 export default UserService;

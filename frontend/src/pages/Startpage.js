@@ -1,15 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement'
+import { connect } from 'react-redux'
 
 
-const Startpage = () => {
+const Startpage = (props) => {
+    const [fName,setFName] = useState("");
+    const [lName,setLName] = useState("");
+    const {user} = props;
+
+    useEffect(
+		() => {
+			if(user){
+                setFName(user.first_name);
+                setLName(user.last_name);
+            }
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[ user ]
+	);
 
     return (
         <Container>
             <ContentElement>
                 <div>
-                    <h1>Hello!</h1>
+                    <h1>Hello {fName + " " + lName}!</h1>
                     <br />
                     <p>Welcome to the official website of PSOAStore. <br />
                         Here students of Oulu University of Applied Sciences (OAMK) can buy second hand goods or sell their own unwanted goods. <br />
@@ -30,6 +45,10 @@ const Startpage = () => {
     )
 }
 
-export default Startpage
+const mapStateToProps = ({ auth }) => ({
+	user: auth.user
+});
+
+export default connect(mapStateToProps, null)(Startpage);
 
 

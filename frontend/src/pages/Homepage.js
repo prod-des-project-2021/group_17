@@ -27,7 +27,7 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
-
+import { Button } from '@mui/material';
 
 
 const ExpandMore = styled((props) => {
@@ -128,9 +128,14 @@ function Homepage() {
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
-                                </RegisterButton>
+                                <Button 
+                                    style={{ backgroundColor: '#006600', color: 'white' }}
+                                    variant="contained"
+                                    component="label"
+                                // onClick=
+                                >
+                                    Add to cart
+                                </Button>
                             </CardContent>
                         </Collapse>
                     </Card>

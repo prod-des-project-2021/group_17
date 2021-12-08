@@ -151,6 +151,10 @@ function SellProduct(props) {
 										defaultValue=""
 									/>
 								</div>
+                                <br />
+                                <br />
+                                <p> Upload your product image(s): </p>
+                                <br />
 								<Button
 									style={{ backgroundColor: '#006600', color: 'white' }}
 									variant="contained"
@@ -176,7 +180,7 @@ function SellProduct(props) {
 						component="label"
 						onClick={handleAddProduct}
 					>
-						Add Post
+						Add Product
 					</Button>
 					<br />
 					<br />

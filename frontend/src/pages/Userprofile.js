@@ -248,15 +248,25 @@ const Userprofile = (props) => {
                 <br />
                 <br />
                 <div>
-                    <SaveButton >
-                        <Button sx={{ color: "green" }}>Save!</Button>
-                    </SaveButton>
+                <Button
+						style={{ backgroundColor: '#006600', color: 'white' }}
+						variant="contained"
+						component="label"
+						// onClick=
+					>
+						Save changes
+					</Button>
                 </div>
                 <br />
                 <div>
-                    <SaveButton >
-                        <Button sx={{ color: "green" }}>Delete my account</Button>
-                    </SaveButton>
+                <Button
+						style={{ backgroundColor: '#006600', color: 'white' }}
+						variant="contained"
+						component="label"
+						// onClick=
+					>
+						Delete my account
+					</Button>
                 </div>
 
             </ContentElement>

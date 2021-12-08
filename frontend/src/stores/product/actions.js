@@ -5,9 +5,8 @@ const {postProductData} = ProductService();
 
 export const addProduct = (name,description,category,price,files) => async (dispatch) => {
 	try {
-	    files.forEach(function(v){ delete v.file });
-		console.log(files);
-		//postProductData(name,price,description,files,category);
+		let fileArray = files.map((f) => {return f.base64});
+		postProductData(name,price,description,fileArray,category);
 	} catch (error) {
 	    console.log(error);
 	}

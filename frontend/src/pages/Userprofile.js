@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
 import { Container } from '@mui/material';
 import { ContentElement } from '../components/navbar/ContentElement';
 import TextField from '@mui/material/TextField';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -16,26 +11,34 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { SaveButton } from '../components/navbar/Buttons';
 import { Button } from '@mui/material';
 import { connect } from 'react-redux';
 
 const Userprofile = (props) => {
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
+    const [dateOfBirth, setDob] = useState("");
+    const [adress, setAddress] = useState("");
+    const [phoneNumber, setPhonenumber] = useState("");
+    const [Email, setEmail] = useState("");
     const { user } = props;
-
+   
     useEffect(
         () => {
             if (user) {
                 setFName(user.first_name);
                 setLName(user.last_name);
+                setDob(user.dob);
+                setAddress(user.address);
+                setPhonenumber(user.phone_number);
+                setEmail(user.email);
+                
             }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [user]
     );
-
+   
     const [openPD, setOpenPersonalData] = React.useState(false);
     const [openPP, setOpenProfilePic] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
@@ -84,7 +87,7 @@ const Userprofile = (props) => {
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -96,7 +99,7 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="Firstname"
-                                            defaultValue=''
+                                            defaultValue={fName}
                                         />
                                     </div>
                                     <div>
@@ -104,36 +107,17 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="Lastname"
-                                            defaultValue=''
+                                            defaultValue={lName}
                                         />
                                     </div>
                                 </Box>
-                                <br />
-                                <br />
-                                {/* Select gender */}
-                                <FormControl component="fieldset">
-                                    <p> Select your gender: </p>
-                                    <FormLabel component="legend"></FormLabel>
-
-                                    <RadioGroup
-                                        required
-                                        aria-label="gender"
-                                        defaultValue="none"
-                                        name="radio-buttons-group"
-                                        color="green"
-                                    >
-                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                    </RadioGroup>
-
-                                </FormControl>
                                 <br />
                                 <br />
                                 {/* Select age */}
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -145,7 +129,7 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="DD/MM/YYYY"
-                                            defaultValue=''
+                                            defaultValue={dateOfBirth}
                                         />
                                     </div>
                                 </Box>
@@ -155,7 +139,7 @@ const Userprofile = (props) => {
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -167,7 +151,7 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="Streetname and housenumber"
-                                            defaultValue=''
+                                            defaultValue={adress}
                                         />
                                     </div>
                                 </Box>
@@ -177,7 +161,7 @@ const Userprofile = (props) => {
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -189,7 +173,7 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="please use international area code"
-                                            defaultValue=''
+                                            defaultValue={phoneNumber}
                                         />
                                     </div>
                                 </Box>
@@ -218,7 +202,7 @@ const Userprofile = (props) => {
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -228,14 +212,14 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="Email"
-                                            defaultValue=''
+                                            defaultValue={Email}
                                         />
                                     </div>
                                     <div>
                                         <TextField
                                             required
                                             id="outlined-password-input"
-                                            label="Password"
+                                            label="New password"
                                             type="password"
                                             autoComplete="current-password"
                                         />

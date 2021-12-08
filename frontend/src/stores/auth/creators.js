@@ -41,9 +41,6 @@ export const setToken = (token) => ({
 export const clearToken = () => ({
 	type: Types.CLEAR_USER_TOKEN
 });
-export const clearUser = () => ({
-	type: Types.CLEAR_USER
-});
 export const setUser = (user) => {
 	return {
 		type: Types.SET_USER,

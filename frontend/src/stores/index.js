@@ -1,8 +1,9 @@
-import { combineReducers } from "redux";
-import { auth } from "./reducers";
+import { combineReducers } from 'redux';
+import { auth, product } from './reducers';
 
 const allReducers = combineReducers({
-    auth
+	auth,
+	product
 });
 
 export default allReducers;

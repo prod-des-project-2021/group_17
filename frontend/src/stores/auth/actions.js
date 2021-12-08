@@ -49,6 +49,6 @@ export const setUser = () => async (dispatch) => {
 		
 	} catch (error) {
 		localStorage.removeItem("token");
-	    dispatch(C.clearUser());
+	    dispatch(C.clearToken());
 	}
 };

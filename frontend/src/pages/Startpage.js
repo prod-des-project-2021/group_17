@@ -37,11 +37,11 @@ const Startpage = (props) => {
                     <br />
                     <br />
                     <RegisterButton >
-                        <RegisterButtonLink to='/sellproduct'>Sell a product!</RegisterButtonLink>
+                        <RegisterButtonLink to='/sellproduct'>SELL A PRODUCT</RegisterButtonLink>
                     </RegisterButton>
                     <br />
                     <RegisterButton >
-                        <RegisterButtonLink to='/viewproduct'>View your products!</RegisterButtonLink>
+                        <RegisterButtonLink to='/viewproduct'>VIEW YOUR PRODUCTS</RegisterButtonLink>
                     </RegisterButton>
                 </div>
                 <br />

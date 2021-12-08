@@ -1,11 +1,28 @@
 import { Button } from '@mui/material';
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import React from 'react';
 import { AuthActions } from '../../stores/actions';
-import { Nav, NavLink, NavButton, NavMenu, Bars } from './NavbarElement';
+import { Nav, NavLink, NavButton, NavMenu, Bars, NavMenuLoggedInUser } from './NavbarElement';
+
 
 const Navbar = (props) => {
-    const {signOut} = props;
+    const { signOut } = props;
+    const [fName, setFName] = useState("");
+    const [lName, setLName] = useState("");
+    const { user } = props;
+
+    useEffect(
+        () => {
+            if (user) {
+                setFName(user.first_name);
+                setLName(user.last_name);
+            }
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [user]
+    );
+
     return (
         <>
             <Nav>
@@ -26,9 +43,11 @@ const Navbar = (props) => {
                     <NavLink to='/userprofile'>
                         Userprofile
                     </NavLink>
-
                 </NavMenu>
-                <NavButton>
+                <NavMenuLoggedInUser>
+                <p> Logged in as: {fName + " " + lName} </p>
+                </NavMenuLoggedInUser>
+                <NavButton > 
                     <Button sx={{ color: "green" }} onClick={signOut}>Logout</Button>
                 </NavButton>
             </Nav>
@@ -37,7 +56,10 @@ const Navbar = (props) => {
 }
 
 const mapDispatchToProps = {
-	signOut: AuthActions.signOut
+    signOut: AuthActions.signOut
 };
+const mapStateToProps = ({ auth }) => ({
+    user: auth.user
+});
 
-export default connect(null, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps, null)(Navbar);

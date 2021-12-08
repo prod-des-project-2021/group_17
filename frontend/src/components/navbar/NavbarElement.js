@@ -51,6 +51,16 @@ export const NavMenu = styled.div`
     }
 `;
 
+export const NavMenuLoggedInUser = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: -4px;
+
+    @media screen and (max-width: 76px) {
+        display: none;
+    }
+`;
+
 export const NavButton = styled.nav`
     display: flex;
     align-items: center;

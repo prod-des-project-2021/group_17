@@ -8,7 +8,6 @@ export const signIn = (email, password) => async (dispatch) => {
 			localStorage.setItem('token', auth.accessToken);
             dispatch(C.setToken(auth.accessToken));
 		}
-		console.log(auth);
 	} catch (error) {
 		dispatch(C.signInFailed(error));
 	}
@@ -38,5 +37,18 @@ export const signUp = (firstName, lastName, dateOfBirth, gender, adress, phoneNu
 		console.log(auth);
 	} catch (error) {
 	    dispatch(C.signUpFailed(error));
+	}
+};
+
+export const setUser = () => async (dispatch) => {
+	try {
+	    let token = localStorage.getItem("token");
+		let me = await UserService().getMe(token);
+		if(me.hasOwnProperty("first_name")) dispatch(C.setUser(me));
+		else throw new Error("Expired session");
+		
+	} catch (error) {
+		localStorage.removeItem("token");
+	    dispatch(C.clearUser());
 	}
 };

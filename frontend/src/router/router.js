@@ -25,12 +25,15 @@ import ViewProduct from '../pages/ViewProducts';
 
 
 function MainRouter(props) {
-	const { auth, getCurrent } = props;
+	const { auth, getCurrent, setUser } = props;
 
 	useEffect(
 		() => {
 			if (!auth.token) {
 				getCurrent();
+			}
+			else{
+				setUser();
 			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,7 +83,8 @@ const mapStateToProps = ({ auth }) => ({
 });
 
 const mapDispatchToProps = {
-	getCurrent: AuthActions.getCurrent
+	getCurrent: AuthActions.getCurrent,
+	setUser: AuthActions.setUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainRouter);

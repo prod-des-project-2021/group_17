@@ -92,7 +92,8 @@ const reducer = (state = initialState, { type, payload }) => {
         case Types.CLEAR_USER:
             return {
                 ...state,
-                user: null
+                user: null,
+                token: null
             };
         case Types.CLEAR_USER_TOKEN:
             return {

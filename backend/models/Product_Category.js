@@ -10,6 +10,11 @@ var ProductCategory = db.define('product_category', {
     category_name: {
         type: Sequelize.STRING,
         allowNull:false
+    },
+    relevance: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
     }
 });
 

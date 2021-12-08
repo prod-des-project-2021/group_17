@@ -30,10 +30,10 @@ const createProduct = async (request) => {
 
     const prod_id = product.id;
 
-    if(request.body.pictures){
-        for(let i = 0; i < request.body.pictures.length; ++i){
+    if(request.body.files){
+        for(let i = 0; i < request.body.files.length; ++i){
             try{
-                await saveProductPicture(prod_id, i, String(request.body.pictures[i]));
+                await saveProductPicture(prod_id, i, String(request.body.files[i]));
             }
             catch(e){
                 console.log(e);

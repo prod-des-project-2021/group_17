@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Container } from '@mui/material';
 import { ContentElement } from '../components/navbar/ContentElement';
-import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
 import { TextField } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import MenuItem from '@mui/material/MenuItem';
+import { connect } from 'react-redux';
+import { ProductActions } from '../stores/actions';
 
 const productCategories = [
 	{
@@ -26,12 +27,17 @@ const productCategories = [
 	}
 ];
 
-function SellProduct() {
+function SellProduct(props) {
+	const {addProduct} = props; 
 	const [ pFiles, setPFiles ] = useState([]);
-    const [ pName, setPName ] = useState();
-    const [ pCategory, setPCategory ] = useState();
-    const [ pDescription, setPDescription ] = useState();
-    const [ pPrice, setPPrice ] = useState();
+	const [ pName, setPName ] = useState();
+	const [ pCategory, setPCategory ] = useState("");
+	const [ pDescription, setPDescription ] = useState();
+	const [ pPrice, setPPrice ] = useState();
+
+	const handleAddProduct = () =>{
+		addProduct(pName,pDescription,pCategory,pPrice,pFiles);
+	}
 
 	const handleFileSelected = (e) => {
 		const files = Array.from(e.target.files);
@@ -43,7 +49,7 @@ function SellProduct() {
 				base64: base64
 			});
 		});
-        setPFiles(tempFileArray);
+		setPFiles(tempFileArray);
 	};
 
 	const convertBase64 = (file) => {
@@ -65,15 +71,15 @@ function SellProduct() {
 		setPName(event.target.value);
 	};
 
-    const handleCategoryChange = (event) => {
+	const handleCategoryChange = (event) => {
 		setPCategory(event.target.value);
 	};
 
-    const handleDescriptionChange = (event) => {
+	const handleDescriptionChange = (event) => {
 		setPDescription(event.target.value);
 	};
 
-    const handlePriceChange = (event) => {
+	const handlePriceChange = (event) => {
 		setPPrice(event.target.value);
 	};
 
@@ -99,7 +105,13 @@ function SellProduct() {
 								<h3> Give us some informations about your product: </h3>
 								<br />
 								<div>
-									<TextField required id="outlined-required" onChange={handleNameChange} label="Product name" defaultValue="" />
+									<TextField
+										required
+										id="outlined-required"
+										onChange={handleNameChange}
+										label="Product name"
+										defaultValue=""
+									/>
 								</div>
 								<br />
 								<div>
@@ -124,14 +136,20 @@ function SellProduct() {
 										required
 										id="outlined-required"
 										label="Description"
-                                        onChange={handleDescriptionChange}
+										onChange={handleDescriptionChange}
 										multiline
 										maxRows={4}
 									/>
 								</div>
 								<br />
 								<div>
-									<TextField required id="outlined-required" onChange={handlePriceChange} label="Price" defaultValue="" />
+									<TextField
+										required
+										id="outlined-required"
+										onChange={handlePriceChange}
+										label="Price"
+										defaultValue=""
+									/>
 								</div>
 								<Button
 									style={{ backgroundColor: '#006600', color: 'white' }}
@@ -147,14 +165,19 @@ function SellProduct() {
 										multiple="multiple"
 									/>
 								</Button>
-                                {pFiles.map(f => (<p style={{paddingTop:'10px'}}> {f.file.name} </p>))}
+								{pFiles.map((f) => <p style={{ paddingTop: '10px' }}> {f.file.name} </p>)}
 							</Box>
 						</List>
 					</List>
 					<br />
-					<RegisterButton>
-						<RegisterButtonLink to="/welcome">Done!</RegisterButtonLink>
-					</RegisterButton>
+					<Button
+						style={{ backgroundColor: '#006600', color: 'white' }}
+						variant="contained"
+						component="label"
+						onClick={handleAddProduct}
+					>
+						Add Post
+					</Button>
 					<br />
 					<br />
 					<br />
@@ -165,4 +188,9 @@ function SellProduct() {
 	);
 }
 
-export default SellProduct;
+const mapDispatchToProps = {
+	addProduct: ProductActions.addProduct
+};
+
+export default connect(null, mapDispatchToProps)(SellProduct);
+

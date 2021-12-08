@@ -46,7 +46,7 @@ const orderCheckout = async(req, res, next) => {
         for(let i = 0; i < products.length; ++i){
             var prod = await fetchProductById(products[i]);
 
-            if(!prod || prod.status != "0"){
+            if(!prod || prod.status != 0){
                 availability = false;
 
                 res.status(400);
@@ -66,7 +66,7 @@ const orderCheckout = async(req, res, next) => {
         }
 
         for(let i = 0; i < products.length; ++i){
-            await editProduct({"status": "1"}, products[i]);
+            await editProduct({"status": 1}, products[i]);
             await createOrder(products[i], req.user.id);
         }
         await editUser({"credits": req.user.credits-totalCost}, req.user.id);

@@ -21,13 +21,19 @@ var Product = db.define('product', {
         allowNull:true
     },
     status: {
-        type: Sequelize.STRING,
-        allowNull:false
+        type: Sequelize.BOOLEAN,
+        allowNull:false,
+        defaultValue: 0
     },
     date_of_posting: {
         type: Sequelize.DATE,
         allowNull:false,
         defaultValue:Sequelize.NOW
+    },
+    category: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
     }
 });
 

@@ -1,12 +1,45 @@
+const fs = require("fs")
 const Product = require("../models/Product");
+const Product_Picure = require("../models/Product_Pictures");
+
+const saveProductPicture = async (pid, ppid, data) => {
+    
+    let img = data.split(';base64,').pop();
+    var ext = data.substring(data.indexOf('/') + 1, data.indexOf(';base64'));
+    
+
+    var url = "./pics/name" + String(pid) + "." + String(ppid) + "." + ext;
+    var body = {picture_url: url, product_id: pid};
+    var pic = Product_Picure.build(body);
+
+    
+
+    fs.writeFile("./"+url, img, {encoding: 'base64'}, function(err) {
+        console.log('File created');
+    });
+
+    await pic.save(); 
+}
 
 const createProduct = async (request) => {
     const usrID = request.user.id;
 
     request.body.user_id = usrID;
     const product = Product.build(request.body);
-    
     await product.save();
+
+    const prod_id = product.id;
+
+    if(request.body.pictures){
+        for(let i = 0; i < request.body.pictures.length; ++i){
+            try{
+                await saveProductPicture(prod_id, i, String(request.body.pictures[i]));
+            }
+            catch(e){
+                console.log(e);
+            }
+        }
+    }
 }
 
 const fetchProduct = async() => {

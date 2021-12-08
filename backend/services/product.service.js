@@ -24,6 +24,12 @@ const fetchProductById = async(pid) => {
     });
 }
 
+const fetchProductByCategory = async(category) => {
+    return await Product.findAll({where:{category: category}}).then(function(p) {
+        return p.map(function(obj) {return obj.dataValues});
+    });
+}
+
 const removeProduct = async(pid) => {
     await Product.destroy({where: {id: pid}});
 }

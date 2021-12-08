@@ -44,8 +44,11 @@ export const setUser = () => async (dispatch) => {
 	try {
 	    let token = localStorage.getItem("token");
 		let me = await UserService().getMe(token);
-	    dispatch(C.setUser(me));
+		if(me.hasOwnProperty("first_name")) dispatch(C.setUser(me));
+		else throw new Error("Expired session");
+		
 	} catch (error) {
-	    dispatch(C.signOutFailed(error));
+		localStorage.removeItem("token");
+	    dispatch(C.clearUser());
 	}
 };

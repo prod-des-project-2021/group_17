@@ -33,4 +33,5 @@ export default {
     GET_USER_SUCCEEDED: 'GET_USER_SUCCEEDED',
     GET_USER_FAILED: 'GET_USER_FAILED',
 
+
 };

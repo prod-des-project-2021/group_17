@@ -26,6 +26,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
+
 
 
 const ExpandMore = styled((props) => {
@@ -40,21 +42,49 @@ const ExpandMore = styled((props) => {
 }));
 
 function Homepage() {
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded1, setExpanded1] = React.useState(false);
+    const [expanded2, setExpanded2] = React.useState(false);
+    const [expanded3, setExpanded3] = React.useState(false);
+    const [expanded4, setExpanded4] = React.useState(false);
+    const [expanded5, setExpanded5] = React.useState(false);
+    const [expanded6, setExpanded6] = React.useState(false);
+    const [expanded7, setExpanded7] = React.useState(false);
+    const [expanded8, setExpanded8] = React.useState(false);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
+    const handleExpandClick1 = () => {
+        setExpanded1(!expanded1);
+    };
+    const handleExpandClick2 = () => {
+        setExpanded2(!expanded2);
+    };
+    const handleExpandClick3 = () => {
+        setExpanded3(!expanded3);
+    };
+    const handleExpandClick4 = () => {
+        setExpanded4(!expanded4);
+    };
+    const handleExpandClick5 = () => {
+        setExpanded5(!expanded5);
+    };
+    const handleExpandClick6 = () => {
+        setExpanded6(!expanded6);
+    };
+    const handleExpandClick7 = () => {
+        setExpanded7(!expanded7);
+    };
+    const handleExpandClick8 = () => {
+        setExpanded8(!expanded8);
     };
 
     return (
         <Container>
             <ContentElement>
-                <Outlet /> 
-                    <Categories /> 
-                    <h3>Take a look at our most wanted products! </h3>
-                    <br/>
-                    <br/>
-                    <div
+                <Outlet />
+                <Categories />
+                <h3>Take a look at our most wanted products! </h3>
+                <br />
+                <br />
+                <div
                     style={{
                         display: 'flex',
                         justifyContent: 'space-between',
@@ -84,21 +114,23 @@ function Homepage() {
                         </CardContent>
                         <CardActions disableSpacing>
                             <ExpandMore
-                                expand={expanded}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
+                                expand={expanded1}
+                                onClick={handleExpandClick1}
+                                aria-expanded={expanded1}
                                 aria-label="show more"
                             >
                                 <ExpandMoreIcon />
                             </ExpandMore>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <Collapse in={expanded1} timeout="auto" unmountOnExit>
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-
+                                <RegisterButton >
+                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
+                                </RegisterButton>
                             </CardContent>
                         </Collapse>
                     </Card>
@@ -125,21 +157,23 @@ function Homepage() {
                         </CardContent>
                         <CardActions disableSpacing>
                             <ExpandMore
-                                expand={expanded}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
+                                expand={expanded2}
+                                onClick={handleExpandClick2}
+                                aria-expanded={expanded2}
                                 aria-label="show more"
                             >
                                 <ExpandMoreIcon />
                             </ExpandMore>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <Collapse in={expanded2} timeout="auto" unmountOnExit>
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-
+                                <RegisterButton >
+                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
+                                </RegisterButton>
                             </CardContent>
                         </Collapse>
                     </Card>
@@ -165,21 +199,23 @@ function Homepage() {
                         </CardContent>
                         <CardActions disableSpacing>
                             <ExpandMore
-                                expand={expanded}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
+                                expand={expanded3}
+                                onClick={handleExpandClick3}
+                                aria-expanded={expanded3}
                                 aria-label="show more"
                             >
                                 <ExpandMoreIcon />
                             </ExpandMore>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <Collapse in={expanded3} timeout="auto" unmountOnExit>
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-
+                                <RegisterButton >
+                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
+                                </RegisterButton>
                             </CardContent>
                         </Collapse>
                     </Card>
@@ -205,21 +241,23 @@ function Homepage() {
                         </CardContent>
                         <CardActions disableSpacing>
                             <ExpandMore
-                                expand={expanded}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
+                                expand={expanded4}
+                                onClick={handleExpandClick4}
+                                aria-expanded={expanded4}
                                 aria-label="show more"
                             >
                                 <ExpandMoreIcon />
                             </ExpandMore>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <Collapse in={expanded4} timeout="auto" unmountOnExit>
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-
+                                <RegisterButton >
+                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
+                                </RegisterButton>
                             </CardContent>
                         </Collapse>
                     </Card>
@@ -254,21 +292,23 @@ function Homepage() {
                         </CardContent>
                         <CardActions disableSpacing>
                             <ExpandMore
-                                expand={expanded}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
+                                expand={expanded5}
+                                onClick={handleExpandClick5}
+                                aria-expanded={expanded5}
                                 aria-label="show more"
                             >
                                 <ExpandMoreIcon />
                             </ExpandMore>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <Collapse in={expanded5} timeout="auto" unmountOnExit>
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-
+                                <RegisterButton >
+                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
+                                </RegisterButton>
                             </CardContent>
                         </Collapse>
                     </Card>
@@ -294,21 +334,23 @@ function Homepage() {
                         </CardContent>
                         <CardActions disableSpacing>
                             <ExpandMore
-                                expand={expanded}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
+                                expand={expanded6}
+                                onClick={handleExpandClick6}
+                                aria-expanded={expanded6}
                                 aria-label="show more"
                             >
                                 <ExpandMoreIcon />
                             </ExpandMore>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <Collapse in={expanded6} timeout="auto" unmountOnExit>
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-
+                                <RegisterButton >
+                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
+                                </RegisterButton>
                             </CardContent>
                         </Collapse>
                     </Card>
@@ -334,21 +376,23 @@ function Homepage() {
                         </CardContent>
                         <CardActions disableSpacing>
                             <ExpandMore
-                                expand={expanded}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
+                                expand={expanded7}
+                                onClick={handleExpandClick7}
+                                aria-expanded={expanded7}
                                 aria-label="show more"
                             >
                                 <ExpandMoreIcon />
                             </ExpandMore>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <Collapse in={expanded7} timeout="auto" unmountOnExit>
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-
+                                <RegisterButton >
+                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
+                                </RegisterButton>
                             </CardContent>
                         </Collapse>
                     </Card>
@@ -374,21 +418,23 @@ function Homepage() {
                         </CardContent>
                         <CardActions disableSpacing>
                             <ExpandMore
-                                expand={expanded}
-                                onClick={handleExpandClick}
-                                aria-expanded={expanded}
+                                expand={expanded8}
+                                onClick={handleExpandClick8}
+                                aria-expanded={expanded8}
                                 aria-label="show more"
                             >
                                 <ExpandMoreIcon />
                             </ExpandMore>
                         </CardActions>
-                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <Collapse in={expanded8} timeout="auto" unmountOnExit>
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-
+                                <RegisterButton >
+                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
+                                </RegisterButton>
                             </CardContent>
                         </Collapse>
                     </Card>

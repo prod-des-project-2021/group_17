@@ -6,15 +6,38 @@ import { TextField } from '@material-ui/core'
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
+import MenuItem from '@mui/material/MenuItem';
+
+const productCategories = [
+    {
+        value: 'Clothes',
+    },
+    {
+        value: 'Home',
+    },
+    {
+        value: 'Kitchen',
+    },
+    {
+        value: 'Games',
+    },
+    {
+        value: 'Sport',
+    },
+];
 
 function SellProduct() {
+    const [productCat, setproductCat] = React.useState('EUR');
+
+    const handleChange = (event) => {
+        setproductCat(event.target.value);
+    };
     return (
         <Container>
             <ContentElement>
                 <div>
-                    <h1>Sell product</h1>
                     <List
-                        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                        sx={{ width: '100%', maxWidth: 500, bgcolor: 'background.paper' }}
                         component="nav"
                         aria-labelledby="nested-list-subheader"
                         subheader={
@@ -31,7 +54,7 @@ function SellProduct() {
                                 noValidate
                                 autoComplete="off"
                             >
-                                <p> Give us some data for your product: </p>
+                                <h3> Give us some informations about your product: </h3>
                                 <br />
                                 <div>
                                     <TextField
@@ -41,6 +64,24 @@ function SellProduct() {
                                         defaultValue=''
                                     />
                                 </div>
+                                <br />
+                                <div>
+                                    <TextField
+                                        id="outlined-select-currency-native"
+                                        select
+                                        label="Product category"
+                                        value={productCat}
+                                        onChange={handleChange}
+                                        helperText="It is important that you specify a product category so that your sold product can be found more easily!"
+                                    >
+                                        {productCategories.map((option) => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.value}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </div>
+                                <br />
                                 <div>
                                     <TextField
                                         required
@@ -48,9 +89,10 @@ function SellProduct() {
                                         label="Description"
                                         multiline
                                         maxRows={4}
-                                        
+
                                     />
                                 </div>
+                                <br />
                                 <div>
                                     <TextField
                                         required
@@ -62,9 +104,15 @@ function SellProduct() {
                             </Box>
                         </List>
                     </List>
+                    <br />
+                    <br />
                     <RegisterButton >
                         <RegisterButtonLink to='/welcome'>Done!</RegisterButtonLink>
                     </RegisterButton>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </div>
             </ContentElement>
         </Container>

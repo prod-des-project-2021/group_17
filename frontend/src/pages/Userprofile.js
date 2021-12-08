@@ -245,9 +245,17 @@ const Userprofile = (props) => {
                         </Collapse>
                     </List>
                 </div>
+                <br />
+                <br />
                 <div>
                     <SaveButton >
                         <Button sx={{ color: "green" }}>Save!</Button>
+                    </SaveButton>
+                </div>
+                <br />
+                <div>
+                    <SaveButton >
+                        <Button sx={{ color: "green" }}>Delete my account</Button>
                     </SaveButton>
                 </div>
 

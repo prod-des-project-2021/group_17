@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import { Container } from '@mui/material';
@@ -17,9 +18,24 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { SaveButton } from '../components/navbar/Buttons';
 import { Button } from '@mui/material';
+import { connect } from 'react-redux';
 
+const Userprofile = (props) => {
+    const [fName, setFName] = useState("");
+    const [lName, setLName] = useState("");
+    const { user } = props;
 
-function Userprofile() {
+    useEffect(
+        () => {
+            if (user) {
+                setFName(user.first_name);
+                setLName(user.last_name);
+            }
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [user]
+    );
+
     const [openPD, setOpenPersonalData] = React.useState(false);
     const [openPP, setOpenProfilePic] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
@@ -35,10 +51,13 @@ function Userprofile() {
     };
 
 
+
     return (
         <Container>
             <ContentElement>
                 <div>
+                    <h1>Hi {fName + " " + lName}! </h1>
+                    <br />
                     <h3>Here you can change your personal data.</h3>
                     <br />
                     <p> (Please keep them always up to date) </p>
@@ -95,18 +114,18 @@ function Userprofile() {
                                 <FormControl component="fieldset">
                                     <p> Select your gender: </p>
                                     <FormLabel component="legend"></FormLabel>
-                            
-                                        <RadioGroup
-                                            required
-                                            aria-label="gender"
-                                            defaultValue="none"
-                                            name="radio-buttons-group"
-                                            color="green"
-                                        >
-                                            <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                            <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                        </RadioGroup>
-                                
+
+                                    <RadioGroup
+                                        required
+                                        aria-label="gender"
+                                        defaultValue="none"
+                                        name="radio-buttons-group"
+                                        color="green"
+                                    >
+                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
+                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
+                                    </RadioGroup>
+
                                 </FormControl>
                                 <br />
                                 <br />
@@ -226,9 +245,17 @@ function Userprofile() {
                         </Collapse>
                     </List>
                 </div>
+                <br />
+                <br />
                 <div>
                     <SaveButton >
                         <Button sx={{ color: "green" }}>Save!</Button>
+                    </SaveButton>
+                </div>
+                <br />
+                <div>
+                    <SaveButton >
+                        <Button sx={{ color: "green" }}>Delete my account</Button>
                     </SaveButton>
                 </div>
 
@@ -236,7 +263,11 @@ function Userprofile() {
         </Container>
     );
 }
-export default Userprofile;
+const mapStateToProps = ({ auth }) => ({
+    user: auth.user
+});
+
+export default connect(mapStateToProps, null)(Userprofile);
 
 
 

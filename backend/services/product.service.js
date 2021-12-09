@@ -80,5 +80,5 @@ const editProduct = async(content, pid) => {
 }
 
 module.exports = {
-    createProduct, fetchProduct, removeProduct, fetchProductById, editProduct
+    createProduct, fetchProduct, removeProduct, fetchProductById, fetchProductByCategory, editProduct
 }

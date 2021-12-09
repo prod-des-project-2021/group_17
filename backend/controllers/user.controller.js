@@ -59,24 +59,17 @@ const getUserbyId = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
 	var error = {status:"", error:[]};
 	try {
-
-		var usr = await fetchUserByID(req.params.uid);
-
+		let id = 0;
+		if(req.user.isAdmin && req.params.hasOwnProperty("uid")) id = req.params.uid;
+		else id = req.user.id;
+		var usr = await fetchUserByID(id);
 		if (!usr) {
 			res.status(500);
 			error.status = 500;
 			error.error.push("User does not exist");
 			return res.send(error);
 		}
-		
-		if(!req.user.isAdmin && req.params.uid != req.user.id){
-			res.status(403);
-			error.status = 403;
-			error.error.push("Not allowed");
-			return res.send(error);
-		}
-
-		await removeUser(req.params.uid);
+		await removeUser(id);
 		res.sendStatus(200);
 		next();
 	} catch (e) {
@@ -90,15 +83,10 @@ const deleteUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
 	var error = {status:"", error:[]};
 	try {
-
-		if(!req.user.isAdmin && req.params.uid != req.user.id){
-			res.status(403);
-			error.status = 403;
-			error.error.push("Not allowed");
-			return res.send(error);
-		}
-
-		await editUser(req.body, req.params.uid);
+		let id = 0;
+		if(req.user.isAdmin && req.params.hasOwnProperty("uid")) id = req.params.uid;
+		else id = req.user.id;
+		await editUser(req.body, id);
 		res.sendStatus(200);
 		next();
 	} catch (e) {

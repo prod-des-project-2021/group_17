@@ -20,6 +20,8 @@ frontend/build
 .env.test.local
 .env.production.local
 
+backend/pics
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

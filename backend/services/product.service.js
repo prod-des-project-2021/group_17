@@ -1,12 +1,45 @@
+const fs = require("fs")
 const Product = require("../models/Product");
+const Product_Picure = require("../models/Product_Pictures");
+
+const saveProductPicture = async (pid, ppid, data) => {
+    
+    let img = data.split(';base64,').pop();
+    var ext = data.substring(data.indexOf('/') + 1, data.indexOf(';base64'));
+    
+
+    var url = "./pics/name" + String(pid) + "." + String(ppid) + "." + ext;
+    var body = {picture_url: url, product_id: pid};
+    var pic = Product_Picure.build(body);
+
+    
+
+    fs.writeFile("./"+url, img, {encoding: 'base64'}, function(err) {
+        console.log('File created');
+    });
+
+    await pic.save(); 
+}
 
 const createProduct = async (request) => {
     const usrID = request.user.id;
 
     request.body.user_id = usrID;
     const product = Product.build(request.body);
-    
     await product.save();
+
+    const prod_id = product.id;
+
+    if(request.body.files){
+        for(let i = 0; i < request.body.files.length; ++i){
+            try{
+                await saveProductPicture(prod_id, i, String(request.body.files[i]));
+            }
+            catch(e){
+                console.log(e);
+            }
+        }
+    }
 }
 
 const fetchProduct = async() => {
@@ -21,6 +54,12 @@ const fetchProductById = async(pid) => {
             return null;
         else
             return prod.dataValues;
+    });
+}
+
+const fetchProductByCategory = async(category) => {
+    return await Product.findAll({where:{category: category}}).then(function(p) {
+        return p.map(function(obj) {return obj.dataValues});
     });
 }
 

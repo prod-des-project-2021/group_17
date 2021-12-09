@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
 import { Container } from '@mui/material';
 import { ContentElement } from '../components/navbar/ContentElement';
 import TextField from '@mui/material/TextField';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -16,26 +11,71 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { SaveButton } from '../components/navbar/Buttons';
 import { Button } from '@mui/material';
 import { connect } from 'react-redux';
+import { AuthActions } from '../stores/actions';
 
 const Userprofile = (props) => {
+    const { user, saveChanges } = props;
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
-    const { user } = props;
+    const [dateOfBirth, setDob] = useState("");
+    const [adress, setAddress] = useState("");
+    const [phoneNumber, setPhonenumber] = useState("");
+    const [Email, setEmail] = useState("");
 
+   
     useEffect(
         () => {
             if (user) {
                 setFName(user.first_name);
                 setLName(user.last_name);
+                setDob(user.dob);
+                setAddress(user.address);
+                setPhonenumber(user.phone_number);
+                setEmail(user.email);
+                
             }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [user]
     );
+    
+    const [Fname, editFName] = useState('');
+    const [LName, editLName] = useState('');
+    const [DateOfBirth, editDob] = useState('');
+    const [Address, editAddress] = useState('');
+    const [PhoneNumber, editPhonenumber] = useState('');
+    const [EMail, editEmail] = useState('');
+    const [Password, editPassword] = useState('');
+   
+    const saveChangesButton = async() => {
+        saveChanges(Fname, LName, DateOfBirth, Address, PhoneNumber, EMail, Password);
+    }
 
+    const handleFNameChange = (e) => {
+        editFName(e.target.value);
+    }
+    const handleLNameChange = (e) => {
+        editLName(e.target.value);
+    }
+    const handleDobChange = (e) => {
+        editDob(e.target.value);
+    }
+    const handleAddressChange = (e) => {
+        editAddress(e.target.value);
+    }
+    const handlePhonenumberChange = (e) => {
+        editPhonenumber(e.target.value);
+    }
+    const handleEmailChange = (e) => {
+        editEmail(e.target.value);
+    }
+    const handlePasswordChange = (e) => {
+        editPassword(e.target.value);
+    }
+
+    
     const [openPD, setOpenPersonalData] = React.useState(false);
     const [openPP, setOpenProfilePic] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
@@ -84,7 +124,7 @@ const Userprofile = (props) => {
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -96,7 +136,8 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="Firstname"
-                                            defaultValue=''
+                                            defaultValue={fName}
+                                            onChange={handleFNameChange}
                                         />
                                     </div>
                                     <div>
@@ -104,36 +145,18 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="Lastname"
-                                            defaultValue=''
+                                            defaultValue={lName}
+                                            onChange={handleLNameChange}
                                         />
                                     </div>
                                 </Box>
-                                <br />
-                                <br />
-                                {/* Select gender */}
-                                <FormControl component="fieldset">
-                                    <p> Select your gender: </p>
-                                    <FormLabel component="legend"></FormLabel>
-
-                                    <RadioGroup
-                                        required
-                                        aria-label="gender"
-                                        defaultValue="none"
-                                        name="radio-buttons-group"
-                                        color="green"
-                                    >
-                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                    </RadioGroup>
-
-                                </FormControl>
                                 <br />
                                 <br />
                                 {/* Select age */}
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -145,7 +168,8 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="DD/MM/YYYY"
-                                            defaultValue=''
+                                            defaultValue={dateOfBirth}
+                                            onChange={handleDobChange}
                                         />
                                     </div>
                                 </Box>
@@ -155,7 +179,7 @@ const Userprofile = (props) => {
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -167,7 +191,8 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="Streetname and housenumber"
-                                            defaultValue=''
+                                            defaultValue={adress}
+                                            onChange={handleAddressChange}
                                         />
                                     </div>
                                 </Box>
@@ -177,7 +202,7 @@ const Userprofile = (props) => {
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -189,7 +214,8 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="please use international area code"
-                                            defaultValue=''
+                                            defaultValue={phoneNumber}
+                                            onChange={handlePhonenumberChange}
                                         />
                                     </div>
                                 </Box>
@@ -218,7 +244,7 @@ const Userprofile = (props) => {
                                 <Box
                                     component="form"
                                     sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
                                     }}
                                     noValidate
                                     autoComplete="off"
@@ -228,16 +254,18 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="Email"
-                                            defaultValue=''
+                                            defaultValue={Email}
+                                            onChange={handleEmailChange}
                                         />
                                     </div>
                                     <div>
                                         <TextField
                                             required
                                             id="outlined-password-input"
-                                            label="Password"
+                                            label="New password"
                                             type="password"
                                             autoComplete="current-password"
+                                            onChange={handlePasswordChange}
                                         />
                                     </div>
                                 </Box>
@@ -248,11 +276,11 @@ const Userprofile = (props) => {
                 <br />
                 <br />
                 <div>
-                <Button
+                <Button 
 						style={{ backgroundColor: '#006600', color: 'white' }}
 						variant="contained"
 						component="label"
-						// onClick=
+                        onClick={saveChangesButton}
 					>
 						Save changes
 					</Button>
@@ -268,16 +296,22 @@ const Userprofile = (props) => {
 						Delete my account
 					</Button>
                 </div>
+                <br />
+                <br />
 
             </ContentElement>
         </Container>
     );
 }
 const mapStateToProps = ({ auth }) => ({
-    user: auth.user
+    user: auth.user,
 });
+const mapDispatchToProps = {
+    saveChanges: AuthActions.saveChanges,
 
-export default connect(mapStateToProps, null)(Userprofile);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Userprofile);
 
 
 

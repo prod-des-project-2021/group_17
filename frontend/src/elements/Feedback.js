@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
 import { Container } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement';
+import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
 
 const labels = {
@@ -19,9 +21,23 @@ const labels = {
   5: 'I love PSOAStore. Will defenitively come again!',
 };
 
-function HoverRating() {
+const HoverRating= (props) =>{
+  const [fName, setFName] = useState("");
+  const [lName, setLName] = useState("");
+  const { user } = props;
   const [value, setValue] = React.useState(4.5);
   const [hover, setHover] = React.useState(-1);
+
+  useEffect(
+    () => {
+        if (user) {
+            setFName(user.first_name);
+            setLName(user.last_name);
+        }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [user]
+);
 
   return (
     <Container>
@@ -65,10 +81,14 @@ function HoverRating() {
         </Box>
         <br />
         <br />
-        <h3>Thank you!</h3>
+        <h3>Thank you {fName + " " + lName}!</h3>
       </ContentElement>
     </Container>
   );
 }
 
-export default HoverRating;
+const mapStateToProps = ({ auth }) => ({
+  user: auth.user
+});
+
+export default connect(mapStateToProps, null)(HoverRating);

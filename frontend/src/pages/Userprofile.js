@@ -16,7 +16,8 @@ import { connect } from 'react-redux';
 import { AuthActions } from '../stores/actions';
 
 const Userprofile = (props) => {
-    const { user, saveChanges } = props;
+    const { user } = props;
+    const { saveChanges } = props;
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
     const [dateOfBirth, setDob] = useState("");
@@ -309,7 +310,7 @@ const mapStateToProps = ({ auth }) => ({
 const mapDispatchToProps = {
     saveChanges: AuthActions.saveChanges,
 
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps, null)(Userprofile);
 

@@ -28,7 +28,7 @@ const createProduct = async (request) => {
     request.body.user_id = usrID;
 
     var cat = Category.findOne({where: {category_name: request.body.category}});
-    var catID = 0;
+    var catID = Category.findOne({where: {category_name: 'Other'}}).id;
 
     if(cat)
         catID = cat.id;

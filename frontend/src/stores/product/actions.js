@@ -5,8 +5,9 @@ const {postProductData} = ProductService();
 
 export const addProduct = (name,description,category,price,files) => async (dispatch) => {
 	try {
+		const token = localStorage.getItem('token');
 		let fileArray = files.map((f) => {return f.base64});
-		postProductData(name,price,description,fileArray,category);
+		postProductData(name,price,description,fileArray,category,token);
 	} catch (error) {
 	    console.log(error);
 	}

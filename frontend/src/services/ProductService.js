@@ -1,6 +1,6 @@
 function ProductService() {
     
-	const postProductData = async (name, price, description, files, category) => {
+	const postProductData = async (name, price, description, files, category, token) => {
 		let body = {
 			name: name,
 			price: price,
@@ -11,8 +11,10 @@ function ProductService() {
 
 		let result = fetch('http://localhost:3000/api/product', {
 			method: 'POST',
-			body: body,
-			headers: { 'Content-Type': 'application/json' }
+			body: JSON.stringify(body),
+			headers: { 
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer '+ token  }
 		}).then((res) => res.json());
 		return result;
 	};

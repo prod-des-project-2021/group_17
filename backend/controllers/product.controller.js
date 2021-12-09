@@ -1,7 +1,7 @@
 const { connectionManager } = require("../config/db");
 const Product = require("../models/Product");
 const { use } = require("../routes");
-const {createProduct, fetchProduct, fetchProductById, removeProduct, editProduct} = require("../services/product.service")
+const {createProduct, fetchProduct, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
 
 const addProduct = async (req, res, next) => {
     var error = {status:"", error:[]};
@@ -37,7 +37,30 @@ const getProduct = async (req, res, next) => {
 const getProductbyId = async (req, res, next) => {
   var error = {status:"", error:[]};
 	try {
-		prod = await fetchProductById(req.params.pid);
+		var prod = await fetchProductById(req.params.pid);
+
+		if (!prod) {
+			error.status = 404;
+      res.status(404);
+      error.error.push("Product does not exist");
+      return res.send(error);
+		} else {
+			res.status(200);
+			res.send(prod);
+		}
+		next();
+	} catch (e) {
+		error.status = 400;
+    res.status(400);
+    error.error.push(e.message);
+    return res.send(error);
+	}
+};
+
+const getProductbyCategory = async (req, res, next) => {
+  var error = {status:"", error:[]};
+	try {
+		prod = await fetchProductByCategory(req.params.cid);
 
 		if (!prod) {
 			error.status = 404;
@@ -121,5 +144,5 @@ const updateProduct = async (req, res, next) => {
 };
 
 module.exports = {
-    addProduct, getProduct, getProductbyId, deleteProduct, updateProduct
+    addProduct, getProduct, getProductbyId, getProductbyCategory, deleteProduct, updateProduct
 }

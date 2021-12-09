@@ -36,7 +36,6 @@ const addProductToOrder = async (req, res, next) => {
 
 const orderCheckout = async(req, res, next) => {
     var error = {status:"", error:[]};
-    var availability = true;
 
     try {
         console.log(req.user);
@@ -45,6 +44,8 @@ const orderCheckout = async(req, res, next) => {
         var totalCost = 0;
         for(let i = 0; i < products.length; ++i){
             var prod = await fetchProductById(products[i]);
+
+            //increaseRelevance(prod.category);
 
             if(!prod || prod.status != 0){
                 availability = false;
@@ -80,6 +81,22 @@ const orderCheckout = async(req, res, next) => {
     }
 };
 
+const getOrder = async (req, res, next) => {
+    var error = {status:"", error:[]};
+      try {
+        var order = await fetchOrderByUser(req.user.id);
+  
+        res.status(200);
+        res.send(order);
+        next();
+      } catch (e) {
+          error.status = 400;
+      res.status(400);
+      error.error.push(e.message);
+      return res.send(error);
+      }
+  };
+
 module.exports = {
-    addProductToOrder, orderCheckout
+    addProductToOrder, orderCheckout, getOrder
 }

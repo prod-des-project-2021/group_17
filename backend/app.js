@@ -5,6 +5,7 @@ const routes = require('./routes');
 const db = require('./config/db');
 const mysql = require('mysql2/promise');
 const config = require('./config/config');
+const Populate = require('./utils/populate_product_pictures')
 var cors = require('cors');
 
 app.use(cors());
@@ -13,6 +14,7 @@ configureDB()
 	.then(() => db.authenticate())
 	.then(() => console.log('Connection has been established successfully.'))
 	.then(() => configureTables())
+	.then(() => Populate())
 	.catch((error) => console.error('Unable to connect to the database:', error));
 
 async function configureTables() {

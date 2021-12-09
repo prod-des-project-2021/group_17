@@ -1,6 +1,7 @@
 const fs = require("fs")
 const Product = require("../models/Product");
 const Product_Picure = require("../models/Product_Pictures");
+const Category = require("../models/Product_Category")
 
 const saveProductPicture = async (pid, ppid, data) => {
     
@@ -25,6 +26,14 @@ const createProduct = async (request) => {
     const usrID = request.user.id;
 
     request.body.user_id = usrID;
+
+    var cat = Category.findOne({where: {category_name: request.body.category}});
+    var catID = 0;
+
+    if(cat)
+        catID = cat.id;
+
+    request.body.category = catID;
     const product = Product.build(request.body);
     await product.save();
 

@@ -9,7 +9,7 @@
 // import CategoryKitchen from './CategoryKitchen';
 // import CategorySport from './CategorySport';
 // import { BrowserRouter, Routes, Route, } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
 import Categories from '../components/navbar/Categories';
 import { ContentElement } from '../components/navbar/ContentElement';
@@ -28,6 +28,8 @@ import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
 import { Button } from '@mui/material';
+import { connect } from 'react-redux';
+import { ProductActions } from '../stores/actions';
 
 
 const ExpandMore = styled((props) => {
@@ -41,7 +43,30 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-function Homepage() {
+const Homepage = ( props ) => {
+    const { product,getProduct } = props;
+    const [ pName, getPName ] = useState();
+    const [ pPrice, getPPrice ] = useState();
+    const [ pDescription, getPDescription ] = useState();
+    const [ pFiles, getPFiles ] = useState([]);
+    const [ pCategory, getPCategory ] = useState('');
+
+    useEffect (
+        () => {
+            getProduct()
+            /* if (product) {
+                getPName(product.name);
+                getPPrice(product.price);
+                getPDescription(product.description);
+                getPFiles(product.files);
+                getPCategory(product.category);
+            } */
+        },
+        [product],
+        console.log(product)
+    );
+
+
     const [expanded1, setExpanded1] = React.useState(false);
     const [expanded2, setExpanded2] = React.useState(false);
     const [expanded3, setExpanded3] = React.useState(false);
@@ -99,17 +124,17 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            title="Pan"
+                            title={pName + " " + pCategory}
                             subheader="November 30, 2021"
                         />
                         <CardMedia
                             component="img"
                             height="194"
-                            image="/images/panpicture.jpg"
+                            image={pFiles[0]}
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                12$
+                                {pPrice}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -126,7 +151,7 @@ function Homepage() {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    Pan for induction stove, only used twice.
+                                    {pDescription}
                                 </Typography>
                                 <Button 
                                     style={{ backgroundColor: '#006600', color: 'white' }}
@@ -449,4 +474,12 @@ function Homepage() {
     )
 }
 
-export default Homepage;
+const mapStateToProps = ({ product }) => ({
+    product: product.product,
+});
+
+const mapDispatchToProps = {
+	getProduct: ProductActions.getProduct
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

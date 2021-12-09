@@ -4,12 +4,16 @@ const Product_Picure = require("../models/Product_Pictures");
 const Category = require("../models/Product_Category")
 
 const saveProductPicture = async (pid, ppid, data) => {
-    
-    let img = data.split(';base64,').pop();
+
+    var img = data.split(';base64,').pop();
     var ext = data.substring(data.indexOf('/') + 1, data.indexOf(';base64'));
     
+    var dir = "./pics/"
+    
+    if(!fs.existsSync(dir))
+        fs.mkdirSync(dir);
 
-    var url = "./pics/name" + String(pid) + "." + String(ppid) + "." + ext;
+    var url = dir + "name" + String(pid) + "." + String(ppid) + "." + ext;
     var body = {picture_url: url, product_id: pid};
     var pic = Product_Picure.build(body);
 
@@ -52,17 +56,28 @@ const createProduct = async (request) => {
 }
 
 const fetchProduct = async() => {
-    return await Product.findAll({attributes:{exclude: ['user_id']}}).then(function(p) {
-        return p.map(function(obj) {return obj.dataValues});
+    return await Product.findAll({attributes:{exclude: ['user_id']}}).then(async function(p) {
+        var prods = p.map(async function(obj) {
+            let newEl = obj.dataValues;
+            newEl.picture = await getOnePicture(newEl.id);
+            return newEl;    
+        });
+
+        var newObj = Promise.all(prods);
+        
+        return newObj;
     });
 }
 
 const fetchProductById = async(pid) => {
-    return await Product.findOne({where: {id: pid}}).then(function (prod) {
+    return await Product.findOne({where: {id: pid}}).then(async function (prod) {
         if(!prod)
             return null;
-        else
+        else{
+            prod.dataValues.picture = await getAllPictures(prod.id);
             return prod.dataValues;
+        }
+            
     });
 }
 
@@ -77,7 +92,7 @@ const removeProduct = async(pid) => {
 }
 
 const editProduct = async(content, pid) => {
-    prod = Product.findOne({where: {id: pid}});
+    var prod = Product.findOne({where: {id: pid}});
     
     var to_update = {};
     for(var key of Object.keys(content)){
@@ -88,6 +103,49 @@ const editProduct = async(content, pid) => {
     await Product.update(to_update, {where: {id: pid}});
 }
 
+const getOnePicture = async(pid) => {
+    var pic = await Product_Picure.findOne({where: {product_id: pid}});
+    var pics = [];
+
+    if(pic){
+        //console.log(pic.dataValues.picture_url)
+        //console.log(pic.dataValues);
+        
+        if(fs.existsSync("./"+pic.dataValues.picture_url)){
+            var content = fs.readFileSync("./"+pic.dataValues.picture_url, {encoding: 'base64'});
+            //console.log(content);
+            pics.push(String(content));    
+        }
+        
+    }
+    //console.log(pics);
+    return pics;
+}
+
+
+const getAllPictures = async(pid) => {
+    var allpics = await Product_Picure.findAll({where: {product_id: pid}}).then(function(p) {return p.map(function(obj) {return obj.dataValues})});
+    var pic;
+    var pics = [];
+    
+    for(let i=0; i < allpics.length; ++i){
+        
+        pic = allpics[i];
+        
+        console.log(pic);
+        
+        if(pic){
+           
+           var content = fs.readFileSync("./"+pic.picture_url, {encoding: 'base64'});
+           pics.push(String(content));
+        }
+    }
+
+    //console.log(pics);
+            
+    return pics;
+}
+
 module.exports = {
-    createProduct, fetchProduct, removeProduct, fetchProductById, fetchProductByCategory, editProduct
+    createProduct, fetchProduct, removeProduct, fetchProductById, fetchProductByCategory, editProduct, getOnePicture, getAllPictures
 }

@@ -9,7 +9,7 @@ function ProductService() {
 			category: category
 		};
 
-		let result = fetch('http://localhost:3000/api/product', {
+		let result = fetch('http://172.20.241.192:3000/api/product', {
 			method: 'POST',
 			body: JSON.stringify(body),
 			headers: { 
@@ -42,7 +42,7 @@ function ProductService() {
 			description: description
 		};
 
-		let result = fetch('http://localhost:3000/api/product', {
+		let result = fetch('http://172.20.241.192:3000/api/product', {
 			method: 'PUT',
 			body: body,
 			headers: { 'Content-Type': 'application/json' }
@@ -59,7 +59,7 @@ function ProductService() {
 			product_id: product_id
 		};
 
-		let result = fetch('http://localhost:3000/api/product/:id', {
+		let result = fetch('http://172.20.241.192:3000/api/product/:id', {
 			method: 'DELETE',
 			body: body,
 			headers: { 'Content-Type': 'application/json' }
@@ -68,7 +68,7 @@ function ProductService() {
 	};
 
 	const getProductsData = async (token) => {
-		let result = fetch('http://localhost:3000/api/product', {
+		let result = fetch('http://172.20.241.192:3000/api/product', {
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json',
 						'Authorization': 'Bearer ' + token }

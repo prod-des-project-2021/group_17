@@ -40,6 +40,19 @@ export const signUp = (firstName, lastName, dateOfBirth, gender, adress, phoneNu
 	}
 };
 
+export const saveChanges = (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password) => async (dispatch) => {
+	try {
+	    let auth = await UserService().saveChanges(firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password);
+        if (auth.hasOwnProperty('accessToken')) {
+			localStorage.setItem('token', auth.accessToken);
+            dispatch(C.setToken(auth.accessToken));
+		}
+		console.log(auth);
+	} catch (error) {
+	    dispatch(C.signUpFailed(error));
+	}
+};
+
 export const setUser = () => async (dispatch) => {
 	try {
 	    let token = localStorage.getItem("token");

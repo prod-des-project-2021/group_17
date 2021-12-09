@@ -9,7 +9,7 @@
 // import CategoryKitchen from './CategoryKitchen';
 // import CategorySport from './CategorySport';
 // import { BrowserRouter, Routes, Route, } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
 import Categories from '../components/navbar/Categories';
 import { ContentElement } from '../components/navbar/ContentElement';
@@ -28,6 +28,8 @@ import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
 import { Button } from '@mui/material';
+import { connect } from 'react-redux';
+import { ProductActions } from '../stores/actions';
 
 
 const ExpandMore = styled((props) => {
@@ -41,7 +43,23 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-function Homepage() {
+const Homepage = ( props ) => {
+    const { product,getProduct } = props;
+    const [ pName ] = useState();
+    const [ pPrice ] = useState();
+    const [ pDescription ] = useState();
+    const [ pFiles ] = useState([]);
+    const [ pCategory ] = useState('');
+
+    useEffect (
+        () => {
+            getProduct()
+        },
+        [product],
+        console.log(product)
+    );
+
+
     const [expanded1, setExpanded1] = React.useState(false);
     const [expanded2, setExpanded2] = React.useState(false);
     const [expanded3, setExpanded3] = React.useState(false);
@@ -92,6 +110,7 @@ function Homepage() {
                         height: '90vh'
                     }}
                 >
+                    {/* product1 */}
                     <Card sx={{ maxWidth: 600 }}>
                         <CardHeader
                             avatar={
@@ -99,17 +118,17 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            title="Pan"
+                            title={pName + " " + pCategory}
                             subheader="November 30, 2021"
                         />
                         <CardMedia
                             component="img"
                             height="194"
-                            image="/images/panpicture.jpg"
+                            image={pFiles[0]}
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                12$
+                                {pPrice}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -126,7 +145,7 @@ function Homepage() {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    Pan for induction stove, only used twice.
+                                    {pDescription}
                                 </Typography>
                                 <Button 
                                     style={{ backgroundColor: '#006600', color: 'white' }}
@@ -139,6 +158,7 @@ function Homepage() {
                             </CardContent>
                         </Collapse>
                     </Card>
+                    {/* product2 */}
                     <Card sx={{ maxWidth: 345 }}>
                         <CardHeader
                             avatar={
@@ -147,17 +167,17 @@ function Homepage() {
                                 </Avatar>
                             }
 
-                            title="Pan"
+                            title={pName + " " + pCategory}
                             subheader="November 30, 2021"
                         />
                         <CardMedia
                             component="img"
                             height="194"
-                            image="/images/panpicture.jpg"
+                            image={pFiles[1]}
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                12$
+                                {pPrice}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -174,7 +194,7 @@ function Homepage() {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    Pan for induction stove, only used twice.
+                                    {pDescription}
                                 </Typography>
                                 <RegisterButton >
                                     <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
@@ -182,6 +202,7 @@ function Homepage() {
                             </CardContent>
                         </Collapse>
                     </Card>
+                    {/* product3 */}
                     <Card sx={{ maxWidth: 600 }}>
                         <CardHeader
                             avatar={
@@ -189,17 +210,17 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            title="Pan"
+                            title={pName + " " + pCategory}
                             subheader="November 30, 2021"
                         />
                         <CardMedia
                             component="img"
                             height="194"
-                            image="/images/panpicture.jpg"
+                            image={pFiles[2]}
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                12$
+                                {pPrice}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -216,7 +237,7 @@ function Homepage() {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    Pan for induction stove, only used twice.
+                                    {pDescription}
                                 </Typography>
                                 <RegisterButton >
                                     <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
@@ -224,6 +245,7 @@ function Homepage() {
                             </CardContent>
                         </Collapse>
                     </Card>
+                    {/* product4 */}
                     <Card sx={{ maxWidth: 345 }}>
                         <CardHeader
                             avatar={
@@ -231,17 +253,17 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            title="Pan"
+                            title={pName + " " + pCategory}
                             subheader="November 30, 2021"
                         />
                         <CardMedia
                             component="img"
                             height="194"
-                            image="/images/panpicture.jpg"
+                            image={pFiles[3]}
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                12$
+                                {pPrice}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -258,7 +280,7 @@ function Homepage() {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    Pan for induction stove, only used twice.
+                                    {pDescription}
                                 </Typography>
                                 <RegisterButton >
                                     <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
@@ -275,6 +297,7 @@ function Homepage() {
                         height: '90vh'
                     }}
                 >
+                    {/* product5 */}
                     <Card sx={{ maxWidth: 600 }}>
                         <CardHeader
                             avatar={
@@ -282,17 +305,17 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            title="Pan"
+                            title={pName + " " + pCategory}
                             subheader="November 30, 2021"
                         />
                         <CardMedia
                             component="img"
                             height="194"
-                            image="/images/panpicture.jpg"
+                            image={pFiles[4]}
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                12$
+                                {pPrice}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -309,7 +332,7 @@ function Homepage() {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    Pan for induction stove, only used twice.
+                                    {pDescription}
                                 </Typography>
                                 <RegisterButton >
                                     <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
@@ -317,6 +340,7 @@ function Homepage() {
                             </CardContent>
                         </Collapse>
                     </Card>
+                    {/* product6 */}
                     <Card sx={{ maxWidth: 600 }}>
                         <CardHeader
                             avatar={
@@ -324,17 +348,17 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            title="Pan"
+                            title={pName + " " + pCategory}
                             subheader="November 30, 2021"
                         />
                         <CardMedia
                             component="img"
                             height="194"
-                            image="/images/panpicture.jpg"
+                            image={pFiles[5]}
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                12$
+                                {pPrice}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -351,7 +375,7 @@ function Homepage() {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    Pan for induction stove, only used twice.
+                                    {pDescription}
                                 </Typography>
                                 <RegisterButton >
                                     <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
@@ -359,6 +383,7 @@ function Homepage() {
                             </CardContent>
                         </Collapse>
                     </Card>
+                    {/* product7 */}
                     <Card sx={{ maxWidth: 345 }}>
                         <CardHeader
                             avatar={
@@ -366,17 +391,17 @@ function Homepage() {
                                     X
                                 </Avatar>
                             }
-                            title="Pan"
+                            title={pName + " " + pCategory}
                             subheader="November 30, 2021"
                         />
                         <CardMedia
                             component="img"
                             height="194"
-                            image="/images/panpicture.jpg"
+                            image={pFiles[6]}
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                12$
+                                {pPrice}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -393,7 +418,7 @@ function Homepage() {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    Pan for induction stove, only used twice.
+                                    {pDescription}
                                 </Typography>
                                 <RegisterButton >
                                     <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
@@ -401,6 +426,7 @@ function Homepage() {
                             </CardContent>
                         </Collapse>
                     </Card>
+                    {/* product8 */}
                     <Card sx={{ maxWidth: 345 }}>
                         <CardHeader
                             avatar={
@@ -449,4 +475,12 @@ function Homepage() {
     )
 }
 
-export default Homepage;
+const mapStateToProps = ({ product }) => ({
+    product: product.product,
+});
+
+const mapDispatchToProps = {
+	getProduct: ProductActions.getProduct
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

@@ -19,7 +19,7 @@ function ProductService() {
 		return result;
 	};
 
-	const putProductData = async (name, price, description) => {
+	const putProductData = async (name, category, files, price, description) => {
 		if (name == null) {
 			return 'product name is empty';
 		}
@@ -29,6 +29,13 @@ function ProductService() {
 		if (description == null) {
 			return 'description is empty';
 		}
+		if (files == null) {
+			return 'files is empty';
+		}
+		if (category == null) {
+			return 'category is empty';
+		}
+
 		let body = {
 			name: name,
 			price: price,
@@ -60,10 +67,11 @@ function ProductService() {
 		return result;
 	};
 
-	const getProductsData = async () => {
+	const getProductsData = async (token) => {
 		let result = fetch('http://localhost:3000/api/product', {
 			method: 'GET',
-			headers: { 'Content-Type': 'application/json' }
+			headers: { 'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + token }
 		}).then((res) => res.json());
 		return result;
 	};

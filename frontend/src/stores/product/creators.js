@@ -1,8 +1,8 @@
 import Types from '../types';
 
-export const signInSucceeded = (authUser) => {
+export const getProductSucceeded = (product) => {
 	return {
-		type: Types.SIGN_IN_SUCCEEDED,
-		payload: authUser
+		type: Types.GET_PRODUCT_SUCCEEDED,
+		payload: product
 	};
 };

@@ -1,7 +1,7 @@
 import * as C from './creators';
 import ProductService from '../../services/ProductService';
 
-const {postProductData} = ProductService();
+const {postProductData } = ProductService();
 
 export const addProduct = (name,description,category,price,files) => async (dispatch) => {
 	try {
@@ -11,4 +11,10 @@ export const addProduct = (name,description,category,price,files) => async (disp
 	} catch (error) {
 	    console.log(error);
 	}
+};
+
+export const getProduct = () => async (dispatch) => {
+	const token = localStorage.getItem('token');
+	let result = ProductService().getProductsData(token)
+	if(token) dispatch(C.getProductSucceeded(result));
 };

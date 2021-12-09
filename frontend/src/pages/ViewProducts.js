@@ -1,25 +1,24 @@
 import React from 'react'
 import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Container, Typography } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement'
-import { RegisterButton } from '../components/navbar/Buttons'
-import { RegisterButtonLink } from '../components/navbar/Buttons'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Collapse from '@mui/material/Collapse';
 import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Button } from '@mui/material';
+import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
 
-/* const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
-})); */
+
 
 function ViewProduct() {
+    // const { deleteProduct } = props;
+    
+
+    /* const handleDeleteProductButton = () => {
+        deleteProduct();
+    }; */
+
+
     const [expanded1, setExpanded1] = React.useState(false)
     const handleExpandClick1 = () => {
         setExpanded1(!expanded1);
@@ -68,13 +67,24 @@ function ViewProduct() {
                                 <Typography paragraph>
                                     Pan for induction stove, only used twice.
                                 </Typography>
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Delete product</RegisterButtonLink>
-                                </RegisterButton>
+                                <Button
+                                    style={{ backgroundColor: '#006600', color: 'white' }}
+                                    variant="contained"
+                                    component="label"
+
+                                >
+                                    Delete product
+                                </Button>
                                 <br />
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Change details</RegisterButtonLink>
-                                </RegisterButton>
+                                <br />
+                                <Button
+                                    style={{ backgroundColor: '#006600', color: 'white' }}
+                                    variant="contained"
+                                    component="label"
+
+                                >
+                                    Change Product
+                                </Button>
                             </CardContent>
                         </Collapse>
                     </Card>

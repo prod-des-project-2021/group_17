@@ -13,15 +13,17 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Button } from '@mui/material';
 import { connect } from 'react-redux';
+import { AuthActions } from '../stores/actions';
 
 const Userprofile = (props) => {
+    const { user, saveChanges } = props;
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
     const [dateOfBirth, setDob] = useState("");
     const [adress, setAddress] = useState("");
     const [phoneNumber, setPhonenumber] = useState("");
     const [Email, setEmail] = useState("");
-    const { user } = props;
+
    
     useEffect(
         () => {
@@ -38,7 +40,42 @@ const Userprofile = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [user]
     );
+    
+    const [Fname, editFName] = useState('');
+    const [LName, editLName] = useState('');
+    const [DateOfBirth, editDob] = useState('');
+    const [Address, editAddress] = useState('');
+    const [PhoneNumber, editPhonenumber] = useState('');
+    const [EMail, editEmail] = useState('');
+    const [Password, editPassword] = useState('');
    
+    const saveChangesButton = async() => {
+        saveChanges(Fname, LName, DateOfBirth, Address, PhoneNumber, EMail, Password);
+    }
+
+    const handleFNameChange = (e) => {
+        editFName(e.target.value);
+    }
+    const handleLNameChange = (e) => {
+        editLName(e.target.value);
+    }
+    const handleDobChange = (e) => {
+        editDob(e.target.value);
+    }
+    const handleAddressChange = (e) => {
+        editAddress(e.target.value);
+    }
+    const handlePhonenumberChange = (e) => {
+        editPhonenumber(e.target.value);
+    }
+    const handleEmailChange = (e) => {
+        editEmail(e.target.value);
+    }
+    const handlePasswordChange = (e) => {
+        editPassword(e.target.value);
+    }
+
+    
     const [openPD, setOpenPersonalData] = React.useState(false);
     const [openPP, setOpenProfilePic] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
@@ -100,6 +137,7 @@ const Userprofile = (props) => {
                                             id="outlined-required"
                                             label="Firstname"
                                             defaultValue={fName}
+                                            onChange={handleFNameChange}
                                         />
                                     </div>
                                     <div>
@@ -108,6 +146,7 @@ const Userprofile = (props) => {
                                             id="outlined-required"
                                             label="Lastname"
                                             defaultValue={lName}
+                                            onChange={handleLNameChange}
                                         />
                                     </div>
                                 </Box>
@@ -130,6 +169,7 @@ const Userprofile = (props) => {
                                             id="outlined-required"
                                             label="DD/MM/YYYY"
                                             defaultValue={dateOfBirth}
+                                            onChange={handleDobChange}
                                         />
                                     </div>
                                 </Box>
@@ -152,6 +192,7 @@ const Userprofile = (props) => {
                                             id="outlined-required"
                                             label="Streetname and housenumber"
                                             defaultValue={adress}
+                                            onChange={handleAddressChange}
                                         />
                                     </div>
                                 </Box>
@@ -174,6 +215,7 @@ const Userprofile = (props) => {
                                             id="outlined-required"
                                             label="please use international area code"
                                             defaultValue={phoneNumber}
+                                            onChange={handlePhonenumberChange}
                                         />
                                     </div>
                                 </Box>
@@ -213,6 +255,7 @@ const Userprofile = (props) => {
                                             id="outlined-required"
                                             label="Email"
                                             defaultValue={Email}
+                                            onChange={handleEmailChange}
                                         />
                                     </div>
                                     <div>
@@ -222,6 +265,7 @@ const Userprofile = (props) => {
                                             label="New password"
                                             type="password"
                                             autoComplete="current-password"
+                                            onChange={handlePasswordChange}
                                         />
                                     </div>
                                 </Box>
@@ -232,11 +276,11 @@ const Userprofile = (props) => {
                 <br />
                 <br />
                 <div>
-                <Button
+                <Button 
 						style={{ backgroundColor: '#006600', color: 'white' }}
 						variant="contained"
 						component="label"
-						// onClick=
+                        onClick={saveChangesButton}
 					>
 						Save changes
 					</Button>
@@ -252,16 +296,22 @@ const Userprofile = (props) => {
 						Delete my account
 					</Button>
                 </div>
+                <br />
+                <br />
 
             </ContentElement>
         </Container>
     );
 }
 const mapStateToProps = ({ auth }) => ({
-    user: auth.user
+    user: auth.user,
 });
+const mapDispatchToProps = {
+    saveChanges: AuthActions.saveChanges,
 
-export default connect(mapStateToProps, null)(Userprofile);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Userprofile);
 
 
 

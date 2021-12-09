@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const orderController = require('../controllers/order.controller')
-const {authenticateJWT,authenticateAdminJWT} = require("../utils/auth")
+const {authenticateJWT, authenticateAdminJWT} = require("../utils/auth")
 
 router.post('/checkout', authenticateJWT, orderController.orderCheckout);
 router.post('/', authenticateJWT, orderController.addProductToOrder);

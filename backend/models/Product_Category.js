@@ -1,6 +1,5 @@
 const db = require('../config/db')
 const { Sequelize } = require('sequelize');
-const Product = require('./Product');
 
 var ProductCategory = db.define('product_category', {        
     id: {
@@ -12,13 +11,11 @@ var ProductCategory = db.define('product_category', {
         type: Sequelize.STRING,
         allowNull:false
     },
-    relevence: {
+    relevance: {
         type: Sequelize.INTEGER,
-        defaultValue:0,
-        allowNull:false
+        allowNull: false,
+        defaultValue: 0
     }
 });
-
-ProductCategory.belongsTo(Product, {foreignKey: 'product_id'});
 
 module.exports = ProductCategory;

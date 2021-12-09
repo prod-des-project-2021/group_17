@@ -21,6 +21,14 @@ const Userprofile = (props) => {
     const [adress, setAddress] = useState("");
     const [phoneNumber, setPhonenumber] = useState("");
     const [Email, setEmail] = useState("");
+
+    const [FName, editFName] = useState("");
+    const [LName, editName] = useState("");
+    const [DateOfBirth, editDob] = useState("");
+    const [Address, editAddress] = useState("");
+    const [PhoneNumber, editPhonenumber] = useState("");
+    const [EMail, editEmail] = useState("");
+    const [Password, editPassword] = useState("");
     const { user } = props;
    
     useEffect(
@@ -38,7 +46,20 @@ const Userprofile = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [user]
     );
-   
+    
+    const handleEditUser = (e) => {
+        editFName(user.first_name);
+        editName(user.last_name);
+        editDob(user.dob);
+        editAddress(user.address);
+        editPhonenumber(user.phone_number);
+        editEmail(user.email);
+        editPassword(user.password);
+    }
+    
+
+
+    
     const [openPD, setOpenPersonalData] = React.useState(false);
     const [openPP, setOpenProfilePic] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
@@ -232,7 +253,7 @@ const Userprofile = (props) => {
                 <br />
                 <br />
                 <div>
-                <Button
+                <Button onClick={handleEditUser}
 						style={{ backgroundColor: '#006600', color: 'white' }}
 						variant="contained"
 						component="label"

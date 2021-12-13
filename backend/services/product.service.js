@@ -82,8 +82,16 @@ const fetchProductById = async(pid) => {
 }
 
 const fetchProductByCategory = async(category) => {
-    return await Product.findAll({where:{category: category}}).then(function(p) {
-        return p.map(function(obj) {return obj.dataValues});
+    return await Product.findAll({attributes:{where:{category: category}, exclude: ['user_id']}}).then(async function(p) {
+        var prods = p.map(async function(obj) {
+            let newEl = obj.dataValues;
+            newEl.picture = await getOnePicture(newEl.id);
+            return newEl;    
+        });
+
+        var newObj = Promise.all(prods);
+        
+        return newObj;
     });
 }
 

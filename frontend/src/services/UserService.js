@@ -80,7 +80,7 @@ function UserService() {
         return result;
     };
 
-    const saveChanges = async (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password) => {
+    const saveChanges = async (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, token) => {
             let body = {
                 first_name : firstName,
                 last_name : lastName,
@@ -92,10 +92,11 @@ function UserService() {
                 password : password,
             };
 
-            let result = fetch("http://172.20.241.192:3000/api/auth/userprofile/:id", {
+            let result = fetch("http://172.20.241.192:3000/api/user", {
                 method: "PUT",
                 body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json",
+                'Authorization': 'Bearer '+ token  }
             }).then((res) => res.json());
             return result;
     };

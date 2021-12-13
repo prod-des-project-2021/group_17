@@ -28,7 +28,7 @@ const removeUser = async(uid) => {
 const editUser = async(content, uid) => {
     var to_update = {};
     for(var key of Object.keys(content)){
-        if(key != 'isAdmin' && content[key]!= null)
+        if(key != 'isAdmin' && content[key])
             to_update[key] = content[key];
     }
 

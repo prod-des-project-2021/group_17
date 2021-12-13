@@ -44,7 +44,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const Homepage = ( props ) => {
-    const { product,getProduct } = props;
+    const { products,getProducts } = props;
     const [ pName ] = useState();
     const [ pPrice ] = useState();
     const [ pDescription ] = useState();
@@ -53,12 +53,17 @@ const Homepage = ( props ) => {
 
     useEffect (
         () => {
-            getProduct()
+            getProducts()
         },
-        [product],
-        console.log(product)
+        []
     );
 
+    useEffect (
+        () => {
+            console.log(products)
+        },
+        [products]
+    );
 
     const [expanded1, setExpanded1] = React.useState(false);
     const [expanded2, setExpanded2] = React.useState(false);
@@ -476,11 +481,11 @@ const Homepage = ( props ) => {
 }
 
 const mapStateToProps = ({ product }) => ({
-    product: product.product,
+    products: product.products,
 });
 
 const mapDispatchToProps = {
-	getProduct: ProductActions.getProduct
+	getProducts: ProductActions.getProducts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

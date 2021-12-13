@@ -13,8 +13,8 @@ export const addProduct = (name,description,category,price,files) => async (disp
 	}
 };
 
-export const getProduct = () => async (dispatch) => {
+export const getProducts = () => async (dispatch) => {
 	const token = localStorage.getItem('token');
-	let result = ProductService().getProductsData(token)
-	if(token) dispatch(C.getProductSucceeded(result));
+	let result = await ProductService().getProductsData(token)
+	if(result) dispatch(C.getProductSucceeded(result));
 };

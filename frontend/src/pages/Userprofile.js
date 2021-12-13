@@ -224,16 +224,6 @@ const Userprofile = (props) => {
                                 <br />
                             </List>
                         </Collapse>
-                        {/* Profilpicture */}
-                        <ListItemButton onClick={handleClickPP}>
-                            <ListItemText primary="Profilpicture" />
-                            {openPP ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-                        <Collapse in={openPP} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                {/* TODO */}
-                            </List>
-                        </Collapse>
                         {/* Login data */}
                         <ListItemButton onClick={handleClickLG}>
                             <ListItemText primary="Login data" />

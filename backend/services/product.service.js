@@ -9,9 +9,10 @@ const saveProductPicture = async (pid, ppid, data) => {
     var ext = data.substring(data.indexOf('/') + 1, data.indexOf(';base64'));
     
     var dir = "./pics/"
-    
-    if(!fs.existsSync(dir))
+    if(!fs.existsSync(dir)){
         fs.mkdirSync(dir);
+    }
+        
 
     var url = dir + "name" + String(pid) + "." + String(ppid) + "." + ext;
     var body = {picture_url: url, product_id: pid};

@@ -32,12 +32,24 @@ const createProduct = async (request) => {
 
     request.body.user_id = usrID;
 
-    var cat = Category.findOne({where: {category_name: request.body.category}});
-    var catID = Category.findOne({where: {category_name: 'Other'}}).id;
+    var cat = await Category.findOne({where: {category_name: request.body.category}}).then(function (category) {
+        if(!category)
+            return null;
+        else
+            return category.dataValues;
+    });
+
+    var catID = await Category.findOne({where: {category_name:  'Other'}}).then(function (category) {
+        return category.dataValues.id;
+    });
+
+    console.log(catID);
 
     if(cat)
         catID = cat.id;
 
+    console.log(catID);
+    
     request.body.category = catID;
     const product = Product.build(request.body);
     await product.save();
@@ -128,17 +140,12 @@ const getOnePicture = async(pid) => {
     var pics = [];
 
     if(pic){
-        //console.log(pic.dataValues.picture_url)
-        //console.log(pic.dataValues);
-        
         if(fs.existsSync("./"+pic.dataValues.picture_url)){
             var content = fs.readFileSync("./"+pic.dataValues.picture_url, {encoding: 'base64'});
-            //console.log(content);
             pics.push(String(content));    
         }
         
     }
-    //console.log(pics);
     return pics;
 }
 

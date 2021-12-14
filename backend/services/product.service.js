@@ -81,6 +81,16 @@ const fetchProductById = async(pid) => {
     });
 }
 
+const fetchOnlyProduct = async(pid) => {
+    return await Product.findOne({where: {id: pid}}).then(async function (prod) {
+        if(!prod)
+            return null;
+        else{
+            return prod.dataValues;
+        }          
+    });
+}
+
 const fetchProductByCategory = async(category) => {
     return await Product.findAll({attributes:{where:{category: category}, exclude: ['user_id']}}).then(async function(p) {
         var prods = p.map(async function(obj) {
@@ -96,6 +106,7 @@ const fetchProductByCategory = async(category) => {
 }
 
 const removeProduct = async(pid) => {
+    await Product_Picure.destroy({where: {product_id: pid}});
     await Product.destroy({where: {id: pid}});
 }
 
@@ -154,6 +165,10 @@ const getAllPictures = async(pid) => {
     return pics;
 }
 
+const IncreaseRelevanceScore = async(cid) => {
+    await Category.increment('relevance', {by: 1, where: { id: cid } });
+}
+
 module.exports = {
-    createProduct, fetchProduct, removeProduct, fetchProductById, fetchProductByCategory, editProduct, getOnePicture, getAllPictures
+    createProduct, fetchProduct, removeProduct, fetchProductById, fetchProductByCategory, fetchOnlyProduct, editProduct, getOnePicture, getAllPictures,IncreaseRelevanceScore
 }

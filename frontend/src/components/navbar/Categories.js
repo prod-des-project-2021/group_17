@@ -1,10 +1,12 @@
 import React from 'react';
-import { CatNav, CatLink } from './CategoriesElement';
+import { CatNav, CatLink, CatBars, CatMenu } from './CategoriesElement';
 
 const Categories = () => {
     return (
         <>
             <CatNav>
+                <CatBars />
+                <CatMenu>
                     <CatLink to='/home/clothes'>
                         Clothes
                     </CatLink>
@@ -20,6 +22,7 @@ const Categories = () => {
                     <CatLink to='/home/sport'>
                         Sport
                     </CatLink>
+                </CatMenu>
             </CatNav>
         </>
     )

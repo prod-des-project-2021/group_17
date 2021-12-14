@@ -97,11 +97,13 @@ const Homepage = (props) => {
                         <CardHeader
                             title={product.name}
                             subheader={product.category}
+                            
                         />
                         <CardMedia
                             component="img"
+                            src={`data:image/png;base64, ${product.picture[0]}`}
                             height="194"
-                            image={product.picture[0]}
+                            
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
@@ -123,6 +125,8 @@ const Homepage = (props) => {
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
                                     {product.description}
+                                    <br/>
+                                    posted on: {product.date_of_posting}
                                 </Typography>
                                 <Button
                                     style={{ backgroundColor: '#006600', color: 'white' }}

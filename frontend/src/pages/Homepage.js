@@ -50,6 +50,8 @@ const Homepage = ( props ) => {
     const [ pDescription ] = useState();
     const [ pFiles ] = useState([]);
     const [ pCategory ] = useState('');
+// loop 
+    let product = props.result
 
     useEffect (
         () => {
@@ -99,6 +101,24 @@ const Homepage = ( props ) => {
         setExpanded8(!expanded8);
     };
 
+    // loop for the prducts
+
+    let results = [];
+
+    results.map((result) => {
+        result={result}
+    });
+
+    let body = {
+        name: pName,
+        price: pPrice,
+        description: pDescription,
+        files: pFiles,
+        category: pCategory,
+    }
+
+    
+
     return (
         <Container>
             <ContentElement>
@@ -115,6 +135,7 @@ const Homepage = ( props ) => {
                         height: '90vh'
                     }}
                 >
+                    <div> {product.name} </div>
                     {/* product1 */}
                     <Card sx={{ maxWidth: 600 }}>
                         <CardHeader
@@ -160,317 +181,6 @@ const Homepage = ( props ) => {
                                 >
                                     Add to cart
                                 </Button>
-                            </CardContent>
-                        </Collapse>
-                    </Card>
-                    {/* product2 */}
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    X
-                                </Avatar>
-                            }
-
-                            title={pName + " " + pCategory}
-                            subheader="November 30, 2021"
-                        />
-                        <CardMedia
-                            component="img"
-                            height="194"
-                            image={pFiles[1]}
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="text.secondary">
-                                {pPrice}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <ExpandMore
-                                expand={expanded2}
-                                onClick={handleExpandClick2}
-                                aria-expanded={expanded2}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon />
-                            </ExpandMore>
-                        </CardActions>
-                        <Collapse in={expanded2} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <Typography paragraph>Product description:</Typography>
-                                <Typography paragraph>
-                                    {pDescription}
-                                </Typography>
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
-                                </RegisterButton>
-                            </CardContent>
-                        </Collapse>
-                    </Card>
-                    {/* product3 */}
-                    <Card sx={{ maxWidth: 600 }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    X
-                                </Avatar>
-                            }
-                            title={pName + " " + pCategory}
-                            subheader="November 30, 2021"
-                        />
-                        <CardMedia
-                            component="img"
-                            height="194"
-                            image={pFiles[2]}
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="text.secondary">
-                                {pPrice}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <ExpandMore
-                                expand={expanded3}
-                                onClick={handleExpandClick3}
-                                aria-expanded={expanded3}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon />
-                            </ExpandMore>
-                        </CardActions>
-                        <Collapse in={expanded3} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <Typography paragraph>Product description:</Typography>
-                                <Typography paragraph>
-                                    {pDescription}
-                                </Typography>
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
-                                </RegisterButton>
-                            </CardContent>
-                        </Collapse>
-                    </Card>
-                    {/* product4 */}
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    X
-                                </Avatar>
-                            }
-                            title={pName + " " + pCategory}
-                            subheader="November 30, 2021"
-                        />
-                        <CardMedia
-                            component="img"
-                            height="194"
-                            image={pFiles[3]}
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="text.secondary">
-                                {pPrice}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <ExpandMore
-                                expand={expanded4}
-                                onClick={handleExpandClick4}
-                                aria-expanded={expanded4}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon />
-                            </ExpandMore>
-                        </CardActions>
-                        <Collapse in={expanded4} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <Typography paragraph>Product description:</Typography>
-                                <Typography paragraph>
-                                    {pDescription}
-                                </Typography>
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
-                                </RegisterButton>
-                            </CardContent>
-                        </Collapse>
-                    </Card>
-                </div>
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'baseline',
-                        height: '90vh'
-                    }}
-                >
-                    {/* product5 */}
-                    <Card sx={{ maxWidth: 600 }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    X
-                                </Avatar>
-                            }
-                            title={pName + " " + pCategory}
-                            subheader="November 30, 2021"
-                        />
-                        <CardMedia
-                            component="img"
-                            height="194"
-                            image={pFiles[4]}
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="text.secondary">
-                                {pPrice}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <ExpandMore
-                                expand={expanded5}
-                                onClick={handleExpandClick5}
-                                aria-expanded={expanded5}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon />
-                            </ExpandMore>
-                        </CardActions>
-                        <Collapse in={expanded5} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <Typography paragraph>Product description:</Typography>
-                                <Typography paragraph>
-                                    {pDescription}
-                                </Typography>
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
-                                </RegisterButton>
-                            </CardContent>
-                        </Collapse>
-                    </Card>
-                    {/* product6 */}
-                    <Card sx={{ maxWidth: 600 }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    X
-                                </Avatar>
-                            }
-                            title={pName + " " + pCategory}
-                            subheader="November 30, 2021"
-                        />
-                        <CardMedia
-                            component="img"
-                            height="194"
-                            image={pFiles[5]}
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="text.secondary">
-                                {pPrice}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <ExpandMore
-                                expand={expanded6}
-                                onClick={handleExpandClick6}
-                                aria-expanded={expanded6}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon />
-                            </ExpandMore>
-                        </CardActions>
-                        <Collapse in={expanded6} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <Typography paragraph>Product description:</Typography>
-                                <Typography paragraph>
-                                    {pDescription}
-                                </Typography>
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
-                                </RegisterButton>
-                            </CardContent>
-                        </Collapse>
-                    </Card>
-                    {/* product7 */}
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    X
-                                </Avatar>
-                            }
-                            title={pName + " " + pCategory}
-                            subheader="November 30, 2021"
-                        />
-                        <CardMedia
-                            component="img"
-                            height="194"
-                            image={pFiles[6]}
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="text.secondary">
-                                {pPrice}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <ExpandMore
-                                expand={expanded7}
-                                onClick={handleExpandClick7}
-                                aria-expanded={expanded7}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon />
-                            </ExpandMore>
-                        </CardActions>
-                        <Collapse in={expanded7} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <Typography paragraph>Product description:</Typography>
-                                <Typography paragraph>
-                                    {pDescription}
-                                </Typography>
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
-                                </RegisterButton>
-                            </CardContent>
-                        </Collapse>
-                    </Card>
-                    {/* product8 */}
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    X
-                                </Avatar>
-                            }
-                            title="Pan"
-                            subheader="November 30, 2021"
-                        />
-                        <CardMedia
-                            component="img"
-                            height="194"
-                            image="/images/panpicture.jpg"
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="text.secondary">
-                                12$
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <ExpandMore
-                                expand={expanded8}
-                                onClick={handleExpandClick8}
-                                aria-expanded={expanded8}
-                                aria-label="show more"
-                            >
-                                <ExpandMoreIcon />
-                            </ExpandMore>
-                        </CardActions>
-                        <Collapse in={expanded8} timeout="auto" unmountOnExit>
-                            <CardContent>
-                                <Typography paragraph>Product description:</Typography>
-                                <Typography paragraph>
-                                    Pan for induction stove, only used twice.
-                                </Typography>
-                                <RegisterButton >
-                                    <RegisterButtonLink to='/cart'>Add to Card</RegisterButtonLink>
-                                </RegisterButton>
                             </CardContent>
                         </Collapse>
                     </Card>

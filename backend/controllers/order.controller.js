@@ -8,6 +8,9 @@ const { editUser } = require("../services/user.service");
 const { getUserbyId } = require("./user.controller");
 const {createOrder, fetchOrderByProdAndUser, fetchOrderByUser} = orderService;
 
+const productService = require("../services/product.service")
+const {IncreaseRelevanceScore} = productService
+
 const addProductToOrder = async (req, res, next) => {
     var error = {status:"", error:[]};
 
@@ -38,14 +41,12 @@ const orderCheckout = async(req, res, next) => {
     var error = {status:"", error:[]};
 
     try {
-        console.log(req.user);
+        //console.log(req.user);
         var products = [];
         products = req.body.products;
         var totalCost = 0;
         for(let i = 0; i < products.length; ++i){
             var prod = await fetchProductById(products[i]);
-
-            //increaseRelevance(prod.category);
 
             if(!prod || prod.status != 0){
                 availability = false;
@@ -67,11 +68,14 @@ const orderCheckout = async(req, res, next) => {
         }
 
         for(let i = 0; i < products.length; ++i){
+            var prod = await fetchProductById(products[i]);
+
+            IncreaseRelevanceScore(prod.category);
             await editProduct({"status": 1}, products[i]);
             await createOrder(products[i], req.user.id);
         }
         await editUser({"credits": req.user.credits-totalCost}, req.user.id);
-        res.sendStatus(201);
+        res.sendStatus(200);
         next();
     } catch(e) {
         res.status(500);

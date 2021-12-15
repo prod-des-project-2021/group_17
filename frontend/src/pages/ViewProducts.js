@@ -1,5 +1,5 @@
 import React,  {useEffect, useState} from 'react'
-import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Container, Typography } from '@mui/material'
+import { Avatar, Box, Card, CardActions, CardContent, CardHeader, CardMedia, Container, Typography } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Collapse from '@mui/material/Collapse';

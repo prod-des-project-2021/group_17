@@ -101,7 +101,7 @@ const ViewProduct = (props) => {
                                         >
                                             Delete product
                                         </Button>
-                                        <br />
+                                        {/* <br />
                                         <br />
                                         <Button
                                             style={{ backgroundColor: '#006600', color: 'white' }}
@@ -111,7 +111,7 @@ const ViewProduct = (props) => {
                                         // onClick=
                                         >
                                             Change Product
-                                        </Button>
+                                        </Button> */}
                                     </CardContent>
                                 </Collapse>
                             </Card>))

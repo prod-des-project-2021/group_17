@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink as Link } from 'react-router-dom';
+import {FaBars} from 'react-icons/fa';
 
 
 export const CatNav = styled.nav`
@@ -26,4 +27,29 @@ export const CatLink = styled(Link)`
     &.active {
         color: #006600;
     } 
+`;
+
+export const CatBars = styled(FaBars)`
+    display: none;
+    color: #006600;
+
+    @media screen and (max-width: 768px) {
+        display: block;
+        position: absolute;
+        top: 0
+        right: 0;
+        transform: translate(-100%, 75%);
+        font-size: 1.8rem;
+        cursor: pointer;
+`;
+
+export const CatMenu = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
 `;

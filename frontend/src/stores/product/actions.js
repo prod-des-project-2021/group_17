@@ -18,3 +18,10 @@ export const getProducts = () => async (dispatch) => {
 	let result = await ProductService().getProductsData(token)
 	if(result) dispatch(C.getProductSucceeded(result));
 };
+
+/* export const deleteProducts = (product_id) => async (dispatch) => {
+	const token = localStorage.getItem('token');
+	let result = await ProductService().deleteProductsData(product_id, token)
+	if(result) dispatch(C.deleteProductSucceeded(result));
+
+} */

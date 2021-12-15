@@ -26,10 +26,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
 import { Button } from '@mui/material';
 import { connect } from 'react-redux';
 import { ProductActions } from '../stores/actions';
+import { maxWidth } from '@mui/system';
 
 
 const ExpandMore = styled((props) => {
@@ -43,85 +43,42 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-const Homepage = ( props ) => {
-    const { products,getProducts } = props;
-    const [ pName ] = useState();
-    const [ pPrice ] = useState();
-    const [ pDescription ] = useState();
-    const [ pFiles ] = useState([]);
-    const [ pCategory ] = useState('');
-// loop 
-    let product = props.result
+const Homepage = (props) => {
+    const { products, getProducts } = props;
+    const [pName] = useState();
+    const [pPrice] = useState();
+    const [pDescription] = useState();
+    const [pFiles] = useState([]);
+    const [pCategory] = useState('');
+    const [productList, setProduct] = useState([]);
 
-    useEffect (
+
+    useEffect(
         () => {
             getProducts()
         },
         []
     );
 
-    useEffect (
+    useEffect(
         () => {
+            if (products !== null) setProduct(products)
+            
             console.log(products)
         },
         [products]
     );
 
     const [expanded1, setExpanded1] = React.useState(false);
-    const [expanded2, setExpanded2] = React.useState(false);
-    const [expanded3, setExpanded3] = React.useState(false);
-    const [expanded4, setExpanded4] = React.useState(false);
-    const [expanded5, setExpanded5] = React.useState(false);
-    const [expanded6, setExpanded6] = React.useState(false);
-    const [expanded7, setExpanded7] = React.useState(false);
-    const [expanded8, setExpanded8] = React.useState(false);
 
     const handleExpandClick1 = () => {
         setExpanded1(!expanded1);
     };
-    const handleExpandClick2 = () => {
-        setExpanded2(!expanded2);
-    };
-    const handleExpandClick3 = () => {
-        setExpanded3(!expanded3);
-    };
-    const handleExpandClick4 = () => {
-        setExpanded4(!expanded4);
-    };
-    const handleExpandClick5 = () => {
-        setExpanded5(!expanded5);
-    };
-    const handleExpandClick6 = () => {
-        setExpanded6(!expanded6);
-    };
-    const handleExpandClick7 = () => {
-        setExpanded7(!expanded7);
-    };
-    const handleExpandClick8 = () => {
-        setExpanded8(!expanded8);
-    };
 
-    // loop for the prducts
-
-    let results = [];
-
-    results.map((result) => {
-        result={result}
-    });
-
-    let body = {
-        name: pName,
-        price: pPrice,
-        description: pDescription,
-        files: pFiles,
-        category: pCategory,
-    }
-
-    
 
     return (
         <Container>
-            <ContentElement>
+            <ContentElement sx={{maxWidth: 300}}>
                 <Outlet />
                 <Categories />
                 <h3>Take a look at our most wanted products! </h3>
@@ -132,29 +89,25 @@ const Homepage = ( props ) => {
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'baseline',
-                        height: '90vh'
+                        height: '90vh',
                     }}
                 >
-                    <div> {product.name} </div>
-                    {/* product1 */}
-                    <Card sx={{ maxWidth: 600 }}>
+                    {productList.map((product, index) => (
+                    <Card sx={{ minWidth: 300, maxWidth: 300 }}>
                         <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    X
-                                </Avatar>
-                            }
-                            title={pName + " " + pCategory}
-                            subheader="November 30, 2021"
+                            title={product.name}
+                            subheader={product.category}
+                            
                         />
                         <CardMedia
                             component="img"
+                            src={`data:image/png;base64, ${product.picture[0]}`}
                             height="194"
-                            image={pFiles[0]}
+                            
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                {pPrice}
+                                {product.price + '€'}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -171,9 +124,11 @@ const Homepage = ( props ) => {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    {pDescription}
+                                    {product.description}
+                                    <br/>
+                                    posted on: {product.date_of_posting}
                                 </Typography>
-                                <Button 
+                                <Button
                                     style={{ backgroundColor: '#006600', color: 'white' }}
                                     variant="contained"
                                     component="label"
@@ -183,7 +138,10 @@ const Homepage = ( props ) => {
                                 </Button>
                             </CardContent>
                         </Collapse>
-                    </Card>
+                    </Card>))}
+                    
+                    {/* product1 */}
+
                 </div>
             </ContentElement>
         </Container>
@@ -195,7 +153,7 @@ const mapStateToProps = ({ product }) => ({
 });
 
 const mapDispatchToProps = {
-	getProducts: ProductActions.getProducts
+    getProducts: ProductActions.getProducts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

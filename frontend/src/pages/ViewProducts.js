@@ -1,4 +1,4 @@
-import React from 'react'
+import React,  {useEffect, useState} from 'react'
 import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Container, Typography } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement'
 import ExpandMore from '@mui/icons-material/ExpandMore'
@@ -7,10 +7,14 @@ import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Button } from '@mui/material';
 import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
+import { connect } from 'react-redux';
+import { ProductActions } from '../stores/actions';
 
 
 
-function ViewProduct() {
+
+const ViewProduct = (props) => {
+    const { products, getProducts } = props;
     // const { deleteProduct } = props;
     
 
@@ -18,6 +22,16 @@ function ViewProduct() {
         deleteProduct();
     }; */
 
+    const [productList, setProduct] = useState([]);
+
+    useEffect(
+        () => {
+            if (products !== null) setProduct(products)
+            
+            console.log(products)
+        },
+        [products]
+    );
 
     const [expanded1, setExpanded1] = React.useState(false)
     const handleExpandClick1 = () => {
@@ -31,24 +45,22 @@ function ViewProduct() {
                     <h3>If you want to delete or modify one of your products for sale, here you go!</h3>
                     <br />
                     <br />
-                    <Card sx={{ maxWidth: 600 }}>
+                    {productList.map((product, index) => (
+                    <Card sx={{ minWidth: 300, maxWidth: 300 }}>
                         <CardHeader
-                            avatar={
-                                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                                    X
-                                </Avatar>
-                            }
-                            title="Pan"
-                            subheader="November 30, 2021"
+                            title={product.name}
+                            subheader={product.category}
+                            
                         />
                         <CardMedia
                             component="img"
+                            src={`data:image/png;base64, ${product.picture[0]}`}
                             height="194"
-                            image="/images/panpicture.jpg"
+                            
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                12$
+                                {product.price + '€'}
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
@@ -65,7 +77,9 @@ function ViewProduct() {
                             <CardContent>
                                 <Typography paragraph>Product description:</Typography>
                                 <Typography paragraph>
-                                    Pan for induction stove, only used twice.
+                                    {product.description}
+                                    <br/>
+                                    posted on: {product.date_of_posting}
                                 </Typography>
                                 <Button
                                     style={{ backgroundColor: '#006600', color: 'white' }}
@@ -82,12 +96,13 @@ function ViewProduct() {
                                     variant="contained"
                                     component="label"
 
+                                // onClick=
                                 >
                                     Change Product
                                 </Button>
                             </CardContent>
                         </Collapse>
-                    </Card>
+                    </Card>))}
                     <br />
                     <br />
                     <RegisterButton >
@@ -103,4 +118,12 @@ function ViewProduct() {
     )
 }
 
-export default ViewProduct
+const mapStateToProps = ({ product }) => ({
+    products: product.products,
+});
+
+const mapDispatchToProps = {
+    getProducts: ProductActions.getProducts
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewProduct);

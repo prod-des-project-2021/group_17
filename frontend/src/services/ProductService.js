@@ -1,5 +1,5 @@
 function ProductService() {
-    
+
 	const postProductData = async (name, price, description, files, category, token) => {
 		let body = {
 			name: name,
@@ -12,9 +12,10 @@ function ProductService() {
 		let result = fetch('http://172.20.241.192:3000/api/product', {
 			method: 'POST',
 			body: JSON.stringify(body),
-			headers: { 
+			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': 'Bearer '+ token  }
+				'Authorization': 'Bearer ' + token
+			}
 		}).then((res) => res.json());
 		return result;
 	};
@@ -50,7 +51,7 @@ function ProductService() {
 		return result;
 	};
 
-	const deleteProductData = async (product_id) => {
+	const deleteProductData = async (product_id, token) => {
 		if (product_id == null) {
 			return 'delete';
 		}
@@ -59,10 +60,13 @@ function ProductService() {
 			product_id: product_id
 		};
 
-		let result = fetch('http://172.20.241.192:3000/api/product/:id', {
+		let result = fetch('http://172.20.241.192:3000/api/product/:product_id', {
 			method: 'DELETE',
 			body: body,
-			headers: { 'Content-Type': 'application/json' }
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
 		}).then((res) => res.json());
 		return result;
 	};
@@ -70,8 +74,10 @@ function ProductService() {
 	const getProductsData = async (token) => {
 		let result = fetch('http://172.20.241.192:3000/api/product', {
 			method: 'GET',
-			headers: { 'Content-Type': 'application/json',
-						'Authorization': 'Bearer ' + token }
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
 		}).then((res) => res.json());
 		return result;
 	};

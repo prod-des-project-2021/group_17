@@ -284,7 +284,8 @@ const Userprofile = (props) => {
 						// onClick=
 					>
 						Delete my account
-					</Button>
+					</Button >
+                    
                 </div>
                 <br />
                 <br />

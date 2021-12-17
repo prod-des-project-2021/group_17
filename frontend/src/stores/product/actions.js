@@ -24,4 +24,4 @@ export const getProducts = () => async (dispatch) => {
 	let result = await ProductService().deleteProductsData(product_id, token)
 	if(result) dispatch(C.deleteProductSucceeded(result));
 
-} */
+}  */

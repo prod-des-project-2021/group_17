@@ -50,6 +50,16 @@ export const saveChanges = (firstName, lastName, dateOfBirth, gender, adress, ph
 	}
 };
 
+export const deleteUser = (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password) => async (dispatch) => {
+	try {
+		let token = localStorage.getItem("token");
+	    let auth = await UserService().deleteUser(firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, token);
+		console.log(auth);
+	} catch (error) {
+	    dispatch(C.signUpFailed(error));
+	}
+};
+
 export const setUser = () => async (dispatch) => {
 	try {
 	    let token = localStorage.getItem("token");

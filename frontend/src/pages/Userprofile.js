@@ -77,14 +77,10 @@ const Userprofile = (props) => {
 
     
     const [openPD, setOpenPersonalData] = React.useState(false);
-    const [openPP, setOpenProfilePic] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
 
     const handleClickPD = () => {
         setOpenPersonalData(!openPD);
-    };
-    const handleClickPP = () => {
-        setOpenProfilePic(!openPP);
     };
     const handleClickLG = () => {
         setOpenLoginData(!openLG);

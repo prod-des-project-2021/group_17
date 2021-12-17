@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Avatar, Box, Card, CardActions, CardContent, CardHeader, CardMedia, Container, Typography } from '@mui/material'
+import { Card, CardActions, CardContent, CardHeader, CardMedia, Container, Typography } from '@mui/material'
 import { ContentElement } from '../components/navbar/ContentElement'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import Collapse from '@mui/material/Collapse';
-import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Button } from '@mui/material';
-import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
 import { connect } from 'react-redux';
 import { ProductActions } from '../stores/actions';
 
@@ -101,28 +99,13 @@ const ViewProduct = (props) => {
                                         >
                                             Delete product
                                         </Button>
-                                        {/* <br />
-                                        <br />
-                                        <Button
-                                            style={{ backgroundColor: '#006600', color: 'white' }}
-                                            variant="contained"
-                                            component="label"
-
-                                        // onClick=
-                                        >
-                                            Change Product
-                                        </Button> */}
                                     </CardContent>
                                 </Collapse>
                             </Card>))
                     }
-
                 </div>
                 < br />
                 <br />
-                {/* <RegisterButton >
-                    <RegisterButtonLink to='/welcome'>Done!</RegisterButtonLink>
-                </RegisterButton> */}
                 <br />
                 <br />
                 <br />

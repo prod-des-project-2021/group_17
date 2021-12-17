@@ -101,6 +101,55 @@ function UserService() {
             return result;
     };
 
-    return {signIn,signUp,getMe, saveChanges};
+    const deleteUserData = async (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, token) => {
+		if (firstName == null) {
+			return 'delete';
+		}
+        if (lastName == null){
+            return 'delete';
+        }
+        if (dateOfBirth == null){
+            return 'delete';
+        }
+        if (gender == null){
+            return 'delete';
+        }
+        if (adress == null){
+            return 'delete';
+        }
+        if (phoneNumber == null){
+            return 'delete';
+        }
+        if (Email == null){
+            return 'delete';
+        }
+        if (password == null){
+            return 'delete';
+        }
+
+
+		let body = {
+			firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            gender: gender,
+            adress: adress,
+            phoneNumber: phoneNumber,
+            Email: Email,
+            password: password
+		};
+
+		let result = fetch('http://172.20.241.192:3000/api/product/:product_id', {
+			method: 'DELETE',
+			body: body,
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
+		}).then((res) => res.json());
+		return result;
+	};
+
+    return {signIn,signUp,getMe, saveChanges, deleteUserData};
 }
 export default UserService;

@@ -4,7 +4,7 @@ const Product = require("../models/Product");
 const { use } = require("../routes");
 const orderService = require("../services/order.service");
 const { fetchProductById, editProduct} = require("../services/product.service");
-const { editUser } = require("../services/user.service");
+const { editUser, changeCredits } = require("../services/user.service");
 const { getUserbyId } = require("./user.controller");
 const {createOrder, fetchOrderByProdAndUser, fetchOrderByUser} = orderService;
 
@@ -56,7 +56,7 @@ const orderCheckout = async(req, res, next) => {
                 error.error.push("Product inexistent or unavailable");
                 return res.send(error); 
             }
-
+            
             totalCost += prod.price;
         }
 
@@ -71,10 +71,11 @@ const orderCheckout = async(req, res, next) => {
             var prod = await fetchProductById(products[i]);
 
             IncreaseRelevanceScore(prod.category);
+            await changeCredits(prod.user_id, prod.price);
             await editProduct({"status": 1}, products[i]);
             await createOrder(products[i], req.user.id);
         }
-        await editUser({"credits": req.user.credits-totalCost}, req.user.id);
+        await changeCredits(req.user.id, -totalCost);
         res.sendStatus(200);
         next();
     } catch(e) {

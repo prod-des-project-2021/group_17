@@ -35,10 +35,16 @@ const editUser = async(content, uid) => {
     await User.update(to_update, {where: {id: uid}});
 }
 
+
+const changeCredits = async(uid, credit) => {
+    await User.increment('credits', {by: credit, where: { id: uid } }); 
+}
+
 module.exports = {
     createUser,
     fetchUsers,
     fetchUserByID,
     removeUser,
-    editUser
+    editUser,
+    changeCredits
 }

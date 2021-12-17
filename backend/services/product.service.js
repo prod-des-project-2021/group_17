@@ -2,6 +2,8 @@ const fs = require("fs")
 const Product = require("../models/Product");
 const Product_Picure = require("../models/Product_Pictures");
 const Category = require("../models/Product_Category")
+const seq = require('sequelize');
+const { Sequelize } = require("../config/db");
 
 const saveProductPicture = async (pid, ppid, data) => {
 
@@ -82,6 +84,20 @@ const fetchProduct = async() => {
     });
 }
 
+const fetchAvailableProducts = async() => {
+    return await Product.findAll({attributes:{where: {status: 0}, exclude: ['user_id']}}).then(async function(p) {
+        var prods = p.map(async function(obj) {
+            let newEl = obj.dataValues;
+            newEl.picture = await getOnePicture(newEl.id);
+            return newEl;    
+        });
+
+        var newObj = Promise.all(prods);
+        
+        return newObj;
+    });
+}
+
 const fetchProductById = async(pid) => {
     return await Product.findOne({where: {id: pid}}).then(async function (prod) {
         if(!prod)
@@ -106,6 +122,44 @@ const fetchOnlyProduct = async(pid) => {
 
 const fetchProductByCategory = async(category) => {
     return await Product.findAll({attributes:{where:{category: category}, exclude: ['user_id']}}).then(async function(p) {
+        var prods = p.map(async function(obj) {
+            let newEl = obj.dataValues;
+            newEl.picture = await getOnePicture(newEl.id);
+            return newEl;    
+        });
+
+        var newObj = Promise.all(prods);
+        
+        return newObj;
+    });
+}
+
+const fetchProductByWord = async(word) => {
+    let verifier = {name: {[seq.substring]: 'cool'}}
+    return await Product.findAll({where:
+        {
+            [Sequelize.Op.or]: [
+            {
+                name: {
+                    [Sequelize.Op.substring]: word
+                }
+            },
+            {
+                description: {
+                    [Sequelize.Op.substring]: word
+                }
+            }
+        ]
+    }
+
+        //Sequelize.where(
+        //    Sequelize.fn('LOCATE', word, Sequelize.col('name')),
+        //    Sequelize.Op.ne,
+        //    0
+        //)
+    
+    }).then(async function(p) 
+    {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
@@ -168,8 +222,6 @@ const getAllPictures = async(pid) => {
         }
     }
 
-    //console.log(pics);
-            
     return pics;
 }
 
@@ -178,5 +230,5 @@ const IncreaseRelevanceScore = async(cid) => {
 }
 
 module.exports = {
-    createProduct, fetchProduct, removeProduct, fetchProductById, fetchProductByCategory, fetchOnlyProduct, editProduct, getOnePicture, getAllPictures,IncreaseRelevanceScore
+    createProduct, fetchProduct, removeProduct, fetchProductById, fetchProductByWord, fetchProductByCategory, fetchAvailableProducts, fetchOnlyProduct, editProduct, getOnePicture, getAllPictures,IncreaseRelevanceScore
 }

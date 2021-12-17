@@ -278,11 +278,11 @@ const Userprofile = (props) => {
                                 >
                                     <div>
                                         <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Your credits"
-                                            defaultValue={0}
-                                            
+                                            id="outlined-read-only-input"
+                                            label="Your Credits"
+                                            defaultValue="0"
+                                            InputProps={{
+                                              readOnly: true}}
                                         />
                                     </div>
                                     <div>

@@ -6,3 +6,10 @@ export const getProductSucceeded = (product) => {
 		payload: product
 	};
 };
+
+export const deleteProductsSucceeded = (product) => {
+	return {
+		type: Types.DELETE_PRODUCTS_SUCCEEDED,
+		payload: product
+	};
+};

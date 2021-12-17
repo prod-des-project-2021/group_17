@@ -47,3 +47,11 @@ export const setUser = (user) => {
 		payload: user
 	};
 };
+
+//delete
+export const deleteUSerSucceeded = (user) => {
+	return {
+		type: Types.DELETE_USER_SUCCEEDED,
+		payload: user
+	};
+};

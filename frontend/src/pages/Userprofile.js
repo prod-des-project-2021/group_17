@@ -288,7 +288,7 @@ const Userprofile = (props) => {
                                     <div>
                                         <TextField
                                             required
-                                            id="outlined-password-input"
+                                            id="outlined-required"
                                             label="Add credits"
                                         />
                                     </div>

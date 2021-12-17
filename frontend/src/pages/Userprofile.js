@@ -78,12 +78,16 @@ const Userprofile = (props) => {
     
     const [openPD, setOpenPersonalData] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
+    const [openC, setOpenCredits] = React.useState(false);
 
     const handleClickPD = () => {
         setOpenPersonalData(!openPD);
     };
     const handleClickLG = () => {
         setOpenLoginData(!openLG);
+    };
+    const handleClickC = () => {
+        setOpenCredits(!openC);
     };
 
 
@@ -252,6 +256,40 @@ const Userprofile = (props) => {
                                             type="password"
                                             autoComplete="current-password"
                                             onChange={handlePasswordChange}
+                                        />
+                                    </div>
+                                </Box>
+                            </List>
+                        </Collapse>
+                        {/* Credits */}
+                        <ListItemButton onClick={handleClickC}>
+                            <ListItemText primary="Credits" />
+                            {openLG ? <ExpandLess /> : <ExpandMore />}
+                        </ListItemButton>
+                        <Collapse in={openLG} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    <div>
+                                        <TextField
+                                            required
+                                            id="outlined-required"
+                                            label="Your credits"
+                                            defaultValue={0}
+                                            
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            required
+                                            id="outlined-password-input"
+                                            label="Add credits"
                                         />
                                     </div>
                                 </Box>

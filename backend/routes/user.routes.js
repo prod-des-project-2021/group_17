@@ -11,5 +11,6 @@ router.delete('/:uid',authenticateAdminJWT, userController.deleteUser)
 router.delete('/',authenticateJWT, userController.deleteUser)
 router.put('/:uid',authenticateAdminJWT, userController.updateUser)
 router.put('/',authenticateJWT, userController.updateUser)
+router.put('/addCredits', authenticateJWT, userController.addCredits)
 
 module.exports = router

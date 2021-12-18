@@ -1,7 +1,7 @@
 const { connectionManager } = require('../config/db');
 const User = require('../models/User');
 const { use } = require('../routes');
-const { createUser, fetchUsers, fetchUserByID, removeUser, editUser } = require('../services/user.service');
+const { createUser, fetchUsers, fetchUserByID, removeUser, editUser, changeCredits } = require('../services/user.service');
 
 const addUser = async (req, res, next) => {
 	const content = req.body;
@@ -122,11 +122,34 @@ const getMe = async (req, res, next) => {
 	}
 };
 
+const addCredits = async(req, res, next) => {
+	var error = {status:"", error:[]};
+	try {
+
+		if (!req.body.credits) {
+			res.status(500);
+			error.status = 500;
+			error.error.push("no credits added");
+			return res.send(error);
+		} else {
+			await changeCredits(req.user.id, req.body.credits);
+			res.status(200);
+		}
+		next();
+	} catch (e) {
+		res.status(400);
+		error.status = 400;
+		error.error.push(e.message);
+		return res.send(error);
+	}
+}
+
 module.exports = {
 	addUser,
 	getUser,
 	getUserbyId,
 	deleteUser,
 	updateUser,
-	getMe
+	getMe,
+	addCredits
 };

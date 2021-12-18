@@ -88,6 +88,17 @@ function ProductService() {
 		return result;
 	};
 
-	return { getProductsData, postProductData, putProductData, deleteProductData, getProductsDataCategory };
+	const getOwnProductsData = async (token) => {
+		let result = fetch('http://172.20.241.192:3000/api/product/own/products', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
+		}).then((res) => res.json());
+		return result;
+	};
+
+	return { getProductsData, postProductData, putProductData, deleteProductData, getProductsDataCategory,getOwnProductsData };
 }
 export default ProductService;

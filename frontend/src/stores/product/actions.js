@@ -34,3 +34,9 @@ export const addProductToCart = (product) => async (dispatch) => {
 export const removeProductFromCart = (id) => async (dispatch) => {
 	dispatch(C.removeProductFromCart(id));
 }  
+
+export const getOwnProducts = () => async (dispatch) => {
+	const token = localStorage.getItem('token');
+	let result = await ProductService().getOwnProductsData(token)
+	if (result) dispatch(C.getProductSucceeded(result));
+};

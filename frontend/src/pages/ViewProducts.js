@@ -12,12 +12,12 @@ import { ProductActions } from '../stores/actions';
 
 
 const ViewProduct = (props) => {
-    const { products, getProducts, deleteProduct } = props;
+    const { products, getOwnProducts, deleteProduct } = props;
     const [productList, setProduct] = useState([]);
 
     useEffect(
         () => {
-            getProducts()
+            getOwnProducts()
         },
         []
     );
@@ -118,7 +118,7 @@ const mapStateToProps = ({ product }) => ({
 });
 
 const mapDispatchToProps = {
-    getProducts: ProductActions.getProducts,
+    getOwnProducts: ProductActions.getOwnProducts,
     deleteProduct: ProductActions.deleteProduct
 };
 

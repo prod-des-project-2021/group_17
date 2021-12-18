@@ -114,8 +114,7 @@ const fetchOwnProducts = async(uid) => {
             },
             {
                 user_id: uid
-            },
-
+            }
         ]
     }}).then(async function(p) {
         var prods = p.map(async function(obj) {
@@ -199,7 +198,7 @@ const fetchProductByWord = async(word, uid) => {
                 user_id: {
                     [Sequelize.Op.not]: uid
                 }
-            },
+            }
         ]
     }}).then(async function(p) 
     {

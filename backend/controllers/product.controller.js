@@ -1,7 +1,7 @@
 const { connectionManager } = require("../config/db");
 const Product = require("../models/Product");
 const { use } = require("../routes");
-const {createProduct, fetchProduct,fetchOnlyProduct,fetchAvailableProducts, fetchProductByWord, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
+const {createProduct, fetchProduct,fetchOnlyProduct, fetchOwnProducts, fetchAvailableProducts, fetchProductByWord, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
 
 const addProduct = async (req, res, next) => {
     var error = {status:"", error:[]};
@@ -64,6 +64,22 @@ const getProductbyId = async (req, res, next) => {
 			res.status(200);
 			res.send(prod);
 		}
+		next();
+	} catch (e) {
+		error.status = 400;
+    res.status(400);
+    error.error.push(e.message);
+    return res.send(error);
+	}
+};
+
+const getOwnProduct = async (req, res, next) => {
+  var error = {status:"", error:[]};
+
+  try {
+		prod = await fetchOwnProducts(req.user.id);
+    res.status(200);
+		res.send(prod);
 		next();
 	} catch (e) {
 		error.status = 400;

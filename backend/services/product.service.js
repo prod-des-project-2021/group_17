@@ -105,6 +105,24 @@ const fetchAvailableProducts = async(uid) => {
     });
 }
 
+const fetchOwnProducts = async(uid) => {
+    return await Product.findAll({where:
+        {
+            user_id: uid
+        }
+    }).then(async function(p) {
+        var prods = p.map(async function(obj) {
+            let newEl = obj.dataValues;
+            newEl.picture = await getOnePicture(newEl.id);
+            return newEl;    
+        });
+
+        var newObj = Promise.all(prods);
+        
+        return newObj;
+    });
+}
+
 const fetchProductById = async(pid) => {
     return await Product.findOne({where: {id: pid}}).then(async function (prod) {
         if(!prod)
@@ -248,5 +266,5 @@ const IncreaseRelevanceScore = async(cid) => {
 }
 
 module.exports = {
-    createProduct, fetchProduct, removeProduct, fetchProductById, fetchProductByWord, fetchProductByCategory, fetchAvailableProducts, fetchOnlyProduct, editProduct, getOnePicture, getAllPictures,IncreaseRelevanceScore
+    createProduct, fetchProduct, removeProduct, fetchProductById, fetchOwnProducts, fetchProductByWord, fetchProductByCategory, fetchAvailableProducts, fetchOnlyProduct, editProduct, getOnePicture, getAllPictures,IncreaseRelevanceScore
 }

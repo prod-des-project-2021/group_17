@@ -78,11 +78,11 @@ const createProduct = async (request) => {
     }
 }
 
-const fetchProduct = async() => {
+const fetchProduct = async(pic=true) => {
     return await Product.findAll().then(async function(p) {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
-            newEl.picture = await getOnePicture(newEl.id);
+            if(pic) newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
             let usr = await fetchUserByID(newEl.user_id);
             newEl.seller = usr.first_name + " " + usr.last_name;
@@ -97,7 +97,7 @@ const fetchProduct = async() => {
     });
 }
 
-const fetchAvailableProducts = async(uid) => {
+const fetchAvailableProducts = async(uid, pic=true) => {
     return await Product.findAll({where:
         {
             [Sequelize.Op.and]: [
@@ -113,7 +113,7 @@ const fetchAvailableProducts = async(uid) => {
     }}).then(async function(p) {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
-            newEl.picture = await getOnePicture(newEl.id);
+            if(pic)newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
 
             let usr = await fetchUserByID(newEl.user_id);
@@ -130,7 +130,7 @@ const fetchAvailableProducts = async(uid) => {
     });
 }
 
-const fetchOwnProducts = async(uid) => {
+const fetchOwnProducts = async(uid, pic=true) => {
     return await Product.findAll({where:
         {
             [Sequelize.Op.and]: [
@@ -144,7 +144,7 @@ const fetchOwnProducts = async(uid) => {
     }}).then(async function(p) {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
-            newEl.picture = await getOnePicture(newEl.id);
+            if(pic) newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
             
             let usr = await fetchUserByID(newEl.user_id);
@@ -161,12 +161,12 @@ const fetchOwnProducts = async(uid) => {
     });
 }
 
-const fetchProductById = async(pid) => {
+const fetchProductById = async(pid, pic=true) => {
     return await Product.findOne({where: {id: pid}}).then(async function (prod) {
         if(!prod)
             return null;
         else{
-            prod.dataValues.picture = await getAllPictures(prod.id);
+            if(pic) prod.dataValues.picture = await getAllPictures(prod.id);
             prod.category_name = await getCategoryName(prod.category);
 
             let usr = await fetchUserByID(prod.user_id);
@@ -180,6 +180,7 @@ const fetchProductById = async(pid) => {
     });
 }
 
+/** 
 const fetchOnlyProduct = async(pid) => {
     return await Product.findOne({where: {id: pid}}).then(async function (prod) {
         if(!prod)
@@ -196,8 +197,9 @@ const fetchOnlyProduct = async(pid) => {
         }          
     });
 }
+**/
 
-const fetchProductByCategory = async(category, uid) => {
+const fetchProductByCategory = async(category, uid, pic=true) => {
     return await Product.findAll({where:
         {
             [Sequelize.Op.and]: [
@@ -216,7 +218,7 @@ const fetchProductByCategory = async(category, uid) => {
     }}).then(async function(p) {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
-            newEl.picture = await getOnePicture(newEl.id);
+            if(pic) newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
 
             let usr = await fetchUserByID(newEl.user_id);
@@ -233,7 +235,7 @@ const fetchProductByCategory = async(category, uid) => {
     });
 }
 
-const fetchProductByWord = async(word, uid) => {
+const fetchProductByWord = async(word, uid, pic=true) => {
     return await Product.findAll({where:
         {
             [Sequelize.Op.or]: [
@@ -257,7 +259,7 @@ const fetchProductByWord = async(word, uid) => {
     {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
-            newEl.picture = await getOnePicture(newEl.id);
+            if(pic) newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
 
             let usr = await fetchUserByID(newEl.user_id);
@@ -331,6 +333,8 @@ const IncreaseRelevanceScore = async(cid) => {
     await Category.increment('relevance', {by: 1, where: { id: cid } });
 }
 
+
+
 module.exports = {
-    createProduct, fetchProduct, removeProduct, fetchProductById, fetchOwnProducts, fetchProductByWord, fetchProductByCategory, fetchAvailableProducts, fetchOnlyProduct, editProduct, getOnePicture, getAllPictures,IncreaseRelevanceScore
+    createProduct, fetchProduct, removeProduct, fetchProductById, fetchOwnProducts, fetchProductByWord, fetchProductByCategory, fetchAvailableProducts, editProduct, getOnePicture, getAllPictures,IncreaseRelevanceScore
 }

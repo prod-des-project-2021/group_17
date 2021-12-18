@@ -49,9 +49,16 @@ export const setUser = (user) => {
 };
 
 //delete
-export const deleteUSerSucceeded = (user) => {
+export const deleteUserSucceeded = (user) => {
 	return {
 		type: Types.DELETE_USER_SUCCEEDED,
 		payload: user
+	};
+};
+
+export const saveChangesFailed = (error) => {
+	return {
+		type: Types.SAVE_CHANGES_FAILED,
+		payload: error
 	};
 };

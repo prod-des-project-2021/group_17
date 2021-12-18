@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Container } from '@mui/material';
 import { ContentElement } from '../components/navbar/ContentElement';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const steps = [
     'View your order',
@@ -16,7 +17,8 @@ const steps = [
     'Add payment method',  */
     'Place your order'];
 
-function HorizontalLinearStepper() {
+function HorizontalLinearStepper(props) {
+    const { cart } = props;
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
 
@@ -119,4 +121,8 @@ function HorizontalLinearStepper() {
     );
 }
 
-export default HorizontalLinearStepper;
+const mapStateToProps = ({ product }) => ({
+    cart: product.cart,
+});
+
+export default connect(mapStateToProps, null)(HorizontalLinearStepper);

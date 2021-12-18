@@ -180,24 +180,6 @@ const fetchProductById = async(pid, pic=true) => {
     });
 }
 
-/** 
-const fetchOnlyProduct = async(pid) => {
-    return await Product.findOne({where: {id: pid}}).then(async function (prod) {
-        if(!prod)
-            return null;
-        else{
-            prod.category_name = await getCategoryName(prod.category);
-
-            let usr = await fetchUserByID(prod.user_id);
-            prod.seller = usr.first_name + " " + usr.last_name;
-
-            prod.user_id = undefined;
-
-            return prod.dataValues;
-        }          
-    });
-}
-**/
 
 const fetchProductByCategory = async(category, uid, pic=true) => {
     return await Product.findAll({where:

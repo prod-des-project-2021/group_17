@@ -1,7 +1,9 @@
 const { connectionManager } = require('../config/db');
 const User = require('../models/User');
 const { use } = require('../routes');
+const { fetchOwnProducts } = require('../services/product.service');
 const { createUser, fetchUsers, fetchUserByID, removeUser, editUser, changeCredits } = require('../services/user.service');
+const { removeProduct } = require('../services/product.service');
 
 const addUser = async (req, res, next) => {
 	const content = req.body;
@@ -69,6 +71,11 @@ const deleteUser = async (req, res, next) => {
 			error.error.push("User does not exist");
 			return res.send(error);
 		}
+
+		let allprod = await fetchOwnProducts(id);
+		for(let i = 0; i < allprod.length; ++i)
+			await removeProduct(allprod[i].id);
+
 		await removeUser(id);
 		res.sendStatus(200);
 		next();

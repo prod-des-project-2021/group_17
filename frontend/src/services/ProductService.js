@@ -56,13 +56,8 @@ function ProductService() {
 			return 'delete';
 		}
 
-		let body = {
-			product_id: product_id
-		};
-
-		let result = fetch('http://172.20.241.192:3000/api/product/:product_id', {
+		let result = fetch('http://172.20.241.192:3000/api/product/' + product_id, {
 			method: 'DELETE',
-			body: body,
 			headers: {
 				'Content-Type': 'application/json',
 				'Authorization': 'Bearer ' + token

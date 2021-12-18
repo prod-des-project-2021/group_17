@@ -12,21 +12,19 @@ import { ProductActions } from '../stores/actions';
 
 
 const ViewProduct = (props) => {
-    const { products, getProducts } = props;
-    // const { deleteProduct } = props;
-
-
-    /* const handleDeleteProductButton = () => {
-        deleteProduct();
-    }; */
-
+    const { products, getProducts, deleteProduct } = props;
     const [productList, setProduct] = useState([]);
 
     useEffect(
         () => {
-            if (products !== null) setProduct(products)
+            getProducts()
+        },
+        []
+    );
 
-            console.log(products)
+    useEffect(
+        () => {
+            if (products !== null) setProduct(products)
         },
         [products]
     );
@@ -95,7 +93,7 @@ const ViewProduct = (props) => {
                                             style={{ backgroundColor: '#006600', color: 'white' }}
                                             variant="contained"
                                             component="label"
-
+                                            onClick={deleteProduct(product.id)}
                                         >
                                             Delete product
                                         </Button>
@@ -120,7 +118,8 @@ const mapStateToProps = ({ product }) => ({
 });
 
 const mapDispatchToProps = {
-    getProducts: ProductActions.getProducts
+    getProducts: ProductActions.getProducts,
+    deleteProduct: ProductActions.deleteProduct
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewProduct);

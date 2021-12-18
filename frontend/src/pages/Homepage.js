@@ -42,7 +42,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const Homepage = (props) => {
-    const { products, getProducts } = props;
+    const { products, getProducts, addProductToCart } = props;
     const [pName] = useState();
     const [pPrice] = useState();
     const [pDescription] = useState();
@@ -61,8 +61,6 @@ const Homepage = (props) => {
     useEffect(
         () => {
             if (products !== null) setProduct(products)
-
-            console.log(products)
         },
         [products]
     );
@@ -132,7 +130,7 @@ const Homepage = (props) => {
                                         style={{ backgroundColor: '#006600', color: 'white' }}
                                         variant="contained"
                                         component="label"
-                                    // onClick=
+                                        onClick={() => addProductToCart(product)}
                                     >
                                         Add to cart
                                     </Button>
@@ -155,7 +153,8 @@ const mapStateToProps = ({ product }) => ({
 });
 
 const mapDispatchToProps = {
-    getProducts: ProductActions.getProducts
+    getProducts: ProductActions.getProducts,
+    addProductToCart: ProductActions.addProductToCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

@@ -1,27 +1,34 @@
 import * as C from './creators';
 import ProductService from '../../services/ProductService';
 
-const {postProductData } = ProductService();
+const { postProductData } = ProductService();
 
-export const addProduct = (name,description,category,price,files) => async (dispatch) => {
+export const addProduct = (name, description, category, price, files) => async (dispatch) => {
 	try {
 		const token = localStorage.getItem('token');
-		let fileArray = files.map((f) => {return f.base64});
-		postProductData(name,price,description,fileArray,category,token);
+		let fileArray = files.map((f) => { return f.base64 });
+		postProductData(name, price, description, fileArray, category, token);
 	} catch (error) {
-	    console.log(error);
+		console.log(error);
 	}
 };
 
 export const getProducts = () => async (dispatch) => {
 	const token = localStorage.getItem('token');
 	let result = await ProductService().getProductsData(token)
-	if(result) dispatch(C.getProductSucceeded(result));
+	if (result) dispatch(C.getProductSucceeded(result));
 };
 
-/* export const deleteProducts = (product_id) => async (dispatch) => {
+export const deleteProduct = (product_id) => async (dispatch) => {
 	const token = localStorage.getItem('token');
-	let result = await ProductService().deleteProductsData(product_id, token)
-	if(result) dispatch(C.deleteProductSucceeded(result));
+	let result = await ProductService().deleteProductData(product_id, token)
+	if (result) dispatch(C.deleteProductSucceeded(result));
+}  
 
-}  */
+export const addProductToCart = (product) => async (dispatch) => {
+	dispatch(C.addProductToCart(product));
+}  
+
+export const removeProductFromCart = (id) => async (dispatch) => {
+	dispatch(C.removeProductFromCart(id));
+}  

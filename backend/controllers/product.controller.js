@@ -1,7 +1,7 @@
 const { connectionManager } = require("../config/db");
 const Product = require("../models/Product");
 const { use } = require("../routes");
-const {createProduct, fetchProduct,fetchOnlyProduct, fetchProductByWord, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
+const {createProduct, fetchProduct,fetchOnlyProduct,fetchAvailableProducts, fetchProductByWord, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
 
 const addProduct = async (req, res, next) => {
     var error = {status:"", error:[]};
@@ -22,7 +22,7 @@ const getProduct = async (req, res, next) => {
   var error = {status:"", error:[]};
 
   try {
-		prod = await fetchProduct();
+		prod = await fetchAvailableProducts(req.user.id);
     res.status(200);
 		res.send(prod);
 		next();
@@ -38,7 +38,7 @@ const getProductByWord = async (req, res, next) => {
   var error = {status:"", error:[]};
 
   try {
-		prod = await fetchProductByWord(req.body.word);
+		prod = await fetchProductByWord(req.body.word, req.user.id);
     res.status(200);
 		res.send(prod);
 		next();
@@ -76,7 +76,7 @@ const getProductbyId = async (req, res, next) => {
 const getProductbyCategory = async (req, res, next) => {
   var error = {status:"", error:[]};
 	try {
-		prod = await fetchProductByCategory(req.params.cid);
+		prod = await fetchProductByCategory(req.params.cid, req.user.id);
 
 		if (!prod) {
 			error.status = 404;

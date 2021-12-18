@@ -14,7 +14,6 @@ const saveProductPicture = async (pid, ppid, data) => {
     if(!fs.existsSync(dir)){
         fs.mkdirSync(dir);
     }
-        
 
     var url = dir + "name" + String(pid) + "." + String(ppid) + "." + ext;
     var body = {picture_url: url, product_id: pid};
@@ -45,12 +44,8 @@ const createProduct = async (request) => {
         return category.dataValues.id;
     });
 
-    console.log(catID);
-
     if(cat)
         catID = cat.id;
-
-    console.log(catID);
     
     request.body.category = catID;
     const product = Product.build(request.body);
@@ -84,8 +79,20 @@ const fetchProduct = async() => {
     });
 }
 
-const fetchAvailableProducts = async() => {
-    return await Product.findAll({attributes:{where: {status: 0}, exclude: ['user_id']}}).then(async function(p) {
+const fetchAvailableProducts = async(uid) => {
+    return await Product.findAll({where:
+        {
+            [Sequelize.Op.and]: [
+            {
+                status: 0
+            },
+            {
+                user_id: {
+                    [Sequelize.Op.not]: uid
+                }
+            }
+        ]
+    }}).then(async function(p) {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
@@ -120,8 +127,23 @@ const fetchOnlyProduct = async(pid) => {
     });
 }
 
-const fetchProductByCategory = async(category) => {
-    return await Product.findAll({attributes:{where:{category: category}, exclude: ['user_id']}}).then(async function(p) {
+const fetchProductByCategory = async(category, uid) => {
+    return await Product.findAll({where:
+        {
+            [Sequelize.Op.and]: [
+            {
+                status: 0
+            },
+            {
+                user_id: {
+                    [Sequelize.Op.not]: uid
+                }
+            },
+            {
+                category: category
+            }
+        ]
+    }}).then(async function(p) {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
@@ -134,8 +156,7 @@ const fetchProductByCategory = async(category) => {
     });
 }
 
-const fetchProductByWord = async(word) => {
-    let verifier = {name: {[seq.substring]: 'cool'}}
+const fetchProductByWord = async(word, uid) => {
     return await Product.findAll({where:
         {
             [Sequelize.Op.or]: [
@@ -148,17 +169,14 @@ const fetchProductByWord = async(word) => {
                 description: {
                     [Sequelize.Op.substring]: word
                 }
-            }
+            },
+            {
+                user_id: {
+                    [Sequelize.Op.not]: uid
+                }
+            },
         ]
-    }
-
-        //Sequelize.where(
-        //    Sequelize.fn('LOCATE', word, Sequelize.col('name')),
-        //    Sequelize.Op.ne,
-        //    0
-        //)
-    
-    }).then(async function(p) 
+    }}).then(async function(p) 
     {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;

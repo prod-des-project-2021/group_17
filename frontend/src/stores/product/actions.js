@@ -13,9 +13,11 @@ export const addProduct = (name, description, category, price, files) => async (
 	}
 };
 
-export const getProducts = () => async (dispatch) => {
+export const getProducts = (id) => async (dispatch) => {
 	const token = localStorage.getItem('token');
-	let result = await ProductService().getProductsData(token)
+	let result = null;
+	if(id == null) result = await ProductService().getProductsData(token)
+	else result = await ProductService().getProductsDataCategory(token,id)
 	if (result) dispatch(C.getProductSucceeded(result));
 };
 

@@ -51,9 +51,9 @@ export const saveChanges = (firstName, lastName, dateOfBirth, gender, adress, ph
 };
 
 
-export const deleteUser = (firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password) => async (dispatch) => {
+export const deleteUser = () => async (dispatch) => {
 	const token = localStorage.getItem('token');
-	let result = await UserService().deleteUser(firstName, lastName, dateOfBirth, gender, adress, phoneNumber, Email, password, token)
+	let result = await UserService().deleteUser(token)
 	if(result) dispatch(C.deleteUserSucceeded(result));
 } 
 

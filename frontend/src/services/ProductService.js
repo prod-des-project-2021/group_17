@@ -77,6 +77,17 @@ function ProductService() {
 		return result;
 	};
 
-	return { getProductsData, postProductData, putProductData, deleteProductData };
+	const getProductsDataCategory = async (token,id) => {
+		let result = fetch('http://172.20.241.192:3000/api/product/category/'+id, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
+		}).then((res) => res.json());
+		return result;
+	};
+
+	return { getProductsData, postProductData, putProductData, deleteProductData, getProductsDataCategory };
 }
 export default ProductService;

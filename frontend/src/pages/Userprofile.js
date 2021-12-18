@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import { AuthActions } from '../stores/actions';
 
 const Userprofile = (props) => {
-    const { user, saveChanges } = props;
+    const { user, saveChanges, deleteUser } = props;
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
     const [dateOfBirth, setDob] = useState("");
@@ -315,7 +315,7 @@ const Userprofile = (props) => {
 						style={{ backgroundColor: '#006600', color: 'white' }}
 						variant="contained"
 						component="label"
-						// onClick=
+						onClick={() => deleteUser()}
 					>
 						Delete my account
 					</Button >
@@ -333,6 +333,7 @@ const mapStateToProps = ({ auth }) => ({
 });
 const mapDispatchToProps = {
     saveChanges: AuthActions.saveChanges,
+    deleteUser: AuthActions.deleteUser
 
 };
 

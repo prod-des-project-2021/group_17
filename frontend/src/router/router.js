@@ -22,6 +22,7 @@ import { connect } from 'react-redux';
 import Register from '../pages/Register';
 import SellProduct from '../pages/SellProduct';
 import ViewProduct from '../pages/ViewProducts';
+import CategoryOther from '../pages/CategoryOther';
 
 
 function MainRouter(props) {
@@ -32,12 +33,12 @@ function MainRouter(props) {
 			if (!auth.token) {
 				getCurrent();
 			}
-			else{
+			else {
 				setUser();
 			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[ auth.token ]
+		[auth.token]
 	);
 
 	return (
@@ -47,13 +48,13 @@ function MainRouter(props) {
 					<Navbar />
 					<Routes>
 						<Route path="/welcome" element={<Startpage />} />
-						<Route path="/home" element={<Homepage />}>
-							<Route path="clothes" element={<CategoryClothes />} />
-							<Route path="games" element={<CategoryGames />} />
-							<Route path="home" element={<CategoryHome />} />
-							<Route path="kitchen" element={<CategoryKitchen />} />
-							<Route path="sport" element={<CategorySport />} />
-						</Route>
+						<Route path="/dashboard" element={<Homepage />} />
+						<Route path="/clothes" element={<CategoryClothes />} />
+						<Route path="/other" element={<CategoryOther />} />
+						<Route path="/games" element={<CategoryGames />} />
+						<Route path="/home" element={<CategoryHome />} />
+						<Route path="/kitchen" element={<CategoryKitchen />} />
+						<Route path="/sport" element={<CategorySport />} />
 						<Route path="/searchbar" element={<Searchbar />} />
 						<Route path="/cart" element={<Cart />} />
 						<Route path="/userprofile" element={<Userprofile />} />
@@ -62,7 +63,7 @@ function MainRouter(props) {
 						<Route path="/feedback" element={<Feedback />} />
 						<Route path="/sellproduct" element={<SellProduct />} />
 						<Route path="/viewproduct" element={<ViewProduct />} />
-                        <Route path="*" element={<Navigate to='/welcome'/>} />
+						<Route path="*" element={<Navigate to='/welcome' />} />
 					</Routes>
 					<Footer />
 				</React.Fragment>
@@ -70,7 +71,7 @@ function MainRouter(props) {
 				<Routes>
 					<Route path="/login" exact element={<Login />} />
 					<Route path="/register" element={<Register />} />
-                    <Route path="*" element={<Navigate to='/login'/>} />
+					<Route path="*" element={<Navigate to='/login' />} />
 
 				</Routes>
 			)}

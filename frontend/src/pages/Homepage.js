@@ -94,7 +94,7 @@ const Homepage = (props) => {
                         <Card sx={{ minWidth: 300, maxWidth: 300 }}>
                             <CardHeader
                                 title={product.name}
-                                subheader={product.category}
+                                subheader={product.category_name}
 
                             />
                             <CardMedia

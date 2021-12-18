@@ -13,10 +13,11 @@ export const CatNav = styled.nav`
     justify-content: space-between;
     padding: 4px 60px;
     z-index: 10;
+    left: 0;
 `; 
 
 export const CatLink = styled(Link)`
-    color: #000;
+    color: #000000;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -47,7 +48,7 @@ export const CatMenu = styled.div`
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     @media screen and (max-width: 768px) {
         display: none;

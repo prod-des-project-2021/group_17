@@ -7,20 +7,23 @@ const Categories = () => {
             <CatNav>
                 <CatBars />
                 <CatMenu>
-                    <CatLink to='/home/clothes'>
+                    <CatLink to='/clothes'>
                         Clothes
                     </CatLink>
-                    <CatLink to='/home/games'>
+                    <CatLink to='/games'>
                         Games
                     </CatLink>
-                    <CatLink to='/home/home'>
+                    <CatLink to='/home'>
                         Home
                     </CatLink>
-                    <CatLink to='/home/kitchen'>
+                    <CatLink to='/kitchen'>
                         Kitchen
                     </CatLink>
-                    <CatLink to='/home/sport'>
+                    <CatLink to='/sport'>
                         Sport
+                    </CatLink>
+                    <CatLink to='/other'>
+                        Other
                     </CatLink>
                 </CatMenu>
             </CatNav>

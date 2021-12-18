@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import { AuthActions } from '../stores/actions';
 
 const Userprofile = (props) => {
-    const { user, saveChanges } = props;
+    const { user, saveChanges, deleteUser } = props;
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
     const [dateOfBirth, setDob] = useState("");
@@ -24,7 +24,7 @@ const Userprofile = (props) => {
     const [phoneNumber, setPhonenumber] = useState("");
     const [Email, setEmail] = useState("");
 
-   
+
     useEffect(
         () => {
             if (user) {
@@ -34,13 +34,13 @@ const Userprofile = (props) => {
                 setAddress(user.address);
                 setPhonenumber(user.phone_number);
                 setEmail(user.email);
-                
+
             }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [user]
     );
-    
+
     const [Fname, editFName] = useState('');
     const [LName, editLName] = useState('');
     const [DateOfBirth, editDob] = useState('');
@@ -48,8 +48,8 @@ const Userprofile = (props) => {
     const [PhoneNumber, editPhonenumber] = useState('');
     const [EMail, editEmail] = useState('');
     const [Password, editPassword] = useState('');
-   
-    const saveChangesButton = async() => {
+
+    const saveChangesButton = async () => {
         saveChanges(Fname, LName, DateOfBirth, Address, PhoneNumber, EMail, Password);
     }
 
@@ -75,19 +75,19 @@ const Userprofile = (props) => {
         editPassword(e.target.value);
     }
 
-    
+
     const [openPD, setOpenPersonalData] = React.useState(false);
-    const [openPP, setOpenProfilePic] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
+    const [openC, setOpenCredits] = React.useState(false);
 
     const handleClickPD = () => {
         setOpenPersonalData(!openPD);
     };
-    const handleClickPP = () => {
-        setOpenProfilePic(!openPP);
-    };
     const handleClickLG = () => {
         setOpenLoginData(!openLG);
+    };
+    const handleClickC = () => {
+        setOpenCredits(!openC);
     };
 
 
@@ -261,19 +261,62 @@ const Userprofile = (props) => {
                                 </Box>
                             </List>
                         </Collapse>
+                        {/* Credits */}
+                        <ListItemButton onClick={handleClickC}>
+                            <ListItemText primary="Credits" />
+                            {openC ? <ExpandLess /> : <ExpandMore />}
+                        </ListItemButton>
+                        <Collapse in={openC} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& .MuiTextField-root': { m: 1, width: '30ch' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    <div>
+                                        <TextField
+                                            id="outlined-read-only-input"
+                                            label="Your Credits"
+                                            defaultValue="0"
+                                            InputProps={{
+                                                readOnly: true
+                                            }}
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            required
+                                            id="outlined-required"
+                                            label="Add credits"
+                                        />
+                                    </div>
+                                    <Button
+                                        style={{ backgroundColor: '#006600', color: 'white' }}
+                                        variant="contained"
+                                        component="label"
+                                    // onClick=
+                                    >
+                                        Add credits
+                                    </Button >
+                                </Box>
+                            </List>
+                        </Collapse>
                     </List>
                 </div>
                 <br />
                 <br />
                 <div>
-                <Button 
-						style={{ backgroundColor: '#006600', color: 'white' }}
-						variant="contained"
-						component="label"
+                    <Button
+                        style={{ backgroundColor: '#006600', color: 'white' }}
+                        variant="contained"
+                        component="label"
                         onClick={saveChangesButton}
-					>
-						Save changes
-					</Button>
+                    >
+                        Save changes
+                    </Button>
                 </div>
                 <br />
                 <div>
@@ -281,7 +324,7 @@ const Userprofile = (props) => {
 						style={{ backgroundColor: '#006600', color: 'white' }}
 						variant="contained"
 						component="label"
-						// onClick=
+						onClick={() => deleteUser()}
 					>
 						Delete my account
 					</Button >
@@ -299,6 +342,7 @@ const mapStateToProps = ({ auth }) => ({
 });
 const mapDispatchToProps = {
     saveChanges: AuthActions.saveChanges,
+    deleteUser: AuthActions.deleteUser
 
 };
 

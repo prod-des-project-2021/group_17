@@ -1,17 +1,69 @@
-import React from 'react'
-import { Container } from '@mui/material'
-import { ContentElement } from '../components/navbar/ContentElement'
+import React, { useEffect, useState } from 'react';
+import { Container } from '@mui/material';
+import Categories from '../components/navbar/Categories';
+import { ContentElement } from '../components/navbar/ContentElement';
+import { Outlet } from 'react-router-dom'
 
-const Sport = () => {
+import { connect } from 'react-redux';
+import { ProductActions } from '../stores/actions';
+import ProductCard from './ProductCard';
+
+
+const Sport = (props) => {
+    const { products, getProducts } = props;
+    const [productList, setProduct] = useState([]);
+
+    useEffect(
+        () => {
+            getProducts(4)
+        },
+        []
+    );
+
+    useEffect(
+        () => {
+            if (products !== null) setProduct(products)
+        },
+        [products]
+    );
+
     return (
         <Container>
-            <ContentElement>
-                <div>
-                    <h1>Sport</h1>
+            <ContentElement sx={{ maxWidth: 300 }}>
+                <Outlet />
+                <Categories />
+                <h3>Sport </h3>
+                <br />
+                <br />
+                <div
+                    style= {{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        flexWrap: 'wrap',
+                        justifyContent: 'space-around',
+                        alignItems: 'baseline',
+                        gridGap: '60px 60px',
+
+                    }}>
+                    {productList.map((product, index) => (
+                        <ProductCard product={product}/>))}
                 </div>
+                <br />
+                <br />
+                <br />
+                <br />
+               
             </ContentElement>
         </Container>
     )
 }
 
-export default Sport
+const mapStateToProps = ({ product }) => ({
+    products: product.products,
+});
+
+const mapDispatchToProps = {
+    getProducts: ProductActions.getProducts
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sport);

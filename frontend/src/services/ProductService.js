@@ -56,13 +56,8 @@ function ProductService() {
 			return 'delete';
 		}
 
-		let body = {
-			product_id: product_id
-		};
-
-		let result = fetch('http://172.20.241.192:3000/api/product/:product_id', {
+		let result = fetch('http://172.20.241.192:3000/api/product/' + product_id, {
 			method: 'DELETE',
-			body: body,
 			headers: {
 				'Content-Type': 'application/json',
 				'Authorization': 'Bearer ' + token
@@ -82,6 +77,28 @@ function ProductService() {
 		return result;
 	};
 
-	return { getProductsData, postProductData, putProductData, deleteProductData };
+	const getProductsDataCategory = async (token,id) => {
+		let result = fetch('http://172.20.241.192:3000/api/product/category/'+id, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
+		}).then((res) => res.json());
+		return result;
+	};
+
+	const getOwnProductsData = async (token) => {
+		let result = fetch('http://172.20.241.192:3000/api/product/own/products', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			}
+		}).then((res) => res.json());
+		return result;
+	};
+
+	return { getProductsData, postProductData, putProductData, deleteProductData, getProductsDataCategory,getOwnProductsData };
 }
 export default ProductService;

@@ -112,6 +112,12 @@ const reducer = (state = initialState, { type, payload }) => {
                 isLogged: payload != null ? true : false,
                 loading: false
             }
+        case Types.SAVE_CHANGES_FAILED:
+            return {
+                ...state,
+                loading: false,
+                error: payload
+            };
         default:
             return state;
     }

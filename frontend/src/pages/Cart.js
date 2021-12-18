@@ -8,21 +8,39 @@ import Typography from '@mui/material/Typography';
 import { Container } from '@mui/material';
 import { ContentElement } from '../components/navbar/ContentElement';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Collapse from '@mui/material/Collapse';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import IconButton from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
 
 const steps = [
     'View your order',
-/*     'Promotion codes',
-    'Add personal data',
-    'Add payment method',  */
+    /*     'Promotion codes',
+        'Add personal data',
+        'Add payment method',  */
     'Place your order'];
 
-function HorizontalLinearStepper() {
+const ExpandMore = styled((props) => {
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+    }),
+}));
+
+function HorizontalLinearStepper(props) {
+    const { cart } = props;
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
-
-    /* const isStepOptional = (step) => {
-        return step === 1;
-    }; */
 
     const isStepSkipped = (step) => {
         return skipped.has(step);
@@ -43,55 +61,95 @@ function HorizontalLinearStepper() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    /* const handleSkip = () => {
-        if (!isStepOptional(activeStep)) {
-            // You probably want to guard against something like this,
-            // it should never occur unless someone's actively trying to break something.
-            throw new Error("You can't skip a step that isn't optional.");
-        }
-
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped((prevSkipped) => {
-            const newSkipped = new Set(prevSkipped.values());
-            newSkipped.add(activeStep);
-            return newSkipped;
-        });
-    }; */
-
     const handleReset = () => {
         setActiveStep(0);
     };
 
-    
+    const [expanded1, setExpanded1] = React.useState(false);
+
+    const handleExpandClick1 = () => {
+        setExpanded1(!expanded1);
+    };
 
     return (
         <Container>
             <ContentElement>
-                <Box sx={{ width: '100%'}}>
-                    <Stepper activeStep={activeStep} >
-                        {steps.map((label, index) => {
-                            const stepProps = {};
-                            const labelProps = {};
-                            if (isStepSkipped(index)) {
-                                stepProps.completed = false;
-                            }
-                            return (
-                                <Step key={label} {...stepProps}>
-                                    <StepLabel {...labelProps}>{label}</StepLabel>
-                                </Step>
-                            );
-                        })}
-                    </Stepper>
+                <Box sx={{ width: '100%' }}>
+                    {cart.map((product, index) => (
+                        <>
+                            <Stepper activeStep={activeStep}>
+                                {steps.map((label, index) => {
+                                    const stepProps = {};
+                                    const labelProps = {};
+                                    if (isStepSkipped(index)) {
+                                        stepProps.completed = false;
+                                    }
+                                    return (
+                                        <Step key={label} {...stepProps}>
+                                            <StepLabel {...labelProps}>{label}</StepLabel>
+                                        </Step>
+                                    );
+                                })}
+
+                            </Stepper>
+                            <br/>
+                            <br/>
+                            <Card sx={{ minWidth: 300, maxWidth: 300 }}>
+                                <CardHeader
+                                    title={product.name}
+                                    subheader={product.category} />
+                                <CardMedia
+                                    component="img"
+                                    src={`data:image/png;base64, ${product.picture[0]}`}
+                                    height="194" />
+                                <CardContent>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {product.price + '€'}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions disableSpacing>
+                                    <ExpandMore
+                                        expand={expanded1}
+                                        onClick={handleExpandClick1}
+                                        aria-expanded={expanded1}
+                                        aria-label="show more"
+                                    >
+                                        <ExpandMoreIcon />
+                                    </ExpandMore>
+                                </CardActions>
+                                <Collapse in={expanded1} timeout="auto" unmountOnExit>
+                                    <CardContent>
+                                        <Typography paragraph>Product description:</Typography>
+                                        <Typography paragraph>
+                                            {product.description}
+                                            <br />
+                                            posted on: {product.date_of_posting}
+                                        </Typography>
+                                        <Button
+                                        style={{ backgroundColor: '#006600', color: 'white' }}
+                                        variant="contained"
+                                        component="label"
+                                        
+                                    >
+                                        Remove from Cart
+                                    </Button>
+                                    </CardContent>
+                                </Collapse>
+                            </Card>
+                        </>
+                    ))}
+                    <br/>
+                    <br/>
                     {activeStep === steps.length ? (
                         <React.Fragment>
                             <Typography sx={{ mt: 2, mb: 1 }}> <br />
-                            <br />
-                            <h1 >Congratulations! We have just received your order. </h1> <br />
-                            We will send you a confirmation email as soon as possible and contact you when your order is on its way.
+                                <br />
+                                <h1 >Congratulations! We have just received your order. </h1> <br />
+                                We will send you a confirmation email as soon as possible and contact you when your order is on its way.
                             </Typography>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, color:'green' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, color: 'green' }}>
                                 <Box sx={{ flex: '1 1 auto' }} />
-                                <Button sx={{color:'green'}} onClick={handleReset} component={Link} to='/home' > Continue with shopping  </Button>
+                                <Button sx={{ color: 'green' }} onClick={handleReset} component={Link} to='/home' > Continue with shopping  </Button>
                             </Box>
                         </React.Fragment>
                     ) : (
@@ -107,7 +165,7 @@ function HorizontalLinearStepper() {
                                     Back
                                 </Button>
                                 <Box sx={{ flex: '1 1 auto' }} />
-                                <Button onClick={handleNext} sx={{color:'green'}}>
+                                <Button onClick={handleNext} sx={{ color: 'green' }}>
                                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                                 </Button>
                             </Box>
@@ -119,4 +177,8 @@ function HorizontalLinearStepper() {
     );
 }
 
-export default HorizontalLinearStepper;
+const mapStateToProps = ({ product }) => ({
+    cart: product.cart,
+});
+
+export default connect(mapStateToProps, null)(HorizontalLinearStepper);

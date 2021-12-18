@@ -9,13 +9,13 @@ import { ProductActions } from '../stores/actions';
 import ProductCard from './ProductCard';
 
 
-const Clothes = (props) => {
+const Other = (props) => {
     const { products, getProducts } = props;
     const [productList, setProduct] = useState([]);
 
     useEffect(
         () => {
-            getProducts(5)
+            getProducts(1)
         },
         []
     );
@@ -32,7 +32,7 @@ const Clothes = (props) => {
             <ContentElement sx={{ maxWidth: 300 }}>
                 <Outlet />
                 <Categories />
-                <h3>Clothes </h3>
+                <h3>Other </h3>
                 <br />
                 <br />
                 <div
@@ -66,4 +66,4 @@ const mapDispatchToProps = {
     getProducts: ProductActions.getProducts
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Clothes);
+export default connect(mapStateToProps, mapDispatchToProps)(Other);

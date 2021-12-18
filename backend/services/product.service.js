@@ -4,6 +4,7 @@ const Product_Picure = require("../models/Product_Pictures");
 const Category = require("../models/Product_Category")
 const seq = require('sequelize');
 const { Sequelize } = require("../config/db");
+const { request } = require("http");
 
 const saveProductPicture = async (pid, ppid, data) => {
 
@@ -26,6 +27,14 @@ const saveProductPicture = async (pid, ppid, data) => {
     });
 
     await pic.save(); 
+}
+
+const getCategoryName = async(cid) => {
+    var category_name = await Category.findOne({where: {id: cid}}).then(function (category) {
+        return category.dataValues.category_name;
+    });
+
+    return category_name;
 }
 
 const createProduct = async (request) => {
@@ -70,6 +79,7 @@ const fetchProduct = async() => {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
+            newEl.category_name = await getCategoryName(newEl.category);
             return newEl;    
         });
 
@@ -96,6 +106,7 @@ const fetchAvailableProducts = async(uid) => {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
+            newEl.category_name = await getCategoryName(newEl.category);
             return newEl;    
         });
 
@@ -120,6 +131,7 @@ const fetchOwnProducts = async(uid) => {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
+            newEl.category_name = await getCategoryName(newEl.category);
             return newEl;    
         });
 
@@ -135,6 +147,7 @@ const fetchProductById = async(pid) => {
             return null;
         else{
             prod.dataValues.picture = await getAllPictures(prod.id);
+            prod.category_name = await getCategoryName(prod.category);
             return prod.dataValues;
         }
             
@@ -146,6 +159,7 @@ const fetchOnlyProduct = async(pid) => {
         if(!prod)
             return null;
         else{
+            prod.category_name = await getCategoryName(prod.category);
             return prod.dataValues;
         }          
     });
@@ -171,6 +185,7 @@ const fetchProductByCategory = async(category, uid) => {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
+            newEl.category_name = await getCategoryName(newEl.category);
             return newEl;    
         });
 
@@ -205,6 +220,7 @@ const fetchProductByWord = async(word, uid) => {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
+            newEl.category_name = await getCategoryName(newEl.category);
             return newEl;    
         });
 

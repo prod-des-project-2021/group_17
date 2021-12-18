@@ -108,9 +108,16 @@ const fetchAvailableProducts = async(uid) => {
 const fetchOwnProducts = async(uid) => {
     return await Product.findAll({where:
         {
-            user_id: uid
-        }
-    }).then(async function(p) {
+            [Sequelize.Op.and]: [
+            {
+                status: 0
+            },
+            {
+                user_id: uid
+            },
+
+        ]
+    }}).then(async function(p) {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);

@@ -9,5 +9,5 @@ router.get('/:pid', authenticateJWT, productController.getProductbyId)
 router.delete('/:pid',authenticateJWT, productController.deleteProduct)
 router.put('/:pid',authenticateJWT, productController.updateProduct)
 router.get('/category/:cid', authenticateJWT, productController.getProductbyCategory)
-
+router.get('/search/word', authenticateJWT, productController.getProductByWord)
 module.exports = router

@@ -1,7 +1,7 @@
 const { connectionManager } = require("../config/db");
 const Product = require("../models/Product");
 const { use } = require("../routes");
-const {createProduct, fetchProduct,fetchOnlyProduct, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
+const {createProduct, fetchProduct,fetchOnlyProduct, fetchProductByWord, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
 
 const addProduct = async (req, res, next) => {
     var error = {status:"", error:[]};
@@ -23,6 +23,22 @@ const getProduct = async (req, res, next) => {
 
   try {
 		prod = await fetchProduct();
+    res.status(200);
+		res.send(prod);
+		next();
+	} catch (e) {
+		error.status = 400;
+    res.status(400);
+    error.error.push(e.message);
+    return res.send(error);
+	}
+};
+
+const getProductByWord = async (req, res, next) => {
+  var error = {status:"", error:[]};
+
+  try {
+		prod = await fetchProductByWord(req.body.word);
     res.status(200);
 		res.send(prod);
 		next();
@@ -145,5 +161,5 @@ const updateProduct = async (req, res, next) => {
 };
 
 module.exports = {
-    addProduct, getProduct, getProductbyId, getProductbyCategory, deleteProduct, updateProduct
+    addProduct, getProduct, getProductbyId, getProductbyCategory, getProductByWord, deleteProduct, updateProduct
 }

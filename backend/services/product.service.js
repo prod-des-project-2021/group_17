@@ -5,6 +5,7 @@ const Category = require("../models/Product_Category")
 const seq = require('sequelize');
 const { Sequelize } = require("../config/db");
 const { request } = require("http");
+const {fetchUserByID} = require("./user.service.js")
 
 const saveProductPicture = async (pid, ppid, data) => {
 
@@ -31,7 +32,10 @@ const saveProductPicture = async (pid, ppid, data) => {
 
 const getCategoryName = async(cid) => {
     var category_name = await Category.findOne({where: {id: cid}}).then(function (category) {
-        return category.dataValues.category_name;
+        if(!category)
+            return null;
+        else
+            return category.dataValues.category_name;
     });
 
     return category_name;
@@ -75,11 +79,15 @@ const createProduct = async (request) => {
 }
 
 const fetchProduct = async() => {
-    return await Product.findAll({attributes:{exclude: ['user_id']}}).then(async function(p) {
+    return await Product.findAll().then(async function(p) {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
+            let usr = await fetchUserByID(newEl.user_id);
+            newEl.seller = usr.first_name + " " + usr.last_name;
+
+            newEl.user_id = undefined;
             return newEl;    
         });
 
@@ -107,6 +115,12 @@ const fetchAvailableProducts = async(uid) => {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
+
+            let usr = await fetchUserByID(newEl.user_id);
+            newEl.seller = usr.first_name + " " + usr.last_name;
+
+            newEl.user_id = undefined;
+            
             return newEl;    
         });
 
@@ -132,6 +146,12 @@ const fetchOwnProducts = async(uid) => {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
+            
+            let usr = await fetchUserByID(newEl.user_id);
+            newEl.seller = usr.first_name + " " + usr.last_name;
+
+            newEl.user_id = undefined;
+            
             return newEl;    
         });
 
@@ -148,6 +168,12 @@ const fetchProductById = async(pid) => {
         else{
             prod.dataValues.picture = await getAllPictures(prod.id);
             prod.category_name = await getCategoryName(prod.category);
+
+            let usr = await fetchUserByID(prod.user_id);
+            prod.seller = usr.first_name + " " + usr.last_name;
+
+            prod.user_id = undefined;
+
             return prod.dataValues;
         }
             
@@ -160,6 +186,12 @@ const fetchOnlyProduct = async(pid) => {
             return null;
         else{
             prod.category_name = await getCategoryName(prod.category);
+
+            let usr = await fetchUserByID(prod.user_id);
+            prod.seller = usr.first_name + " " + usr.last_name;
+
+            prod.user_id = undefined;
+
             return prod.dataValues;
         }          
     });
@@ -186,6 +218,12 @@ const fetchProductByCategory = async(category, uid) => {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
+
+            let usr = await fetchUserByID(newEl.user_id);
+            newEl.seller = usr.first_name + " " + usr.last_name;
+
+            newEl.user_id = undefined;
+
             return newEl;    
         });
 
@@ -221,6 +259,12 @@ const fetchProductByWord = async(word, uid) => {
             let newEl = obj.dataValues;
             newEl.picture = await getOnePicture(newEl.id);
             newEl.category_name = await getCategoryName(newEl.category);
+
+            let usr = await fetchUserByID(newEl.user_id);
+            newEl.seller = usr.first_name + " " + usr.last_name;
+
+            newEl.user_id = undefined;
+
             return newEl;    
         });
 

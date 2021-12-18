@@ -177,5 +177,5 @@ const updateProduct = async (req, res, next) => {
 };
 
 module.exports = {
-    addProduct, getProduct, getProductbyId, getProductbyCategory, getProductByWord, deleteProduct, updateProduct
+    addProduct, getProduct, getProductbyId, getProductbyCategory, getProductByWord, deleteProduct, updateProduct, getOwnProduct
 }

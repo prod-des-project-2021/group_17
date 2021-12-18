@@ -24,7 +24,7 @@ const Userprofile = (props) => {
     const [phoneNumber, setPhonenumber] = useState("");
     const [Email, setEmail] = useState("");
 
-   
+
     useEffect(
         () => {
             if (user) {
@@ -34,13 +34,13 @@ const Userprofile = (props) => {
                 setAddress(user.address);
                 setPhonenumber(user.phone_number);
                 setEmail(user.email);
-                
+
             }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [user]
     );
-    
+
     const [Fname, editFName] = useState('');
     const [LName, editLName] = useState('');
     const [DateOfBirth, editDob] = useState('');
@@ -48,8 +48,8 @@ const Userprofile = (props) => {
     const [PhoneNumber, editPhonenumber] = useState('');
     const [EMail, editEmail] = useState('');
     const [Password, editPassword] = useState('');
-   
-    const saveChangesButton = async() => {
+
+    const saveChangesButton = async () => {
         saveChanges(Fname, LName, DateOfBirth, Address, PhoneNumber, EMail, Password);
     }
 
@@ -75,7 +75,7 @@ const Userprofile = (props) => {
         editPassword(e.target.value);
     }
 
-    
+
     const [openPD, setOpenPersonalData] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
     const [openC, setOpenCredits] = React.useState(false);
@@ -264,9 +264,9 @@ const Userprofile = (props) => {
                         {/* Credits */}
                         <ListItemButton onClick={handleClickC}>
                             <ListItemText primary="Credits" />
-                            {openLG ? <ExpandLess /> : <ExpandMore />}
+                            {openC ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
-                        <Collapse in={openLG} timeout="auto" unmountOnExit>
+                        <Collapse in={openC} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <Box
                                     component="form"
@@ -282,7 +282,8 @@ const Userprofile = (props) => {
                                             label="Your Credits"
                                             defaultValue="0"
                                             InputProps={{
-                                              readOnly: true}}
+                                                readOnly: true
+                                            }}
                                         />
                                     </div>
                                     <div>
@@ -292,6 +293,14 @@ const Userprofile = (props) => {
                                             label="Add credits"
                                         />
                                     </div>
+                                    <Button
+                                        style={{ backgroundColor: '#006600', color: 'white' }}
+                                        variant="contained"
+                                        component="label"
+                                    // onClick=
+                                    >
+                                        Add credits
+                                    </Button >
                                 </Box>
                             </List>
                         </Collapse>
@@ -300,14 +309,14 @@ const Userprofile = (props) => {
                 <br />
                 <br />
                 <div>
-                <Button 
-						style={{ backgroundColor: '#006600', color: 'white' }}
-						variant="contained"
-						component="label"
+                    <Button
+                        style={{ backgroundColor: '#006600', color: 'white' }}
+                        variant="contained"
+                        component="label"
                         onClick={saveChangesButton}
-					>
-						Save changes
-					</Button>
+                    >
+                        Save changes
+                    </Button>
                 </div>
                 <br />
                 <div>

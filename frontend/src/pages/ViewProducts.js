@@ -38,7 +38,7 @@ const ViewProduct = (props) => {
         <Container>
             <ContentElement>
 
-                <h3>If you want to delete or modify one of your products for sale, here you go!</h3>
+                <h3>If you want to delete one of your products for sale, here you go!</h3>
                 <br />
                 <br />
                 <div

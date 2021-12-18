@@ -59,8 +59,7 @@ function SearchBar() {
                 <Box sx={{ flexGrow: 1}}>
                 <h1>You are looking for a certain item? We got you!</h1> <br />
                     <br />
-                    <p>Simply enter a keyword or specific product name in the search bar, and we will show you the best results. <br />
-                        Or sort your requests by price and release date in the choosen category.</p> <br /> 
+                    <p>Simply enter a keyword or specific product name in the search bar, and we will show you the best results.</p> <br /> 
                     <br />
                     <br />
                     <h3>Search for it here!</h3> <br />

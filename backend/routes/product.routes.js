@@ -10,4 +10,5 @@ router.delete('/:pid',authenticateJWT, productController.deleteProduct)
 router.put('/:pid',authenticateJWT, productController.updateProduct)
 router.get('/category/:cid', authenticateJWT, productController.getProductbyCategory)
 router.get('/search/word', authenticateJWT, productController.getProductByWord)
+router.get('/own/products', authenticateJWT, productController.getOwnProduct)
 module.exports = router

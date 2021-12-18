@@ -1,7 +1,7 @@
 const { connectionManager } = require("../config/db");
 const Product = require("../models/Product");
 const { use } = require("../routes");
-const {createProduct, fetchProduct,fetchOnlyProduct, fetchOwnProducts, fetchAvailableProducts, fetchProductByWord, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
+const {createProduct, fetchProduct, fetchOwnProducts, fetchAvailableProducts, fetchProductByWord, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
 
 const addProduct = async (req, res, next) => {
     var error = {status:"", error:[]};
@@ -115,7 +115,7 @@ const getProductbyCategory = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   var error = {status:"", error:[]};
 	try {
-    prod = await fetchOnlyProduct(req.params.pid);
+    prod = await fetchProductById(req.params.pid, false);
 
     if(!prod){
       error.status = 404;
@@ -125,7 +125,6 @@ const deleteProduct = async (req, res, next) => {
     }
 
     if(prod.user_id == req.user.id || req.user.isAdmin){
-      console.log("A");
       await removeProduct(req.params.pid);
       res.sendStatus(200);
     }
@@ -176,6 +175,8 @@ const updateProduct = async (req, res, next) => {
 	}
 };
 
+
+
 module.exports = {
-    addProduct, getProduct, getProductbyId, getProductbyCategory, getProductByWord, deleteProduct, updateProduct
+    addProduct, getProduct, getProductbyId, getProductbyCategory, getProductByWord, deleteProduct, updateProduct, getOwnProduct
 }

@@ -24,6 +24,9 @@ const productCategories = [
 	},
 	{
 		value: 'Sport'
+	},
+	{
+		value: 'Other'
 	}
 ];
 

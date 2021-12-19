@@ -3,7 +3,6 @@ import '../App.css';
 import Navbar from '../components/navbar/Navbar';
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import Homepage from '../pages/Homepage';
-import Searchbar from '../pages/Searchbar';
 import Login from '../pages/Login';
 import Cart from '../pages/Cart';
 import Userprofile from '../pages/Userprofile';

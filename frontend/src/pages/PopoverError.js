@@ -37,7 +37,7 @@ function AlertDialog(props) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Error"}
+          {"Note"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

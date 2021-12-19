@@ -14,6 +14,10 @@ export const addProduct = (name, description, category, price, files) => async (
 		if(result.hasOwnProperty('error')){
 			dispatch(setError(result.error));
 		}
+		else {
+			dispatch(setError("Product Added Successfully!"));
+		}
+
 	} catch (error) {
 		dispatch(setError(error));
 	}
@@ -41,7 +45,11 @@ export const deleteProduct = (product_id) => async (dispatch) => {
 		if(result.hasOwnProperty('error')){
 			dispatch(setError(result.error));
 		}
-		else if (result) dispatch(C.deleteProductSucceeded(result));
+		else if (result) {
+			dispatch(C.deleteProductSucceeded(result))
+			dispatch(getOwnProducts())
+			dispatch(setError("Product Deleted Successfully!"));
+		}
 	} catch (error) {
 		dispatch(setError(error));
 	}

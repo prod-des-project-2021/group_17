@@ -53,6 +53,7 @@ export const saveChanges = (firstName, lastName, dateOfBirth, gender, adress, ph
 		if(auth.hasOwnProperty('error')){
 			dispatch(setError(auth.error));
 		}
+		else if(auth) dispatch(setError("User Updated!"));
 	} catch (error) {
 	    dispatch(setError(error));
 	}
@@ -96,6 +97,7 @@ export const addCredits = (credits) => async (dispatch) => {
 		if(result.hasOwnProperty('error')){
 			setError(result.error);
 		}
+		else if(result) dispatch(setError("Credits Added"));
 		let me = await UserService().getMe(token);
 		if(me.hasOwnProperty("first_name")) dispatch(C.setUser(me));
 		else throw new Error("Expired session");

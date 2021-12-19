@@ -3,13 +3,10 @@ const Order = require("../models/Order");
 const Product = require("../models/Product");
 const { use } = require("../routes");
 const orderService = require("../services/order.service");
-const { fetchProductById, editProduct} = require("../services/product.service");
+const { fetchProductById, editProduct, IncreaseRelevanceScore, getUserOfProduct} = require("../services/product.service");
 const { editUser, changeCredits } = require("../services/user.service");
 const { getUserbyId } = require("./user.controller");
 const {createOrder, fetchOrderByProdAndUser, fetchOrderByUser} = orderService;
-
-const productService = require("../services/product.service")
-const {IncreaseRelevanceScore} = productService
 
 const addProductToOrder = async (req, res, next) => {
     var error = {status:"", error:[]};
@@ -69,9 +66,12 @@ const orderCheckout = async(req, res, next) => {
 
         for(let i = 0; i < products.length; ++i){
             var prod = await fetchProductById(products[i]);
-
+            var usrID = await getUserOfProduct(products[i]);
             IncreaseRelevanceScore(prod.category);
-            await changeCredits(prod.user_id, prod.price);
+
+            console.log(prod);
+
+            await changeCredits(usrID, prod.price);
             await editProduct({"status": 1}, products[i]);
             await createOrder(products[i], req.user.id);
         }
@@ -88,18 +88,23 @@ const orderCheckout = async(req, res, next) => {
 
 const getOrder = async (req, res, next) => {
     var error = {status:"", error:[]};
-      try {
+    let productsBought = []
+    try {
         var order = await fetchOrderByUser(req.user.id);
-  
+        
+        for(let i = 0; i < order.length; ++i){
+            productsBought.push(await fetchProductById(order[i]));
+        }
+
         res.status(200);
-        res.send(order);
+        res.send(productsBought);
         next();
-      } catch (e) {
-          error.status = 400;
-      res.status(400);
-      error.error.push(e.message);
-      return res.send(error);
-      }
+    } catch (e) {
+        error.status = 400;
+        res.status(400);
+         error.error.push(e.message);
+         return res.send(error);
+    }
   };
 
 module.exports = {

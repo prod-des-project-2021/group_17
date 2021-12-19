@@ -261,6 +261,18 @@ const fetchProductByWord = async(word, uid, pic=true) => {
     });
 }
 
+
+const getUserOfProduct = async(pid) => {
+    return await Product.findOne({where: {id: pid}}).then(async function (prod) {
+        if(!prod)
+            return undefined;
+        else{
+            return prod.dataValues.user_id;
+        }
+            
+    });
+}
+
 const removeProduct = async(pid) => {
     await Product_Picure.destroy({where: {product_id: pid}});
     await Product.destroy({where: {id: pid}});
@@ -321,5 +333,17 @@ const IncreaseRelevanceScore = async(cid) => {
 
 
 module.exports = {
-    createProduct, fetchProduct, removeProduct, fetchProductById, fetchOwnProducts, fetchProductByWord, fetchProductByCategory, fetchAvailableProducts, editProduct, getOnePicture, getAllPictures,IncreaseRelevanceScore
+    createProduct, 
+    fetchProduct,
+    removeProduct, 
+    fetchProductById, 
+    fetchOwnProducts, 
+    fetchProductByWord, 
+    fetchProductByCategory, 
+    fetchAvailableProducts, 
+    editProduct, 
+    getOnePicture, 
+    getAllPictures, 
+    getUserOfProduct,
+    IncreaseRelevanceScore
 }

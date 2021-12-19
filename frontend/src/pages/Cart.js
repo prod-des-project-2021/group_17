@@ -18,7 +18,7 @@ import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
-import { ProductActions } from '../stores/actions';
+import { AuthActions, ProductActions } from '../stores/actions';
 
 const steps = [
     'View your order',
@@ -39,7 +39,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function HorizontalLinearStepper(props) {
-    const { cart,removeProductFromCart } = props;
+    const { cart,removeProductFromCart, checkout, setUser } = props;
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
 
@@ -47,7 +47,7 @@ function HorizontalLinearStepper(props) {
         return skipped.has(step);
     };
 
-    const handleNext = () => {
+    const handleNext = async () => {
         let newSkipped = skipped;
         if (isStepSkipped(activeStep)) {
             newSkipped = new Set(newSkipped.values());
@@ -56,6 +56,9 @@ function HorizontalLinearStepper(props) {
 
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
+        if(activeStep === steps.length - 1){
+            checkout(cart);
+        }
     };
 
     const handleBack = () => {
@@ -178,11 +181,12 @@ function HorizontalLinearStepper(props) {
 }
 
 const mapStateToProps = ({ product }) => ({
-    cart: product.cart,
+    cart: product.cart
 });
 
 const mapDispatchToProps = {
     removeProductFromCart: ProductActions.removeProductFromCart,
+    checkout: ProductActions.checkout
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HorizontalLinearStepper);

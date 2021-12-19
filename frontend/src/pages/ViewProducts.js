@@ -54,7 +54,7 @@ const ViewProduct = (props) => {
                 >
                     {
                         productList.map((product, index) => (
-                            <Card sx={{ minWidth: 300, maxWidth: 300 }}>
+                            <Card key={index} sx={{ minWidth: 300, maxWidth: 300 }}>
                                 <CardHeader
                                     title={product.name}
                                     subheader={product.category}
@@ -73,7 +73,6 @@ const ViewProduct = (props) => {
                                 </CardContent>
                                 <CardActions disableSpacing>
                                     <ExpandMore
-                                        expand={expanded1}
                                         onClick={handleExpandClick1}
                                         aria-expanded={expanded1}
                                         aria-label="show more"
@@ -93,7 +92,7 @@ const ViewProduct = (props) => {
                                             style={{ backgroundColor: '#006600', color: 'white' }}
                                             variant="contained"
                                             component="label"
-                                            onClick={deleteProduct(product.id)}
+                                            onClick={() => deleteProduct(product.id)}
                                         >
                                             Delete product
                                         </Button>

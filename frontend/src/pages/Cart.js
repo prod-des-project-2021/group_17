@@ -39,7 +39,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function HorizontalLinearStepper(props) {
-    const { cart,removeProductFromCart, checkout, setUser } = props;
+    const { cart, removeProductFromCart, checkout, setUser } = props;
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
 
@@ -56,7 +56,7 @@ function HorizontalLinearStepper(props) {
 
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
-        if(activeStep === steps.length - 1){
+        if (activeStep === steps.length - 1) {
             checkout(cart);
         }
     };
@@ -168,9 +168,15 @@ function HorizontalLinearStepper(props) {
                                     Back
                                 </Button>
                                 <Box sx={{ flex: '1 1 auto' }} />
-                                <Button onClick={handleNext} sx={{ color: 'green' }}>
-                                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                                </Button>
+                                {cart === null || cart.length === 0 ? (
+                                    <Button disabled onClick={handleNext} sx={{ color: 'green' }}>
+                                        {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                    </Button>
+                                ) : (
+                                    <Button onClick={handleNext} sx={{ color: 'green' }}>
+                                        {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                    </Button>)}
+
                             </Box>
                         </React.Fragment>
                     )}

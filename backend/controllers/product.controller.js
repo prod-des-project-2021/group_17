@@ -1,7 +1,7 @@
 const { connectionManager } = require("../config/db");
 const Product = require("../models/Product");
 const { use } = require("../routes");
-const {createProduct, fetchProduct, fetchOwnProducts, fetchAvailableProducts, fetchProductByWord, fetchProductById, fetchProductByCategory, removeProduct, editProduct} = require("../services/product.service")
+const {createProduct, fetchProduct, fetchOwnProducts, fetchAvailableProducts, fetchProductByWord, fetchProductById, fetchProductByCategory, removeProduct, editProduct, getUserOfProduct} = require("../services/product.service")
 
 const addProduct = async (req, res, next) => {
     var error = {status:"", error:[]};
@@ -115,15 +115,14 @@ const deleteProduct = async (req, res, next) => {
   var error = {status:"", error:[]};
 	try {
     prod = await fetchProductById(req.params.pid, false);
-
     if(!prod){
       error.status = 404;
       res.status(404);
       error.error.push("Product does not exist");
       return res.send(error);
     }
-
-    if(prod.user_id == req.user.id || req.user.isAdmin){
+    let uid = await getUserOfProduct(req.params.pid);
+    if(uid == req.user.id || req.user.isAdmin){
       await removeProduct(req.params.pid);
       res.sendStatus(200);
     }

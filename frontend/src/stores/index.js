@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import { auth, product } from './reducers';
+import { auth, product,error } from './reducers';
 
 const allReducers = combineReducers({
 	auth,
-	product
+	product,
+	error
 });
 
 export default allReducers;

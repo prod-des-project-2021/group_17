@@ -118,6 +118,19 @@ const reducer = (state = initialState, { type, payload }) => {
                 loading: false,
                 error: payload
             };
+        case Types.SAVE_CHANGES_FAILED:
+            return {
+                ...state,
+                loading: false,
+                error: payload
+            };
+        case Types.DELETE_USER_SUCCEEDED:
+            return {
+                ...state,
+                loading: false,
+                user: null
+            };
+
         default:
             return state;
     }

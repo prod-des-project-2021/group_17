@@ -8,6 +8,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import MenuItem from '@mui/material/MenuItem';
 import { connect } from 'react-redux';
 import { ProductActions } from '../stores/actions';
+import { useNavigate } from 'react-router';
 
 const productCategories = [
 	{
@@ -38,8 +39,11 @@ function SellProduct(props) {
 	const [ pDescription, setPDescription ] = useState();
 	const [ pPrice, setPPrice ] = useState();
 
+	let navigate = useNavigate();
+
 	const handleAddProduct = () => {
 		addProduct(pName, pDescription, pCategory, pPrice, pFiles);
+		navigate("welcome");
 	};
 
 	const handleFileSelected = async (e) => {

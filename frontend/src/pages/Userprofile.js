@@ -15,6 +15,7 @@ import { Button } from '@mui/material';
 import { connect } from 'react-redux';
 import { AuthActions } from '../stores/actions';
 import ProductCard from './ProductCard';
+import { useNavigate } from 'react-router';
 
 const Userprofile = (props) => {
     const { user, saveChanges, deleteUser, addCredits } = props;
@@ -25,6 +26,7 @@ const Userprofile = (props) => {
     const [phoneNumber, setPhonenumber] = useState("");
     const [Email, setEmail] = useState("");
 
+    let navigate = useNavigate();
 
     useEffect(
         () => {
@@ -53,6 +55,7 @@ const Userprofile = (props) => {
 
     const saveChangesButton = async () => {
         saveChanges(Fname, LName, DateOfBirth, Address, PhoneNumber, EMail, Password);
+        //navigate('userprofile');
     }
 
     const handleFNameChange = (e) => {

@@ -5,23 +5,31 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { connect } from 'react-redux';
+import { ErrorActions } from '../stores/actions';
 
-function AlertDialog() {
+function AlertDialog(props) {
+  const { error, clearError } = props;
   const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const [message, setMessage] = React.useState("");
+  React.useEffect(
+    () => {
+      if (error) {
+        setMessage(error);
+        setOpen(true);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [error]
+  );
 
   const handleClose = () => {
+    clearError();
     setOpen(false);
   };
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -29,11 +37,11 @@ function AlertDialog() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Error"}
+          {"Note"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Something went wrong. Sorry!
+            {message}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -44,4 +52,15 @@ function AlertDialog() {
   );
 }
 
-export default AlertDialog
+const mapStateToProps = ({ error }) => ({
+  error: error.error
+});
+
+const mapDispatchToProps = {
+  clearError: ErrorActions.clearError,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AlertDialog);
+
+
+

@@ -1,4 +1,5 @@
 const fs = require("fs")
+const moment = require("moment")
 const Product = require("../models/Product");
 const Product_Picure = require("../models/Product_Pictures");
 const Category = require("../models/Product_Category")
@@ -110,7 +111,8 @@ const fetchAvailableProducts = async(uid, pic=true) => {
                 }
             }
         ]
-    }}).then(async function(p) {
+    }
+    }).then(async function(p) {
         var prods = p.map(async function(obj) {
             let newEl = obj.dataValues;
             if(pic)newEl.picture = await getOnePicture(newEl.id);
@@ -121,6 +123,7 @@ const fetchAvailableProducts = async(uid, pic=true) => {
 
             newEl.user_id = undefined;
             
+            newEl.date_of_posting = moment(newEl.date_of_posting).format('YYYY-MM-DD');
             return newEl;    
         });
 
@@ -151,7 +154,7 @@ const fetchOwnProducts = async(uid, pic=true) => {
             newEl.seller = usr.first_name + " " + usr.last_name;
 
             newEl.user_id = undefined;
-            
+            newEl.date_of_posting = moment(newEl.date_of_posting).format('YYYY-MM-DD');
             return newEl;    
         });
 
@@ -173,7 +176,7 @@ const fetchProductById = async(pid, pic=true) => {
             prod.seller = usr.first_name + " " + usr.last_name;
 
             prod.user_id = undefined;
-
+            prod.date_of_posting = moment(prod.date_of_posting).format('YYYY-MM-DD');
             return prod.dataValues;
         }
             
@@ -207,7 +210,7 @@ const fetchProductByCategory = async(category, uid, pic=true) => {
             newEl.seller = usr.first_name + " " + usr.last_name;
 
             newEl.user_id = undefined;
-
+            newEl.date_of_posting = moment(newEl.date_of_posting).format('YYYY-MM-DD');
             return newEl;    
         });
 
@@ -248,7 +251,7 @@ const fetchProductByWord = async(word, uid, pic=true) => {
             newEl.seller = usr.first_name + " " + usr.last_name;
 
             newEl.user_id = undefined;
-
+            newEl.date_of_posting = moment(newEl.date_of_posting).format('YYYY-MM-DD');
             return newEl;    
         });
 

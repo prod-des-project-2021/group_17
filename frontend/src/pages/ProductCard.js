@@ -28,8 +28,8 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-function ProductCard(props){
-    const {product,addProductToCart} = props;
+function ProductCard(props) {
+    const { product, addProductToCart } = props;
 
     const [expanded1, setExpanded1] = React.useState(false);
 
@@ -37,7 +37,7 @@ function ProductCard(props){
         setExpanded1(!expanded1);
     };
 
-    return(<Card sx={{ minWidth: 300, maxWidth: 300 }}>
+    return (<Card sx={{ minWidth: 300, maxWidth: 300 }}>
         <CardHeader
             title={product.name}
             subheader={product.category_name}
@@ -72,14 +72,19 @@ function ProductCard(props){
                     <br />
                     posted on: {product.date_of_posting}
                 </Typography>
-                <Button
-                    style={{ backgroundColor: '#006600', color: 'white' }}
-                    variant="contained"
-                    component="label"
-                    onClick={() => addProductToCart(product)}
-                >
-                    Add to cart
-                </Button>
+                {product.isSelected ? (
+                    <Button disabled>In Cart</Button>
+                ) : (
+                    <Button
+                        style={{ backgroundColor: '#006600', color: 'white' }}
+                        variant="contained"
+                        component="label"
+                        onClick={() => addProductToCart(product)}
+                    >
+                        Add to cart
+                    </Button>
+                )}
+
             </CardContent>
         </Collapse>
     </Card>);

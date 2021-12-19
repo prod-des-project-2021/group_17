@@ -21,9 +21,9 @@ export const addProductToCart = (product) => {
 	};
 };
 
-export const removeProductFromCart = (id) => {
+export const removeProductFromCart = (product) => {
 	return {
 		type: Types.REMOVE_PRODUCT_FROM_CART,
-		payload: id
+		payload: product
 	};
 };

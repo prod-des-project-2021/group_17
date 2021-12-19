@@ -18,6 +18,7 @@ import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
+import { ProductActions } from '../stores/actions';
 
 const steps = [
     'View your order',
@@ -38,7 +39,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function HorizontalLinearStepper(props) {
-    const { cart } = props;
+    const { cart,removeProductFromCart } = props;
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
 
@@ -75,25 +76,25 @@ function HorizontalLinearStepper(props) {
         <Container>
             <ContentElement>
                 <Box sx={{ width: '100%' }}>
+                    <Stepper activeStep={activeStep}>
+                        {steps.map((label, index) => {
+                            const stepProps = {};
+                            const labelProps = {};
+                            if (isStepSkipped(index)) {
+                                stepProps.completed = false;
+                            }
+                            return (
+                                <Step key={label} {...stepProps}>
+                                    <StepLabel {...labelProps}>{label}</StepLabel>
+                                </Step>
+                            );
+                        })}
+
+                    </Stepper>
                     {cart.map((product, index) => (
                         <>
-                            <Stepper activeStep={activeStep}>
-                                {steps.map((label, index) => {
-                                    const stepProps = {};
-                                    const labelProps = {};
-                                    if (isStepSkipped(index)) {
-                                        stepProps.completed = false;
-                                    }
-                                    return (
-                                        <Step key={label} {...stepProps}>
-                                            <StepLabel {...labelProps}>{label}</StepLabel>
-                                        </Step>
-                                    );
-                                })}
-
-                            </Stepper>
-                            <br/>
-                            <br/>
+                            <br />
+                            <br />
                             <Card sx={{ minWidth: 300, maxWidth: 300 }}>
                                 <CardHeader
                                     title={product.name}
@@ -126,20 +127,20 @@ function HorizontalLinearStepper(props) {
                                             posted on: {product.date_of_posting}
                                         </Typography>
                                         <Button
-                                        style={{ backgroundColor: '#006600', color: 'white' }}
-                                        variant="contained"
-                                        component="label"
-                                        
-                                    >
-                                        Remove from Cart
-                                    </Button>
+                                            style={{ backgroundColor: '#006600', color: 'white' }}
+                                            variant="contained"
+                                            component="label"
+                                            onClick={() => removeProductFromCart(product)}
+                                        >
+                                            Remove from Cart
+                                        </Button>
                                     </CardContent>
                                 </Collapse>
                             </Card>
                         </>
                     ))}
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     {activeStep === steps.length ? (
                         <React.Fragment>
                             <Typography sx={{ mt: 2, mb: 1 }}> <br />
@@ -154,7 +155,6 @@ function HorizontalLinearStepper(props) {
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
-                            <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
                             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                                 <Button
                                     color="inherit"
@@ -181,4 +181,8 @@ const mapStateToProps = ({ product }) => ({
     cart: product.cart,
 });
 
-export default connect(mapStateToProps, null)(HorizontalLinearStepper);
+const mapDispatchToProps = {
+    removeProductFromCart: ProductActions.removeProductFromCart,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HorizontalLinearStepper);

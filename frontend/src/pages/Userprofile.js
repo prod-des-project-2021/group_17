@@ -17,7 +17,7 @@ import { AuthActions } from '../stores/actions';
 import ProductCard from './ProductCard';
 
 const Userprofile = (props) => {
-    const { user, saveChanges, deleteUser } = props;
+    const { user, saveChanges, deleteUser, addCredits } = props;
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
     const [dateOfBirth, setDob] = useState("");
@@ -49,6 +49,7 @@ const Userprofile = (props) => {
     const [PhoneNumber, editPhonenumber] = useState('');
     const [EMail, editEmail] = useState('');
     const [Password, editPassword] = useState('');
+    const [Credits, editCredits] = useState('');
 
     const saveChangesButton = async () => {
         saveChanges(Fname, LName, DateOfBirth, Address, PhoneNumber, EMail, Password);
@@ -75,7 +76,9 @@ const Userprofile = (props) => {
     const handlePasswordChange = (e) => {
         editPassword(e.target.value);
     }
-
+    const handleCreditsChange = (e) => {
+        editCredits(e.target.value);
+    }
 
     const [openPD, setOpenPersonalData] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
@@ -284,7 +287,7 @@ const Userprofile = (props) => {
                                         <TextField
                                             id="outlined-read-only-input"
                                             label="Your Credits"
-                                            defaultValue="0"
+                                            value={user.credits}
                                             InputProps={{
                                                 readOnly: true
                                             }}
@@ -295,6 +298,7 @@ const Userprofile = (props) => {
                                             required
                                             id="outlined-required"
                                             label="Add credits"
+                                            onChange={handleCreditsChange}
                                         />
                                     </div>
                                     <br/>
@@ -302,7 +306,7 @@ const Userprofile = (props) => {
                                         style={{ backgroundColor: '#006600', color: 'white' }}
                                         variant="contained"
                                         component="label"
-                                    // onClick=
+                                        onClick={() => addCredits(Credits)}
                                     >
                                         Add credits
                                     </Button >
@@ -368,7 +372,8 @@ const mapStateToProps = ({ auth }) => ({
 });
 const mapDispatchToProps = {
     saveChanges: AuthActions.saveChanges,
-    deleteUser: AuthActions.deleteUser
+    deleteUser: AuthActions.deleteUser,
+    addCredits: AuthActions.addCredits
 
 };
 

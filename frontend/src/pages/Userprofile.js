@@ -14,6 +14,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Button } from '@mui/material';
 import { connect } from 'react-redux';
 import { AuthActions } from '../stores/actions';
+import ProductCard from './ProductCard';
 
 const Userprofile = (props) => {
     const { user, saveChanges, deleteUser } = props;
@@ -79,6 +80,7 @@ const Userprofile = (props) => {
     const [openPD, setOpenPersonalData] = React.useState(false);
     const [openLG, setOpenLoginData] = React.useState(false);
     const [openC, setOpenCredits] = React.useState(false);
+    const [openPh, setOpenProducthistory] = React.useState(false);
 
     const handleClickPD = () => {
         setOpenPersonalData(!openPD);
@@ -88,6 +90,9 @@ const Userprofile = (props) => {
     };
     const handleClickC = () => {
         setOpenCredits(!openC);
+    };
+    const handleClickPh = () => {
+        setOpenProducthistory(!openPh);
     };
 
 
@@ -219,11 +224,9 @@ const Userprofile = (props) => {
                                         />
                                     </div>
                                 </Box>
-                                <br />
-                                <br />
-                                <br />
                             </List>
                         </Collapse>
+                        <br/>
                         {/* Login data */}
                         <ListItemButton onClick={handleClickLG}>
                             <ListItemText primary="Login data" />
@@ -261,6 +264,7 @@ const Userprofile = (props) => {
                                 </Box>
                             </List>
                         </Collapse>
+                        <br/>
                         {/* Credits */}
                         <ListItemButton onClick={handleClickC}>
                             <ListItemText primary="Credits" />
@@ -293,6 +297,7 @@ const Userprofile = (props) => {
                                             label="Add credits"
                                         />
                                     </div>
+                                    <br/>
                                     <Button
                                         style={{ backgroundColor: '#006600', color: 'white' }}
                                         variant="contained"
@@ -303,6 +308,27 @@ const Userprofile = (props) => {
                                     </Button >
                                 </Box>
                             </List>
+                        </Collapse>
+                        <br/>
+                        {/* Product history */}
+                        <ListItemButton onClick={handleClickPh}>
+                            <ListItemText primary="Product history" />
+                            {openPh ? <ExpandLess /> : <ExpandMore />}
+                        </ListItemButton>
+                        <Collapse in={openPh} timeout="auto" unmountOnExit>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    flexWrap: 'wrap',
+                                    justifyContent: 'space-around',
+                                    alignItems: 'baseline',
+                                    gridGap: '60px 60px',
+
+                                }}>
+                                {/* {productList.map((product, index) => (
+                                    <ProductCard product={product} />))} */}
+                            </div>
                         </Collapse>
                     </List>
                 </div>
@@ -320,15 +346,15 @@ const Userprofile = (props) => {
                 </div>
                 <br />
                 <div>
-                <Button
-						style={{ backgroundColor: '#006600', color: 'white' }}
-						variant="contained"
-						component="label"
-						onClick={() => deleteUser()}
-					>
-						Delete my account
-					</Button >
-                    
+                    <Button
+                        style={{ backgroundColor: '#006600', color: 'white' }}
+                        variant="contained"
+                        component="label"
+                        onClick={() => deleteUser()}
+                    >
+                        Delete my account
+                    </Button >
+
                 </div>
                 <br />
                 <br />

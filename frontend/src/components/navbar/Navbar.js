@@ -45,7 +45,7 @@ const Navbar = (props) => {
                     </NavLink>
                 </NavMenu>
                 <NavMenuLoggedInUser>
-                <p> Logged in as: {fName + " " + lName} </p>
+                <p> Hello {fName}, current credit:  </p>
                 </NavMenuLoggedInUser>
                 <NavButton > 
                     <Button sx={{ color: "green" }} onClick={signOut}>Logout</Button>

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import allReducers from './stores/index';
 import MainRouter from './router/router';
+import AlertDialog from './pages/PopoverError';
 
 const store = createStore(
 	allReducers,
@@ -19,6 +20,7 @@ function App() {
 	return (
 		<Provider store={store}>
 			<MainRouter />
+			<AlertDialog/>
 		</Provider>
 	);
 }

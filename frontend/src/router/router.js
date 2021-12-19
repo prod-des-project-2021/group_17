@@ -55,7 +55,6 @@ function MainRouter(props) {
 						<Route path="/home" element={<CategoryHome />} />
 						<Route path="/kitchen" element={<CategoryKitchen />} />
 						<Route path="/sport" element={<CategorySport />} />
-						<Route path="/searchbar" element={<Searchbar />} />
 						<Route path="/cart" element={<Cart />} />
 						<Route path="/userprofile" element={<Userprofile />} />
 						<Route path="/legalnotice" element={<LegalNotice />} />

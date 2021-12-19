@@ -34,9 +34,6 @@ const Navbar = (props) => {
                     <NavLink to='/dashboard'>
                         Products
                     </NavLink>
-                    <NavLink to='/searchbar'>
-                        Search
-                    </NavLink>
                     <NavLink to='/cart'>
                         Cart
                     </NavLink>

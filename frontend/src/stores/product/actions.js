@@ -2,6 +2,7 @@ import * as C from './creators';
 import ProductService from '../../services/ProductService';
 import OrderService from '../../services/OrderService';
 import { setUser } from '../auth/actions';
+import { setError } from '../error/creators';
 
 const { postProductData } = ProductService();
 
@@ -9,24 +10,41 @@ export const addProduct = (name, description, category, price, files) => async (
 	try {
 		const token = localStorage.getItem('token');
 		let fileArray = files.map((f) => { return f.base64 });
-		postProductData(name, price, description, fileArray, category, token);
+		let result = postProductData(name, price, description, fileArray, category, token);
+		if(result.hasOwnProperty('error')){
+			dispatch(setError(result.error));
+		}
 	} catch (error) {
-		console.log(error);
+		dispatch(setError(error));
 	}
 };
 
 export const getProducts = (id) => async (dispatch) => {
-	const token = localStorage.getItem('token');
-	let result = null;
-	if (id == null) result = await ProductService().getProductsData(token)
-	else result = await ProductService().getProductsDataCategory(token, id)
-	if (result) dispatch(C.getProductSucceeded(result));
+	try {
+		const token = localStorage.getItem('token');
+		let result = null;
+		if (id == null) result = await ProductService().getProductsData(token)
+		else result = await ProductService().getProductsDataCategory(token, id)
+		if(result.hasOwnProperty('error')){
+			dispatch(setError(result.error));
+		}
+		else if (result) dispatch(C.getProductSucceeded(result));
+	} catch (error) {
+		dispatch(setError(error));
+	}
 };
 
 export const deleteProduct = (product_id) => async (dispatch) => {
-	const token = localStorage.getItem('token');
-	let result = await ProductService().deleteProductData(product_id, token)
-	if (result) dispatch(C.deleteProductSucceeded(result));
+	try {
+		const token = localStorage.getItem('token');
+		let result = await ProductService().deleteProductData(product_id, token)
+		if(result.hasOwnProperty('error')){
+			dispatch(setError(result.error));
+		}
+		else if (result) dispatch(C.deleteProductSucceeded(result));
+	} catch (error) {
+		dispatch(setError(error));
+	}
 }
 
 export const addProductToCart = (product) => async (dispatch) => {
@@ -38,14 +56,28 @@ export const removeProductFromCart = (product) => async (dispatch) => {
 }
 
 export const getOwnProducts = () => async (dispatch) => {
-	const token = localStorage.getItem('token');
-	let result = await ProductService().getOwnProductsData(token)
-	if (result) dispatch(C.getProductSucceeded(result));
+	try {
+		const token = localStorage.getItem('token');
+		let result = await ProductService().getOwnProductsData(token)
+		if(result.hasOwnProperty('error')){
+			dispatch(setError(result.error));
+		}
+		else if (result) dispatch(C.getProductSucceeded(result));
+	} catch (error) {
+		dispatch(setError(error));
+	}
 };
 
 export const checkout = (products) => async (dispatch) => {
-	const token = localStorage.getItem('token');
-	let result = await OrderService().orderData(products,token)
-	dispatch(setUser());
-	products.map((pr) => {dispatch(C.removeProductFromCart(pr))});
+	try {
+		const token = localStorage.getItem('token');
+		let result = await OrderService().orderData(products, token)
+		if(result.hasOwnProperty('error')){
+			dispatch(setError(result.error));
+		}
+		dispatch(setUser());
+		products.map((pr) => { dispatch(C.removeProductFromCart(pr)) });
+	} catch (error) {
+		dispatch(setError(error));
+	}
 };

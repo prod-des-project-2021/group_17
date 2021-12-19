@@ -122,7 +122,8 @@ const deleteProduct = async (req, res, next) => {
       error.error.push("Product does not exist");
       return res.send(error);
     }
-
+    console.log(prod.user_id)
+    console.log(req.user.id)
     if(prod.user_id == req.user.id || req.user.isAdmin){
       await removeProduct(req.params.pid);
       res.sendStatus(200);

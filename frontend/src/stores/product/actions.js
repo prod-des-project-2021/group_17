@@ -11,7 +11,7 @@ export const addProduct = (name, description, category, price, files) => async (
 		const token = localStorage.getItem('token');
 		let fileArray = files.map((f) => { return f.base64 });
 		let result = postProductData(name, price, description, fileArray, category, token);
-		if(result.hasOwnProperty('error')){
+		if (result.hasOwnProperty('error')) {
 			dispatch(setError(result.error));
 		}
 		else {
@@ -29,7 +29,7 @@ export const getProducts = (id) => async (dispatch) => {
 		let result = null;
 		if (id == null) result = await ProductService().getProductsData(token)
 		else result = await ProductService().getProductsDataCategory(token, id)
-		if(result.hasOwnProperty('error')){
+		if (result.hasOwnProperty('error')) {
 			dispatch(setError(result.error));
 		}
 		else if (result) dispatch(C.getProductSucceeded(result));
@@ -42,7 +42,7 @@ export const deleteProduct = (product_id) => async (dispatch) => {
 	try {
 		const token = localStorage.getItem('token');
 		let result = await ProductService().deleteProductData(product_id, token)
-		if(result.hasOwnProperty('error')){
+		if (result.hasOwnProperty('error')) {
 			dispatch(setError(result.error));
 		}
 		else if (result) {
@@ -67,7 +67,7 @@ export const getOwnProducts = () => async (dispatch) => {
 	try {
 		const token = localStorage.getItem('token');
 		let result = await ProductService().getOwnProductsData(token)
-		if(result.hasOwnProperty('error')){
+		if (result.hasOwnProperty('error')) {
 			dispatch(setError(result.error));
 		}
 		else if (result) dispatch(C.getProductSucceeded(result));
@@ -80,11 +80,13 @@ export const checkout = (products) => async (dispatch) => {
 	try {
 		const token = localStorage.getItem('token');
 		let result = await OrderService().orderData(products, token)
-		if(result.hasOwnProperty('error')){
+		if (result.hasOwnProperty('error')) {
 			dispatch(setError(result.error));
 		}
-		dispatch(setUser());
-		products.map((pr) => { return dispatch(C.removeProductFromCart(pr)) });
+		else {
+			dispatch(setUser());
+			products.map((pr) => { return dispatch(C.removeProductFromCart(pr)) });
+		}
 	} catch (error) {
 		dispatch(setError(error));
 	}
@@ -94,10 +96,10 @@ export const getOrders = () => async (dispatch) => {
 	try {
 		const token = localStorage.getItem('token');
 		let result = await OrderService().getMyOrders(token)
-		if(result.hasOwnProperty('error')){
+		if (result.hasOwnProperty('error')) {
 			dispatch(setError(result.error));
 		}
-		else if(result) dispatch(C.getOrders(result));
+		else if (result) dispatch(C.getOrders(result));
 	} catch (error) {
 		dispatch(setError(error));
 	}

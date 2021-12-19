@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Container } from '@mui/material';
 import { ContentElement } from '../components/navbar/ContentElement';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -39,6 +39,9 @@ const ExpandMore = styled((props) => {
 }));
 
 function HorizontalLinearStepper(props) {
+
+    let navigation = useNavigate();
+
     const { cart, removeProductFromCart, checkout } = props;
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
@@ -58,6 +61,7 @@ function HorizontalLinearStepper(props) {
         setSkipped(newSkipped);
         if (activeStep === steps.length - 1) {
             checkout(cart);
+            navigation("welcome");
         }
     };
 
@@ -87,7 +91,7 @@ function HorizontalLinearStepper(props) {
                                 stepProps.completed = false;
                             }
                             return (
-                                <Step key={label} {...stepProps}>
+                                <Step key={index} {...stepProps}>
                                     <StepLabel {...labelProps}>{label}</StepLabel>
                                 </Step>
                             );
@@ -95,13 +99,13 @@ function HorizontalLinearStepper(props) {
 
                     </Stepper>
                     {cart.map((product, index) => (
-                        <>
+                        <React.Fragment key={index}>
                             <br />
                             <br />
-                            <Card sx={{ minWidth: 300, maxWidth: 300 }}>
+                            <Card key={index} sx={{ minWidth: 300, maxWidth: 300 }}>
                                 <CardHeader
                                     title={product.name}
-                                    subheader={product.category} />
+                                    subheader={product.category_name} />
                                 <CardMedia
                                     component="img"
                                     src={`data:image/png;base64, ${product.picture[0]}`}
@@ -140,46 +144,34 @@ function HorizontalLinearStepper(props) {
                                     </CardContent>
                                 </Collapse>
                             </Card>
-                        </>
+                        </React.Fragment>
                     ))}
                     <br />
                     <br />
-                    {activeStep === steps.length ? (
-                        <React.Fragment>
-                            <Typography sx={{ mt: 2, mb: 1 }}> <br />
-                                <br />
-                                <h1 >Congratulations! We have just received your order. </h1> <br />
-                                We will send you a confirmation email as soon as possible and contact you when your order is on its way.
-                            </Typography>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, color: 'green' }}>
-                                <Box sx={{ flex: '1 1 auto' }} />
-                                <Button sx={{ color: 'green' }} onClick={handleReset} component={Link} to='/home' > Continue with shopping  </Button>
-                            </Box>
-                        </React.Fragment>
-                    ) : (
-                        <React.Fragment>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                                <Button
-                                    color="inherit"
-                                    disabled={activeStep === 0}
-                                    onClick={handleBack}
-                                    sx={{ mr: 1 }}
-                                >
-                                    Back
-                                </Button>
-                                <Box sx={{ flex: '1 1 auto' }} />
-                                {cart === null || cart.length === 0 ? (
-                                    <Button disabled onClick={handleNext} sx={{ color: 'green' }}>
-                                        {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                                    </Button>
-                                ) : (
-                                    <Button onClick={handleNext} sx={{ color: 'green' }}>
-                                        {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                                    </Button>)}
 
-                            </Box>
-                        </React.Fragment>
-                    )}
+                    <React.Fragment>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                            <Button
+                                color="inherit"
+                                disabled={activeStep === 0}
+                                onClick={handleBack}
+                                sx={{ mr: 1 }}
+                            >
+                                Back
+                            </Button>
+                            <Box sx={{ flex: '1 1 auto' }} />
+                            {cart === null || cart.length === 0 ? (
+                                <Button disabled onClick={handleNext} sx={{ color: 'green' }}>
+                                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                </Button>
+                            ) : (
+                                <Button onClick={handleNext} sx={{ color: 'green' }}>
+                                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                </Button>)}
+
+                        </Box>
+                    </React.Fragment>
+
                 </Box>
             </ContentElement>
         </Container>

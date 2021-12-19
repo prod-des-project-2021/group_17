@@ -245,8 +245,9 @@ function Register(props) {
                 </div>
                 <div>
                     <RegisterButton >
-                        <Button sx={{ color: "green" }} onClick={signUpButton}>Done!</Button>
+                        <Button sx={{ color: "green" }} onClick={signUpButton}>Sign up</Button>
                     </RegisterButton>
+                    <br/>
                     <RegisterButton >
                         <RegisterButtonLink to='/login' sx={{ color: "green" }} >Back to login</RegisterButtonLink>
                     </RegisterButton>

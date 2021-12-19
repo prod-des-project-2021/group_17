@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import { Button, Container } from '@mui/material';
@@ -16,13 +16,13 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { RegisterButton } from '../components/navbar/Buttons';
+import { RegisterButton, RegisterButtonLink } from '../components/navbar/Buttons';
 import { connect } from 'react-redux';
 import { AuthActions } from '../stores/actions';
 
 
 function Register(props) {
-    const {signUp} = props;
+    const { signUp } = props;
     const [open, setOpen] = React.useState(true);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -246,6 +246,9 @@ function Register(props) {
                 <div>
                     <RegisterButton >
                         <Button sx={{ color: "green" }} onClick={signUpButton}>Done!</Button>
+                    </RegisterButton>
+                    <RegisterButton >
+                        <RegisterButtonLink to='/login' sx={{ color: "green" }} >Back to login</RegisterButtonLink>
                     </RegisterButton>
                 </div>
             </ContentElement>

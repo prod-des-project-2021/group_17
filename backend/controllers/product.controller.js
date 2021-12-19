@@ -20,7 +20,6 @@ const addProduct = async (req, res, next) => {
 
 const getProduct = async (req, res, next) => {
   var error = {status:"", error:[]};
-
   try {
 		prod = await fetchAvailableProducts(req.user.id);
     res.status(200);

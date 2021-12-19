@@ -4,11 +4,11 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 
 const createOrder = async (pid, uid) => {
-    request = {}
-    request.status = "in order";
-    request.user_id = uid;
-    request.product_id = pid;
-    const order = Order.build(request);
+    body = {}
+    body.status = "in order";
+    body.user_id = uid;
+    body.product_id = pid;
+    const order = Order.build(body);
     
     await order.save();
 }
@@ -24,7 +24,7 @@ const fetchOrderByProdAndUser = async (pid, uid) => {
 
 const fetchOrderByUser = async (uid) => {
     return await Order.findAll({where: {user_id: uid}}).then(function(o) {
-        return o.map(function(obj) {return obj.dataValues});
+        return o.map(function(obj) {return obj.dataValues.product_id});
     });
 }
 

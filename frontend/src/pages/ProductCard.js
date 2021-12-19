@@ -70,6 +70,7 @@ function ProductCard(props){
                 <Typography paragraph>
                     {product.description}
                     <br />
+                    <br />
                     posted on: {product.date_of_posting}
                 </Typography>
                 <Button

@@ -10,6 +10,7 @@ const Navbar = (props) => {
     const { signOut } = props;
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
+    const [credits, setCredit] = useState("");
     const { user } = props;
 
     useEffect(
@@ -17,6 +18,7 @@ const Navbar = (props) => {
             if (user) {
                 setFName(user.first_name);
                 setLName(user.last_name);
+                setCredit(user.credits)
             }
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,7 +47,7 @@ const Navbar = (props) => {
                     </NavLink>
                 </NavMenu>
                 <NavMenuLoggedInUser>
-                <p> Hello {fName}, current credit:  </p>
+                <p> Hi {fName}, your current credit balance is: {credits}  €</p>
                 </NavMenuLoggedInUser>
                 <NavButton > 
                     <Button sx={{ color: "green" }} onClick={signOut}>Logout</Button>
@@ -62,4 +64,4 @@ const mapStateToProps = ({ auth }) => ({
     user: auth.user
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, null)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

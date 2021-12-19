@@ -86,7 +86,7 @@ const orderCheckout = async(req, res, next) => {
     }
 };
 
-const getOrder = async (req, res, next) => {
+const getOrderHistory = async (req, res, next) => {
     var error = {status:"", error:[]};
     let productsBought = []
     try {
@@ -108,5 +108,5 @@ const getOrder = async (req, res, next) => {
   };
 
 module.exports = {
-    addProductToOrder, orderCheckout, getOrder
+    addProductToOrder, orderCheckout, getOrderHistory
 }

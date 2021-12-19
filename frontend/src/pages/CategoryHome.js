@@ -17,6 +17,7 @@ const Home = (props) => {
         () => {
             getProducts(6)
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         []
     );
 
@@ -24,6 +25,7 @@ const Home = (props) => {
         () => {
             if (products !== null) setProduct(products)
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [products]
     );
 
@@ -36,7 +38,7 @@ const Home = (props) => {
                 <br />
                 <br />
                 <div
-                    style= {{
+                    style={{
                         display: 'flex',
                         flexDirection: 'row',
                         flexWrap: 'wrap',
@@ -46,13 +48,13 @@ const Home = (props) => {
 
                     }}>
                     {productList.map((product, index) => (
-                        <ProductCard product={product}/>))}
+                        <ProductCard key={index} product={product} />))}
                 </div>
                 <br />
                 <br />
                 <br />
                 <br />
-               
+
             </ContentElement>
         </Container>
     )

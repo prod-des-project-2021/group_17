@@ -10,13 +10,6 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        // Sign In
-        case Types.SIGN_IN_REQUESTED:
-            return {
-                ...state,
-                loading: true,
-                error: undefined
-            };
         case Types.SIGN_IN_SUCCEEDED:
             localStorage.setItem('token', payload.token);
             return {
@@ -32,13 +25,6 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 loading: false,
                 error: payload
-            };
-        // Sign Out
-        case Types.SIGN_OUT_REQUESTED:
-            return {
-                ...state,
-                loading: true,
-                error: undefined
             };
         case Types.SIGN_OUT_SUCCEEDED:
             localStorage.removeItem('token');
@@ -58,12 +44,6 @@ const reducer = (state = initialState, { type, payload }) => {
                 loading: false,
                 isLogged: false,
                 error: payload
-            };
-        case Types.SIGN_UP_REQUESTED:
-            return {
-                ...state,
-                loading: true,
-                error: undefined
             };
         case Types.SIGN_UP_SUCCEEDED:
             return {
@@ -89,22 +69,11 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 token: payload
             };
-        case Types.CLEAR_USER:
-            return {
-                ...state,
-                user: null,
-                token: null
-            };
         case Types.CLEAR_USER_TOKEN:
             return {
                 ...state,
                 token: null
             };
-        case Types.GET_CURRENT_REQUESTED:
-            return {
-                ...state,
-                loading: true
-            }
         case Types.GET_CURRENT_SUCCEEDED:
             return {
                 ...state,
@@ -112,12 +81,6 @@ const reducer = (state = initialState, { type, payload }) => {
                 isLogged: payload != null ? true : false,
                 loading: false
             }
-        case Types.SAVE_CHANGES_FAILED:
-            return {
-                ...state,
-                loading: false,
-                error: payload
-            };
         case Types.SAVE_CHANGES_FAILED:
             return {
                 ...state,

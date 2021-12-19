@@ -9,7 +9,6 @@ import { Nav, NavLink, NavButton, NavMenu, Bars, NavMenuLoggedInUser } from './N
 const Navbar = (props) => {
     const { signOut } = props;
     const [fName, setFName] = useState("");
-    const [lName, setLName] = useState("");
     const [credits, setCredit] = useState("");
     const { user } = props;
 
@@ -17,7 +16,6 @@ const Navbar = (props) => {
         () => {
             if (user) {
                 setFName(user.first_name);
-                setLName(user.last_name);
                 setCredit(user.credits)
             }
         },

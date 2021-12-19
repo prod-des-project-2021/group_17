@@ -2,6 +2,7 @@ import Types from '../types';
 
 const initialState = {
     products: null,
+    orders: null,
     error: undefined,
     cart: []
 };
@@ -22,6 +23,11 @@ const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 cart: state.cart.filter(item => item !== payload),
+            }
+        case Types.GET_ORDERS:
+            return {
+                ...state,
+                orders: payload 
             }
         default:
             return state;

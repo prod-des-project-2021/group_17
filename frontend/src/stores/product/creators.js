@@ -27,3 +27,10 @@ export const removeProductFromCart = (product) => {
 		payload: product
 	};
 };
+
+export const getOrders = (order) => {
+	return {
+		type: Types.GET_ORDERS,
+		payload: order
+	};
+};

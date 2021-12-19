@@ -11,10 +11,21 @@ function OrderService() {
                 "Content-Type": "application/json",
                 'Authorization': 'Bearer ' + token
             }
-        })//.then((res) => res.json());
+        })
         return result;
     };
-    return { orderData };
+
+    const getMyOrders = async (token) => {
+        let result = await fetch("http://172.20.241.192:3000/api/order", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + token
+            }
+        }).then((res) => res.json());
+        return result;
+    };
+    return { orderData, getMyOrders };
 }
 export default OrderService;
 

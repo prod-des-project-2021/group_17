@@ -84,8 +84,21 @@ export const checkout = (products) => async (dispatch) => {
 			dispatch(setError(result.error));
 		}
 		dispatch(setUser());
-		products.map((pr) => { dispatch(C.removeProductFromCart(pr)) });
+		products.map((pr) => { return dispatch(C.removeProductFromCart(pr)) });
 	} catch (error) {
 		dispatch(setError(error));
 	}
 };
+
+export const getOrders = () => async (dispatch) => {
+	try {
+		const token = localStorage.getItem('token');
+		let result = await OrderService().getMyOrders(token)
+		if(result.hasOwnProperty('error')){
+			dispatch(setError(result.error));
+		}
+		else if(result) dispatch(C.getOrders(result));
+	} catch (error) {
+		dispatch(setError(error));
+	}
+}

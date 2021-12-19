@@ -9,9 +9,6 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Button } from '@mui/material';
-import { connect } from 'react-redux';
-import { ProductActions } from '../stores/actions';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -24,8 +21,8 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-function ProductCard(props) {
-    const { product, addProductToCart, cart } = props;
+function OrderCard(props) {
+    const { product } = props;
 
     const [expanded1, setExpanded1] = React.useState(false);
 
@@ -69,30 +66,9 @@ function ProductCard(props) {
                     <br />
                     posted on: {product.date_of_posting}
                 </Typography>
-                {cart.some(p => p.id === product.id) ? (
-                    <Button disabled>In Cart</Button>
-                ) : (
-                    <Button
-                        style={{ backgroundColor: '#006600', color: 'white' }}
-                        variant="contained"
-                        component="label"
-                        onClick={() => addProductToCart(product)}
-                    >
-                        Add to cart
-                    </Button>
-                )}
-
             </CardContent>
         </Collapse>
     </Card>);
 }
 
-const mapDispatchToProps = {
-    addProductToCart: ProductActions.addProductToCart
-};
-
-const mapStateToProps = ({ product }) => ({
-    cart: product.cart
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
+export default OrderCard;

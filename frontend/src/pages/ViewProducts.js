@@ -19,6 +19,7 @@ const ViewProduct = (props) => {
         () => {
             getOwnProducts()
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         []
     );
 
@@ -26,6 +27,7 @@ const ViewProduct = (props) => {
         () => {
             if (products !== null) setProduct(products)
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [products]
     );
 

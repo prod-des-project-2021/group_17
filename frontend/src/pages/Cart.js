@@ -18,7 +18,7 @@ import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
-import { AuthActions, ProductActions } from '../stores/actions';
+import { ProductActions } from '../stores/actions';
 
 const steps = [
     'View your order',
@@ -39,7 +39,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function HorizontalLinearStepper(props) {
-    const { cart, removeProductFromCart, checkout, setUser } = props;
+    const { cart, removeProductFromCart, checkout } = props;
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
 

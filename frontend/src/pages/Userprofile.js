@@ -13,12 +13,11 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Button } from '@mui/material';
 import { connect } from 'react-redux';
-import { AuthActions } from '../stores/actions';
-import ProductCard from './ProductCard';
-import { useNavigate } from 'react-router';
+import { AuthActions, ProductActions } from '../stores/actions';
+import OrderCard from './OrderCard';
 
 const Userprofile = (props) => {
-    const { user, saveChanges, deleteUser, addCredits } = props;
+    const { user, saveChanges, deleteUser, addCredits, getOrders, orders } = props;
     const [fName, setFName] = useState("");
     const [lName, setLName] = useState("");
     const [dateOfBirth, setDob] = useState("");
@@ -26,7 +25,7 @@ const Userprofile = (props) => {
     const [phoneNumber, setPhonenumber] = useState("");
     const [Email, setEmail] = useState("");
 
-    let navigate = useNavigate();
+    const [myOrders, setMyOrders] = useState([]);
 
     useEffect(
         () => {
@@ -44,6 +43,22 @@ const Userprofile = (props) => {
         [user]
     );
 
+    useEffect(
+        () => {
+            getOrders();
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
+
+    useEffect(
+        () => {
+            if(orders !== null) setMyOrders(orders);
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [orders]
+    );
+
     const [Fname, editFName] = useState('');
     const [LName, editLName] = useState('');
     const [DateOfBirth, editDob] = useState('');
@@ -55,7 +70,6 @@ const Userprofile = (props) => {
 
     const saveChangesButton = async () => {
         saveChanges(Fname, LName, DateOfBirth, Address, PhoneNumber, EMail, Password);
-        //navigate('userprofile');
     }
 
     const handleFNameChange = (e) => {
@@ -333,8 +347,8 @@ const Userprofile = (props) => {
                                     gridGap: '60px 60px',
 
                                 }}>
-                                {/* {productList.map((product, index) => (
-                                    <ProductCard product={product} />))} */}
+                                    {myOrders.map((order, index)=> (<OrderCard key={index} product={order}/>))}
+                                
                             </div>
                         </Collapse>
                     </List>
@@ -370,13 +384,15 @@ const Userprofile = (props) => {
         </Container>
     );
 }
-const mapStateToProps = ({ auth }) => ({
+const mapStateToProps = ({ auth, product }) => ({
     user: auth.user,
+    orders: product.orders
 });
 const mapDispatchToProps = {
     saveChanges: AuthActions.saveChanges,
     deleteUser: AuthActions.deleteUser,
-    addCredits: AuthActions.addCredits
+    addCredits: AuthActions.addCredits,
+    getOrders: ProductActions.getOrders
 
 };
 

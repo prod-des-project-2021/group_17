@@ -17,6 +17,7 @@ const Sport = (props) => {
         () => {
             getProducts(4)
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         []
     );
 
@@ -24,6 +25,7 @@ const Sport = (props) => {
         () => {
             if (products !== null) setProduct(products)
         },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [products]
     );
 
@@ -36,7 +38,7 @@ const Sport = (props) => {
                 <br />
                 <br />
                 <div
-                    style= {{
+                    style={{
                         display: 'flex',
                         flexDirection: 'row',
                         flexWrap: 'wrap',
@@ -46,13 +48,13 @@ const Sport = (props) => {
 
                     }}>
                     {productList.map((product, index) => (
-                        <ProductCard product={product}/>))}
+                        <ProductCard key={index} product={product} />))}
                 </div>
                 <br />
                 <br />
                 <br />
                 <br />
-               
+
             </ContentElement>
         </Container>
     )

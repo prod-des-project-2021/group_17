@@ -1,23 +1,20 @@
 // to display the order 
 //GET 
 function OrderService() {
-    const orderData = async ( product_id ) => {
-        if (product_id == null) {
-            return "you don't have any orders";
-        }
-        let body = { 
-            product_id: product_id,
-            
-        };
-
-        let result = await fetch("http://localhost:3000/api/order/:id", {
-            method: "GET",
-            body: JSON.stringify(body),
-            headers: { "Content-Type": "application/json" }
-        }).then((res) => res.json());
+    const orderData = async (products, token) => {
+        let ids = [];
+        products.map((product) => ids.push(product.id));
+        let result = await fetch("http://172.20.241.192:3000/api/order/checkout", {
+            method: "POST",
+            body: JSON.stringify({ products: ids }),
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + token
+            }
+        })//.then((res) => res.json());
         return result;
     };
-    return {orderData};
+    return { orderData };
 }
 export default OrderService;
 

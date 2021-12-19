@@ -29,7 +29,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function ProductCard(props) {
-    const { product, addProductToCart } = props;
+    const { product, addProductToCart, cart } = props;
 
     const [expanded1, setExpanded1] = React.useState(false);
 
@@ -73,7 +73,7 @@ function ProductCard(props) {
                     <br />
                     posted on: {product.date_of_posting}
                 </Typography>
-                {product.isSelected ? (
+                {cart.some(p => p.id === product.id) ? (
                     <Button disabled>In Cart</Button>
                 ) : (
                     <Button
@@ -95,4 +95,8 @@ const mapDispatchToProps = {
     addProductToCart: ProductActions.addProductToCart
 };
 
-export default connect(null, mapDispatchToProps)(ProductCard);
+const mapStateToProps = ({ product }) => ({
+    cart: product.cart
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

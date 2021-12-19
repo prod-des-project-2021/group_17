@@ -115,7 +115,7 @@ const deleteProduct = async (req, res, next) => {
   var error = {status:"", error:[]};
 	try {
     prod = await fetchProductById(req.params.pid, false);
-
+    console.log(prod);
     if(!prod){
       error.status = 404;
       res.status(404);

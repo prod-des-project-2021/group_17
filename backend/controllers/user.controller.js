@@ -140,7 +140,8 @@ const addCredits = async(req, res, next) => {
 			return res.send(error);
 		} else {
 			await changeCredits(req.user.id, req.body.credits);
-			res.sendStatus(200);
+			res.status(200);
+			res.send({message:"OK"});
 		}
 		next();
 	} catch (e) {

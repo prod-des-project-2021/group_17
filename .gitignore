@@ -4,6 +4,8 @@
 frontend/node_modules
 /.pnp
 .pnp.js
+backend/node_modules
+backend/config/config.js
 
 # testing
 /coverage
@@ -18,6 +20,9 @@ frontend/build
 .env.test.local
 .env.production.local
 
+backend/pics
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+backend/config/config.js
